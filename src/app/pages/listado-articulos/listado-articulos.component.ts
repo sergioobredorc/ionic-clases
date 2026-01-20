@@ -15,15 +15,14 @@ import {
   IonButton,
   IonText,
   IonAlert,
-
  } from '@ionic/angular/standalone';
 
-import { Registro, StorageService } from '../../services/storage.service';
+import { RegistroArt, StorageArtService } from '../../services/storageArt.service';
 
 @Component({
-  selector: 'app-listado-registros',
-  templateUrl: './listado-registros.component.html',
-  styleUrls: ['./listado-registros.component.scss'],
+  selector: 'app-listado-articulos',
+  templateUrl: './listado-articulos.component.html',
+  styleUrls: ['./listado-articulos.component.scss'],
   imports: [
     CommonModule,
     DatePipe,
@@ -40,11 +39,10 @@ import { Registro, StorageService } from '../../services/storage.service';
     IonButton,
     IonText,
     IonAlert,
-
   ]
 })
-export class ListadoRegistrosComponent  implements OnInit {
-  registros: Registro[] = [];
+export class ListadoArticulosComponent  implements OnInit {
+  registros: RegistroArt[] = [];
   cargando = true;
   public alertButtons = [
     { 
@@ -55,7 +53,7 @@ export class ListadoRegistrosComponent  implements OnInit {
       },
     },
     {
-      text: 'OK',
+      text: 'Si',
       role: 'confirm',
       handler: () => {
         this.borrarTodo();
@@ -65,7 +63,7 @@ export class ListadoRegistrosComponent  implements OnInit {
   setResult(event: CustomEvent<OverlayEventDetail>) {
     console.log(`Ejecutado con el rol: ${event.detail.role}`);
   }
-  constructor(private storageSvc: StorageService) { }
+  constructor(private storageSvc: StorageArtService) { }
 
   async ngOnInit() {
     await this.cargar();

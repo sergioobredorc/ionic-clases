@@ -1,0 +1,18 @@
+ion-text{
+    color: red
+}
+
+.guardado{
+    color: green
+}
+
+.precio-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.precio-row ion-icon {
+  font-size: 20px;
+  color: var(--ion-color-medium);
+}

@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Listado de Artículos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-button expand="block" fill="outline" (click)="cargar()">
+    Recargar Artículos
+  </ion-button>
+
+  <ion-button id="present-alert" expand="block" fill="outline">
+    Limpiar Todo
+  </ion-button>
+
+  <ion-alert trigger="present-alert" header="Seguro deseas borrrar todos los artículos" [buttons]="alertButtons"
+    (didDismiss)="setResult($event)"></ion-alert>
+
+  <ion-text *ngIf="cargando">
+    <p>Cargando artículos.</p>
+  </ion-text>
+
+  <ion-text *ngIf="!cargando && registros.length === 0">
+    <p>No hay artículos guardados</p>
+  </ion-text>
+
+  <ion-card *ngFor="let r of registros">
+
+    <ion-card-header>
+      <ion-card-title>{{ r.nombre }}</ion-card-title>
+      <ion-card-subtitle>
+       $ {{ r.precio }} - {{ r.createdAt | date: 'medium' }}
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p><strong>Categoria: </strong> {{r.categoria}}</p>
+      <p><strong>Disponible: </strong> {{r.disponibilidad ? 'Si': 'No '}}</p>
+      <p *ngIf="r.descripcion">
+        <strong>Descripción:</strong> {{ r.descripcion }}
+      </p>
+    </ion-card-content>
+
+  </ion-card>
+  <ion-button expand="block" routerLink="/registro-articulo" class="ion-margin-top">Volver al registro de artículos</ion-button>
+  <ion-button expand="block" class="ion-margin-top" routerLink="" >Inicio</ion-button>
+</ion-content>

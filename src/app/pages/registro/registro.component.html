@@ -82,7 +82,14 @@
       Registrar
     </ion-button>
   </form>
-  <ion-text *ngIf="guardadoOK">
+  <ion-text class="guardado" *ngIf="guardadoOK">
     <p>Registro guardado localmente.</p>
   </ion-text>
+  
+  <ion-footer>
+
+  </ion-footer>
+  <ion-button expand="block" class="ion-margin-top" routerLink="">
+    Inicio
+</ion-button>
 </ion-content>
