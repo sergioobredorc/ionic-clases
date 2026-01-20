@@ -1,88 +1,60 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
     <ion-title>Registro de Usuario</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="usuarioForm" (ngSubmit)="guardarUsuario()">
     <ion-list>
       <ion-item>
-        <ion-label position="stacked">Nombre completo</ion-label>
-        <ion-input formControlName="nombre" placeholder="Ingresa tu nombre"></ion-input>
+        <ion-label position="stacked">Nombre Completo*</ion-label>
+        <ion-input formControlName="nombre" placeholder="Nombre y Apellido"></ion-input>
       </ion-item>
-      <ion-text *ngIf="f['nombre'].touched && f['nombre'].invalid">
-        <p *ngIf="f['nombre'].errors?.['required']">El nombre es obligatorio.</p>
-        <p *ngIf="f['nombre'].errors?.['minlength']">Usa mínimo 3 caracteres.</p>
-      </ion-text>
+
       <ion-item>
-        <ion-label position="stacked">Correo electrónico</ion-label>
-        <ion-input formControlName="correo" placeholder="correo@ejemplo.com" type="email"></ion-input>
+        <ion-label position="stacked">Correo Electrónico*</ion-label>
+        <ion-input formControlName="correo" type="email" placeholder="ejemplo@correo.com"></ion-input>
       </ion-item>
-      <ion-text *ngIf="f['correo'].touched && f['correo'].invalid">
-        <p *ngIf="f['correo'].errors?.['required']">El correo es obligatorio.</p>
-        <p *ngIf="f['correo'].errors?.['email']">El correo no tiene un formato válido.</p>
-      </ion-text>
+
       <ion-item>
-        <ion-label position="stacked">País</ion-label>
-        <ion-select formControlName="pais" placeholder="Seleccione in país">
-          <ion-select-option value="co">Colombia</ion-select-option>
-          <ion-select-option value="mx">México</ion-select-option>
-          <ion-select-option value="ar">Argentina</ion-select-option>
+        <ion-label position="stacked">País de Residencia*</ion-label>
+        <ion-select formControlName="pais" placeholder="Seleccione su país">
+          <ion-select-option value="Colombia">Colombia</ion-select-option>
+          <ion-select-option value="México">México</ion-select-option>
+          <ion-select-option value="España">España</ion-select-option>
         </ion-select>
       </ion-item>
-      <ion-text *ngIf="f['pais'].touched && f['pais'].invalid">
-        <p>Selecciona un país.</p>
-      </ion-text>
-      <ion-item>
-        <ion-label position="stacked">Fecha de nacimiento</ion-label>
-        <ion-datetime formControlName="fechaNacimiento" presentation="date"></ion-datetime>
-      </ion-item>
-      <ion-text *ngIf="f['fechaNacimiento'].touched && f['fechaNacimiento'].invalid">
-        <p>Selecciona una fecha.</p>
-      </ion-text>
-      <ion-item>
-        <ion-label>Género</ion-label>
-      </ion-item>
+
       <ion-radio-group formControlName="genero">
+        <ion-list-header>
+          <ion-label>Género</ion-label>
+        </ion-list-header>
         <ion-item>
           <ion-label>Masculino</ion-label>
-          <ion-radio value="m"></ion-radio>
+          <ion-radio slot="start" value="masculino"></ion-radio>
         </ion-item>
         <ion-item>
           <ion-label>Femenino</ion-label>
-          <ion-radio value="f"></ion-radio>
+          <ion-radio slot="start" value="femenino"></ion-radio>
         </ion-item>
       </ion-radio-group>
-      <ion-text *ngIf="f['genero'].touched && f['genero'].invalid">
-        <p>Selecciona una opción.</p>
-      </ion-text>
 
-      <ion-item>
-        <ion-label>Recibir notificaciones</ion-label>
-        <ion-toggle formControlName="notificaciones"></ion-toggle>
-      </ion-item>
       <ion-item>
         <ion-label position="stacked">Biografía</ion-label>
-        <ion-textarea formControlName="biografia" placeholder="Cuéntanos sobre ti"></ion-textarea>
+        <ion-textarea formControlName="biografia" placeholder="Cuéntanos un poco de ti"></ion-textarea>
       </ion-item>
-      <ion-text *ngIf="f['biografia'].touched && f['biografia'].invalid">
-        <p *ngIf="f['biografia'].errors?.['maxlength']">Máximo 200 caracteres.</p>
-      </ion-text>
-
-      <ion-item lines="none">
-        <ion-checkbox formControlName="terminos"></ion-checkbox>
-        <ion-label class="ion-padding-start">Acepto términos y condiciones</ion-label>
-      </ion-item>
-      <ion-text *ngIf="f['terminos'].touched && f['terminos'].invalid">
-        <p>Debes aceptar los términos.</p>
-      </ion-text>
     </ion-list>
-    <ion-button expand="block" class="ion-margin-top" type="submit">
-      Registrar
+
+    <ion-button expand="block" type="submit" [disabled]="usuarioForm.invalid" class="ion-margin-top">
+      Guardar Registro
     </ion-button>
   </form>
-  <ion-text *ngIf="guardadoOK">
-    <p>Registro guardado localmente.</p>
+
+  <ion-text color="success" *ngIf="mensajeExito" class="ion-text-center">
+    <p>¡Usuario registrado correctamente!</p>
   </ion-text>
 </ion-content>

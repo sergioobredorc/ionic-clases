@@ -1,17 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { IonHeader, IonContent, IonTitle, IonToolbar, IonButton } from "@ionic/angular/standalone";
+import { CommonModule } from '@angular/common';
+import { IonicModule } from '@ionic/angular';
 import { RouterLink } from '@angular/router';
+import { addIcons } from 'ionicons';
+import { addCircleOutline, listOutline, personOutline, imagesOutline, personAddOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  imports: [IonHeader, IonContent, IonTitle, IonToolbar, IonButton, RouterLink],
+  imports: [IonicModule, CommonModule, RouterLink],
 })
-export class HomeComponent  implements OnInit {
+export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+    addIcons({ addCircleOutline, listOutline, personOutline, imagesOutline, personAddOutline });
+  }
 
   ngOnInit() {}
 

@@ -1,15 +1,71 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Inicio</ion-title>
-    
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>Menú Principal</ion-title>
   </ion-toolbar>
 </ion-header>
+
 <ion-content class="ion-padding">
-  <p>Este es el componente home</p>
+  <div class="profile-section">
+    <div class="avatar-container">
+      <img src="https://i2.wp.com/images.genshin-builds.com/genshin/characters/mualani/image.png?strip=all&quality=100&w=160" alt="Profile">
+    </div>
+    <h1>¡Hola, Amigo!</h1>
+    <p>Bienvenido, soy Michel creador de esta página, Puedes probar las diferentes funciones.</p>
+  </div>
+
+  <div style="text-align: center; margin-top: 20px; margin-bottom: 30px;">
+    <h1 class="panel-title">Panel de Control</h1>
+    <p class="panel-subtitle">Selecciona una sección para continuar</p>
+  </div>
+
+  <ion-list-header>
+    <ion-label color="primary"><strong>ACTIVIDAD 2: ARTÍCULOS, Michel Gonzalez</strong></ion-label>
+  </ion-list-header>
+  
+  <ion-button expand="block" color="primary" routerLink="/registro-articulo" class="ion-margin-top btn-main">
+    <ion-icon name="add-circle-outline" slot="start"></ion-icon>
+    Nuevo Registro de Artículo
+  </ion-button>
+
+  <ion-button expand="block" fill="outline" routerLink="/listado-articulos" class="ion-margin-top btn-outline">
+    <ion-icon name="list-outline" slot="start"></ion-icon>
+    Ver Inventario (Cards)
+  </ion-button>
+
+  <div class="divider"></div>
+
+  <ion-list-header>
+    <ion-label color="medium">GESTIÓN DE USUARIOS Y PERFIL</ion-label>
+  </ion-list-header>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6">
+        <ion-button expand="block" routerLink="/registro" class="btn-grid">
+          <ion-icon name="person-add-outline" slot="start"></ion-icon>
+          Registro
+        </ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button expand="block" routerLink="/registros" class="btn-grid">
+          <ion-icon name="list-outline" slot="start"></ion-icon>
+          Listado
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6">
+        <ion-button expand="block" routerLink="/perfil" class="btn-grid">
+          <ion-icon name="person-outline" slot="start"></ion-icon>
+          Perfil
+        </ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button expand="block" routerLink="/galeria" class="btn-grid">
+          <ion-icon name="images-outline" slot="start"></ion-icon>
+          Galería
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
-<ion-button routerLink="/perfil">
-    Ir al Perfil
-</ion-button>
-<ion-button routerLink="/galeria">
-    Ir al a Galería
-</ion-button>
