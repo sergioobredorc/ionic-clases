@@ -4,26 +4,36 @@ import { PerfilComponent } from './pages/perfil/perfil.component';
 import { GaleriaComponent } from './pages/galeria/galeria.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { ListadoRegistrosComponent } from './pages/listado-registros/listado-registros.component';
+import { RegistroArticulosComponent } from './pages/registro-articulos/registro-articulos.component';
+import { ListadoArticulosComponent } from './pages/listado-articulos/listado-articulos.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    component: HomeComponent,
   },
   {
     path: 'perfil',
-    component: PerfilComponent
+    component: PerfilComponent,
   },
   {
     path: 'galeria',
-    component: GaleriaComponent
+    component: GaleriaComponent,
   },
   {
     path: 'registro',
-    component: RegistroComponent
+    component: RegistroComponent,
   },
   {
     path: 'registros',
-    component: ListadoRegistrosComponent
-  }
+    component: ListadoRegistrosComponent,
+  },
+  {
+    path: 'articulo',
+    component: RegistroArticulosComponent,
+  },
+  {
+    path: 'listados',
+    component: ListadoArticulosComponent,
+  },
 ];

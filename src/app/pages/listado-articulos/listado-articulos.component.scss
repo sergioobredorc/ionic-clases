@@ -1,0 +1,9 @@
+.alert-confirm {
+  color: var(--ion-color-danger);
+  font-weight: bold;
+}
+
+:host ::ng-deep .alert-confirm {
+  color: var(--ion-color-danger);
+  font-weight: bold;
+}
