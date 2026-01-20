@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Listado de Artículos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card *ngFor="let articulo of registros; let i = index">
+    <ion-card-header>
+      <ion-card-title>{{ articulo.nombre }}</ion-card-title>
+      <ion-card-subtitle>{{ articulo.categoria }} - ${{ articulo.precio }}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      Fecha: {{ articulo.fecha | date:'short' }} <br>
+      Disponible: {{ articulo.disponibilidad ? 'Sí' : 'No' }} <br>
+      {{ articulo.descripcion }}
+    </ion-card-content>
+
+    <ion-button color="danger" expand="block" (click)="confirmarAccion('uno', i)">
+      Eliminar este artículo
+    </ion-button>
+  </ion-card>
+
+  <ion-button expand="block" color="warning" (click)="confirmarAccion('todos')">
+    Borrar todos los artículos
+  </ion-button>
+
+  <ion-button expand="block" color="secondary" routerLink="/registro-articulo">
+    Registrar nuevo artículo
+  </ion-button>
+
+  <ion-button expand="block" color="primary" routerLink="">
+    Ir al Inicio
+  </ion-button>
+</ion-content>
