@@ -132,7 +132,11 @@
     "schematicCollections": [
       "@ionic/angular-toolkit"
     ],
+<<<<<<< HEAD
     "analytics": "f041685e-a1c9-4520-919b-7bec1649a72b"
+=======
+    "analytics": false
+>>>>>>> d7a3f18 (Actividad 2: registro y listado con Ionic Storage)
   },
   "schematics": {
     "@ionic/angular-toolkit:component": {

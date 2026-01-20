@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registro de Artículos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <form [formGroup]="articuloForm" (ngSubmit)="guardarArticulo()">
+
+    <ion-item>
+      <ion-label position="floating">Nombre del artículo</ion-label>
+      <ion-input formControlName="nombre"></ion-input>
+    </ion-item>
+    <ion-note *ngIf="articuloForm.get('nombre')?.touched && articuloForm.get('nombre')?.invalid">
+      El nombre es obligatorio (mínimo 3 caracteres)
+    </ion-note>
+
+    <ion-item>
+      <ion-label position="floating">Precio</ion-label>
+      <ion-input type="number" formControlName="precio"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Categoría</ion-label>
+      <ion-select formControlName="categoria">
+        <ion-select-option *ngFor="let c of categorias" [value]="c">
+          {{ c }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Fecha de ingreso</ion-label>
+      <ion-datetime presentation="date" formControlName="fecha"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Disponible</ion-label>
+      <ion-toggle formControlName="activo"></ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Descripción</ion-label>
+      <ion-textarea formControlName="descripcion"></ion-textarea>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-checkbox formControlName="confirmacion"></ion-checkbox>
+      <ion-label class="ion-margin-start">
+        Confirmo el registro del artículo
+      </ion-label>
+    </ion-item>
+
+    <ion-card color="danger"
+      *ngIf="articuloForm.invalid && articuloForm.touched">
+      <ion-card-content>
+        ⚠️ El registro del artículo está incompleto.  
+        Complete todos los campos obligatorios y confirme el registro.
+      </ion-card-content>
+    </ion-card>
+
+    <ion-button expand="block" type="submit" [disabled]="articuloForm.invalid">
+      Guardar artículo
+    </ion-button>
+
+    <ion-button expand="block" fill="outline" routerLink="/listado">
+      Ver listado
+    </ion-button>
+
+  </form>
+
+</ion-content>
