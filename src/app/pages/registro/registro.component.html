@@ -12,16 +12,16 @@
         <ion-input formControlName="nombre" placeholder="Ingresa tu nombre"></ion-input>
       </ion-item>
       <ion-text *ngIf="f['nombre'].touched && f['nombre'].invalid">
-        <p *ngIf="f['nombre'].errors?.['required']">El nombre es obligatorio.</p>
-        <p *ngIf="f['nombre'].errors?.['minlength']">Usa mínimo 3 caracteres.</p>
+        <p *ngIf="f['nombre'].errors?.['required']" style="color: red;">El nombre es obligatorio.</p>
+        <p *ngIf="f['nombre'].errors?.['minlength']" style="color: red;">Usa mínimo 3 caracteres.</p>
       </ion-text>
       <ion-item>
         <ion-label position="stacked">Correo electrónico</ion-label>
         <ion-input formControlName="correo" placeholder="correo@ejemplo.com" type="email"></ion-input>
       </ion-item>
       <ion-text *ngIf="f['correo'].touched && f['correo'].invalid">
-        <p *ngIf="f['correo'].errors?.['required']">El correo es obligatorio.</p>
-        <p *ngIf="f['correo'].errors?.['email']">El correo no tiene un formato válido.</p>
+        <p *ngIf="f['correo'].errors?.['required']" style="color: red;">El correo es obligatorio.</p>
+        <p *ngIf="f['correo'].errors?.['email']" style="color: red;">El correo no tiene un formato válido.</p>
       </ion-text>
       <ion-item>
         <ion-label position="stacked">País</ion-label>
@@ -32,14 +32,14 @@
         </ion-select>
       </ion-item>
       <ion-text *ngIf="f['pais'].touched && f['pais'].invalid">
-        <p>Selecciona un país.</p>
+        <p *ngIf="f['pais'].errors?.['required']" style="color: red;">El país es obligatorio.</p>
       </ion-text>
       <ion-item>
         <ion-label position="stacked">Fecha de nacimiento</ion-label>
         <ion-datetime formControlName="fechaNacimiento" presentation="date"></ion-datetime>
       </ion-item>
       <ion-text *ngIf="f['fechaNacimiento'].touched && f['fechaNacimiento'].invalid">
-        <p>Selecciona una fecha.</p>
+        <p *ngIf="f['fechaNacimiento'].errors?.['required']" style="color: red;">Selecciona una fecha.</p>
       </ion-text>
       <ion-item>
         <ion-label>Género</ion-label>
@@ -55,26 +55,32 @@
         </ion-item>
       </ion-radio-group>
       <ion-text *ngIf="f['genero'].touched && f['genero'].invalid">
-        <p>Selecciona una opción.</p>
+        <p *ngIf="f['genero'].errors?.['required']" style="color: red;">Selecciona una opción.</p>
       </ion-text>
 
       <ion-item>
         <ion-label>Recibir notificaciones</ion-label>
         <ion-toggle formControlName="notificaciones"></ion-toggle>
       </ion-item>
+      <ion-text>
+        <ion-text *ngIf="f['notificaciones'].touched && f['notificaciones'].invalid">
+        <p *ngIf="f['notificaciones'].errors?.['required']" style="color: red;">Selecciona un género.</p>
+      </ion-text>
+
+      </ion-text>
       <ion-item>
         <ion-label position="stacked">Biografía</ion-label>
         <ion-textarea formControlName="biografia" placeholder="Cuéntanos sobre ti"></ion-textarea>
       </ion-item>
       <ion-text *ngIf="f['biografia'].touched && f['biografia'].invalid">
-        <p *ngIf="f['biografia'].errors?.['maxlength']">Máximo 200 caracteres.</p>
+        <p *ngIf="f['biografia'].errors?.['maxlength']" style="color: red;">Máximo 200 caracteres.</p>
       </ion-text>
 
       <ion-item lines="none">
         <ion-checkbox formControlName="terminos"></ion-checkbox>
         <ion-label class="ion-padding-start">Acepto términos y condiciones</ion-label>
       </ion-item>
-      <ion-text *ngIf="f['terminos'].touched && f['terminos'].invalid">
+      <ion-text *ngIf="f['terminos'].touched && f['terminos'].invalid" style="color: red;">
         <p>Debes aceptar los términos.</p>
       </ion-text>
     </ion-list>
@@ -82,7 +88,9 @@
       Registrar
     </ion-button>
   </form>
-  <ion-text *ngIf="guardadoOK">
-    <p>Registro guardado localmente.</p>
-  </ion-text>
+<!-- <ion-text *ngIf="guardadoOK"> <p> Registro guardado localmente.</p> </ion-text>   siento que esta linea ya no es necesaria porque ya que cuando presionamos el boton directamente al listado de los registros y no se llega a ver el mensaje -->
+
+<ion-text *ngIf="enviado && registroForm.invalid" style="color: red;"> Completa todos los campos obligatorios.</ion-text> <!-- esta linea la agregue yo para que cuando el usuario presione el boton de registrar y no haya llenado los campos obligatorios le salga un mensaje de error, me parece mas util esta que la anterior -->
+  
 </ion-content>
+

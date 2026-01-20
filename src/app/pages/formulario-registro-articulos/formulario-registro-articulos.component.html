@@ -1,0 +1,100 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Formulario de Registro de Artículos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+
+  <form [formGroup]="formularioArticulo" (ngSubmit)="onSubmit()">
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked"> Nombre del articulo </ion-label>
+        <ion-input formControlName="nombreArticulo" placeholder="Ingrese el nombre del articulo"></ion-input>
+      </ion-item>
+      <ion-text *ngIf="f['nombreArticulo'].touched && f['nombreArticulo'].invalid">
+        <p *ngIf="f['nombreArticulo'].errors?.['required']" style="color: red;"> El nombre del articulo es obligatorio.
+        </p>
+        <p *ngIf="f['nombreArticulo'].errors?.['minlength']" style="color: red;"> Usa minimo 3 caracteres. </p>
+      </ion-text>
+
+      <ion-item>
+        <ion-label position="stacked"> Precio </ion-label>
+        <ion-input formControlName="precioArticulo" placeholder="Ingrese el precio del articulo"
+          type="number"></ion-input>
+      </ion-item>
+      <ion-text *ngIf="f['precioArticulo'].touched && f['precioArticulo'].invalid">
+        <p *ngIf="f['precioArticulo'].errors?.['required']" style="color: red;"> El precio del articulo es obligatorio.
+        </p>
+        <p *ngIf="f['precioArticulo'].errors?.['min']" style="color: red;"> El precio debe ser mayor a 0. </p>
+      </ion-text>
+
+      <ion-item>
+        <ion-label> Categoria </ion-label>
+      </ion-item>
+
+        <ion-list>
+          <ion-item>
+            <ion-select formControlName="categoriaArticulo" interface="popover" placeholder="Selecciona una categoria"> <!-- Descurbri el interface popover investigando en la pagina oficial de ionic, porquee no me gustaba que mostrara como una ventana emergente solo para elegir-->
+              <ion-select-option disabled>Selecciona una Categoria</ion-select-option>
+              <ion-select-option value="tecnologia">Tecnología</ion-select-option>
+              <ion-select-option value="ropa">Ropa</ion-select-option>
+              <ion-select-option value="hogar">Hogar</ion-select-option>
+              <ion-select-option value="comida">Comida</ion-select-option>
+              <ion-select-option value="electrodomesticos">Electrodomesticos</ion-select-option>
+              <ion-select-option value="otros">Otros</ion-select-option>
+            </ion-select>
+          </ion-item>  
+        </ion-list>
+      
+      <ion-text *ngIf="f['categoriaArticulo'].touched && f['categoriaArticulo'].invalid">
+        <p style="color: red;"> Debes elegir una categoria. </p>
+      </ion-text>
+
+      <ion-item>
+        <ion-label position="stacked"> Fecha de ingreso </ion-label>
+      </ion-item>
+        <ion-datetime formControlName="fechaIngreso" date></ion-datetime>
+      
+      <ion-text *ngIf="f['fechaIngreso'].touched && f['fechaIngreso'].invalid">
+        <p style="color: red;"> Seleccione una fecha. </p>
+      </ion-text>
+
+      <ion-item>
+        <ion-label position="stacked">Disponibilidad del articulo</ion-label>
+        <ion-toggle formControlName="disponibilidadArticulo"></ion-toggle>
+      </ion-item>
+      
+        <ion-item>
+          <ion-label position="stacked">Descripción del articulo</ion-label>
+          <ion-textarea formControlName="descripcionArticulo"
+            placeholder="Ingrese una descripción del articulo"></ion-textarea>
+        </ion-item>
+
+        <ion-item lines="none">
+          
+          <ion-label class="ion-padding-start" >Confirmar registro</ion-label>
+          <ion-checkbox formControlName="confirmacionRegistro"></ion-checkbox>
+
+        </ion-item>
+        <ion-text *ngIf="f['confirmacionRegistro'].touched && f['confirmacionRegistro'].invalid">
+          <p style="color: red;"> Debe confirmar el registro. </p>
+        </ion-text>
+    </ion-list>
+
+    <ion-button expand="block" class="ion-margin-top" type="submit">
+      Registrar Articulo
+    </ion-button>
+
+  </form>
+
+  <ion-text *ngIf="enviado && formularioArticulo.invalid" style="color: red;"> Completa todos los campos necesiarios antes de
+    registrar </ion-text>
+
+  <ion-text *ngIf="guardadoOK" style="color: green;" > Registro guardado exitosamente. </ion-text>
+
+    <ion-button expand="block" routerLink="/listado-articulos">Ir al listado de articulos
+    </ion-button>
+  
+</ion-content>
