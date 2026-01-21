@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Listado</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+<ion-card *ngFor="let a of articulos">
+  <ion-card-header>
+    <ion-card-title>{{a.nombre}}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    Precio: {{a.precio}} <br>
+    Categoría: {{a.categoria}} <br>
+    Fecha: {{a.fecha}}
+  </ion-card-content>
+</ion-card>
+
+<ion-text *ngIf="articulos.length===0">
+No hay registros
+</ion-text>
+
+<ion-button expand="block" color="danger" (click)="borrarTodo()">
+Borrar todo
+</ion-button>
+
+<ion-button expand="block" fill="outline" (click)="volver()">
+Volver
+</ion-button>
+
+</ion-content>

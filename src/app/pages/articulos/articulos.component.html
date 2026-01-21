@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registro de Artículos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+<form [formGroup]="form" (ngSubmit)="guardar()">
+
+<ion-item>
+  <ion-label position="stacked">Nombre</ion-label>
+  <input class="ion-input" formControlName="nombre">
+</ion-item>
+
+<ion-item>
+  <ion-label position="stacked">Precio</ion-label>
+  <input type="number" class="ion-input" formControlName="precio">
+</ion-item>
+
+<ion-item>
+  <ion-label position="stacked">Categoría</ion-label>
+  <select class="ion-input" formControlName="categoria">
+    <option value="">Seleccione</option>
+    <option>Tecnología</option>
+    <option>Alimentos</option>
+    <option>Ropa</option>
+  </select>
+</ion-item>
+
+<ion-item>
+  <ion-label position="stacked">Fecha</ion-label>
+  <input type="date" class="ion-input" formControlName="fecha">
+</ion-item>
+
+<ion-item>
+  <ion-checkbox formControlName="disponible"></ion-checkbox>
+  <ion-label class="ion-padding-start">Disponible</ion-label>
+</ion-item>
+
+<ion-item>
+  <ion-checkbox formControlName="confirmar"></ion-checkbox>
+  <ion-label class="ion-padding-start">Confirmo el registro</ion-label>
+</ion-item>
+
+<ion-button expand="block" type="submit" [disabled]="form.invalid">
+Guardar
+</ion-button>
+
+<ion-button expand="block" fill="outline" (click)="irListado()">
+Ver listado
+</ion-button>
+
+</form>
+
+</ion-content>
