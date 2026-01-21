@@ -5,6 +5,7 @@ import { IonHeader,IonToolbar,IonTitle,IonContent,IonList,IonItem,IonLabel,IonIn
   IonSelectOption,IonDatetime,IonRadio,IonRadioGroup,IonToggle,IonTextarea,IonCheckbox,IonButton,IonText } from '@ionic/angular/standalone';
 
 import { StorageService } from '../../services/storage.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-registro',
@@ -12,7 +13,7 @@ import { StorageService } from '../../services/storage.service';
   templateUrl: './registro.component.html',
   styleUrls: ['./registro.component.scss'],
   imports: [IonHeader,CommonModule,ReactiveFormsModule,IonToolbar,IonTitle,IonContent,IonList,IonItem,IonLabel,IonInput,IonSelect,
-    IonSelectOption,IonDatetime,IonRadio,IonRadioGroup,IonToggle,IonTextarea,IonCheckbox,IonButton,IonText
+    IonSelectOption,IonDatetime,IonRadio,IonRadioGroup,IonToggle,IonTextarea,IonCheckbox,IonButton,IonText, RouterLink,
   ]
 })
 export class RegistroComponent {

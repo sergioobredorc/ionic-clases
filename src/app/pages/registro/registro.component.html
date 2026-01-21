@@ -78,9 +78,14 @@
         <p>Debes aceptar los términos.</p>
       </ion-text>
     </ion-list>
-    <ion-button expand="block" class="ion-margin-top" type="submit">
+    <ion-button expand="block" class="ion-margin-top" type="submit" routerLink="/registros">
       Registrar
     </ion-button>
+
+    <ion-button routerLink="">
+      Inicio
+    </ion-button>
+
   </form>
   <ion-text *ngIf="guardadoOK">
     <p>Registro guardado localmente.</p>

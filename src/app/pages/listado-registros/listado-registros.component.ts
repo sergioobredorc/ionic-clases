@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 import { 
   IonHeader,
@@ -37,14 +38,17 @@ import { Registro, StorageService } from '../../services/storage.service';
     IonCardSubtitle,
     IonCardContent,
     IonButton,
-    IonText
+    IonText,
   ]
 })
 export class ListadoRegistrosComponent  implements OnInit {
   registros: Registro[] = [];
   cargando = true;
 
-  constructor(private storageSvc: StorageService) { }
+  constructor(private storageSvc: StorageService,
+    private alertCtrl: AlertController
+  ) { }
+  
 
   async ngOnInit() {
     await this.cargar();
@@ -61,4 +65,27 @@ export class ListadoRegistrosComponent  implements OnInit {
     await this.storageSvc.clearRegistros();
     await this.cargar();
   }
+
+  async confirmarBorrado() {
+  const alert = await this.alertCtrl.create({
+    header: 'Confirmar eliminación',
+    message: `Vas a eliminar ${this.registros.length} registros. ¿Deseas continuar?`,
+    buttons: [
+      {
+        text: 'Cancelar',
+        role: 'cancel'
+      },
+      {
+        text: 'Sí, borrar',
+        role: 'destructive',
+        handler: async () => {
+          await this.borrarTodo();
+        }
+      }
+    ]
+  });
+
+  await alert.present();
+}
+
 }
