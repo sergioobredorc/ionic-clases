@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <form [formGroup]="form" (ngSubmit)="guardar()">
+
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input formControlName="nombre"></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="form.get('nombre')?.touched && form.get('nombre')?.invalid">
+      Nombre obligatorio
+    </ion-text>
+
+    <ion-item>
+      <ion-label position="floating">Precio</ion-label>
+      <ion-input type="number" formControlName="precio"></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="form.get('precio')?.touched && form.get('precio')?.invalid">
+      Precio válido obligatorio
+    </ion-text>
+
+    <ion-item>
+      <ion-label>Categoría</ion-label>
+      <ion-select formControlName="categoria">
+        <ion-select-option value="Tecnología">Tecnología</ion-select-option>
+        <ion-select-option value="Hogar">Hogar</ion-select-option>
+        <ion-select-option value="Ropa">Ropa</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-text color="danger" *ngIf="form.get('categoria')?.touched && form.get('categoria')?.invalid">
+      Seleccione una categoría
+    </ion-text>
+
+    <ion-item>
+      <ion-label>Fecha</ion-label>
+      <ion-datetime presentation="date" formControlName="fecha"></ion-datetime>
+    </ion-item>
+    <ion-text color="danger" *ngIf="form.get('fecha')?.touched && form.get('fecha')?.invalid">
+      Fecha requerida
+    </ion-text>
+
+    <ion-item lines="none">
+      <ion-checkbox slot="start" formControlName="confirmar"></ion-checkbox>
+      <ion-label>Acepto términos</ion-label>
+    </ion-item>
+    <ion-text color="danger" *ngIf="form.get('confirmar')?.touched && form.get('confirmar')?.invalid">
+      Debe aceptar los términos
+    </ion-text>
+
+    <ion-button expand="block" type="submit" [disabled]="form.invalid">
+      Guardar
+    </ion-button>
+
+    <ion-button expand="block" color="secondary" (click)="verListado()">
+  Ver artículos registrados
+</ion-button>
+
+
+  </form>
+
+</ion-content>
+

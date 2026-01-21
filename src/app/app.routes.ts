@@ -8,22 +8,18 @@ import { ListadoRegistrosComponent } from './pages/listado-registros/listado-reg
 export const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
-  },
-  {
-    path: 'perfil',
-    component: PerfilComponent
-  },
-  {
-    path: 'galeria',
-    component: GaleriaComponent
+    loadComponent: () =>
+      import('./pages/home/home.component').then(m => m.HomeComponent)
   },
   {
     path: 'registro',
-    component: RegistroComponent
+    loadComponent: () =>
+      import('./pages/registro/registro.page').then(m => m.RegistroPage)
   },
   {
-    path: 'registros',
-    component: ListadoRegistrosComponent
+    path: 'listado',
+    loadComponent: () =>
+      import('./pages/listado/listado.page').then(m => m.ListadoPage)
   }
 ];
+
