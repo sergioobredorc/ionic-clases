@@ -1,0 +1,128 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registro de Artículos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
+    <ion-list>
+
+      <ion-item>
+        <ion-label position="stacked">Nombre del artículo</ion-label>
+        <ion-input
+          formControlName="nombre_articulo"
+          placeholder="Ingresa el nombre del artículo">
+        </ion-input>
+      </ion-item>
+      @if (f['nombre_articulo'].touched && f['nombre_articulo'].invalid) {
+        <ion-text>
+          @if (f['nombre_articulo'].errors?.['required']) {
+            <p>El nombre es obligatorio.</p>
+          }
+          @if (f['nombre_articulo'].errors?.['minlength']) {
+            <p>Usa mínimo 3 caracteres.</p>
+          }
+        </ion-text>
+      }
+
+      <ion-item>
+        <ion-label position="stacked">Precio</ion-label>
+        <ion-input
+          formControlName="precio"
+          type="number"
+          inputmode="numeric"
+          placeholder="$$$$">
+        </ion-input>
+      </ion-item>
+      @if (f['precio'].touched && f['precio'].invalid) {
+        <ion-text>
+          @if (f['precio'].errors?.['required']) {
+            <p>El precio es obligatorio.</p>
+          }
+          @if (f['precio'].errors?.['min']) {
+            <p>Debe ser mayor a 0.</p>
+          }
+        </ion-text>
+      }
+
+      <ion-item>
+        <ion-label position="stacked">Categoría</ion-label>
+        <ion-select formControlName="categoria" placeholder="Seleccione categoría">
+          <ion-select-option value="juguete">Juguete</ion-select-option>
+          <ion-select-option value="aseo">Aseo</ion-select-option>
+          <ion-select-option value="papeleria">Papelería</ion-select-option>
+        </ion-select>
+      </ion-item>
+      @if (f['categoria'].touched && f['categoria'].invalid) {
+        <ion-text>
+          <p>Selecciona una categoría.</p>
+        </ion-text>
+      }
+
+      <ion-item>
+        <ion-label position="stacked">Fecha de ingreso</ion-label>
+        <ion-datetime formControlName="fechaIngreso" presentation="date"></ion-datetime>
+      </ion-item>
+      @if (f['fechaIngreso'].touched && f['fechaIngreso'].invalid) {
+        <ion-text>
+          <p>Selecciona una fecha.</p>
+        </ion-text>
+      }
+
+      <ion-item>
+        <ion-label position="stacked">Disponibilidad</ion-label>
+        <ion-select formControlName="disponibilidad" placeholder="Disponibilidad del artículo">
+          <ion-select-option value="activo">Activo</ion-select-option>
+          <ion-select-option value="inactivo">Inactivo</ion-select-option>
+        </ion-select>
+      </ion-item>
+      @if (f['disponibilidad'].touched && f['disponibilidad'].invalid) {
+        <ion-text>
+          <p>Selecciona una opción.</p>
+        </ion-text>
+      }
+
+      <ion-item>
+        <ion-label position="stacked">Descripción</ion-label>
+        <ion-textarea
+          formControlName="descripcion"
+          placeholder="Descripción del artículo">
+        </ion-textarea>
+      </ion-item>
+      @if (f['descripcion'].touched && f['descripcion'].invalid) {
+        <ion-text>
+          @if (f['descripcion'].errors?.['maxlength']) {
+            <p>Máximo 200 caracteres.</p>
+          }
+        </ion-text>
+      }
+
+      <ion-item lines="none">
+        <ion-checkbox formControlName="confirmacion"></ion-checkbox>
+        <ion-label class="ion-padding-start">Acepto confirmación</ion-label>
+      </ion-item>
+      @if (f['confirmacion'].touched && f['confirmacion'].invalid) {
+        <ion-text>
+          <p>Debes aceptar la confirmación.</p>
+        </ion-text>
+      }
+
+    </ion-list>
+
+    <ion-button expand="block" class="ion-margin-top" type="submit">
+      Registrar
+    </ion-button>
+  </form>
+
+  <ion-text *ngIf="guardadoOK">
+    <p>Registro guardado localmente</p>
+  </ion-text>
+</ion-content>
+
+
+  <ion-button routerLink="/sales/listado-articulos">
+    Ir al listado de articulos
+</ion-button>
+
+

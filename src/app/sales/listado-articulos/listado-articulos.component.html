@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Artículos registrados</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- Botón para ir al formulario -->
+  <ion-button expand="block" routerLink="/sales/formulario-articulos">
+    Registrar nuevo artículo
+  </ion-button>
+
+  <!-- Botón para borrar todos -->
+  <ion-button expand="block" fill="outline" (click)="confirmarBorrado()">
+    Borrar todos
+  </ion-button>
+
+  <!-- Mensaje de carga -->
+  <ion-text *ngIf="cargando">
+    <p>Cargando artículos...</p>
+  </ion-text>
+
+  <!-- Mensaje si no hay artículos -->
+  <ion-text *ngIf="!cargando && articulos.length === 0">
+    <p>No hay artículos registrados</p>
+  </ion-text>
+
+  <!-- Lista de artículos -->
+  <ion-card *ngFor="let a of articulos">
+    <ion-card-header>
+      <ion-card-title>{{ a.nombre_articulo }}</ion-card-title>
+      <ion-card-subtitle>
+        {{ a.categoria }} • ${{ a.precio }} • {{ a.fechaIngreso | date:'mediumDate' }}
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p><strong>Disponibilidad:</strong> {{ a.disponibilidad }}</p>
+      <p *ngIf="a.descripcion"><strong>Descripción:</strong> {{ a.descripcion }}</p>
+      <p><small>Registrado el: {{ a.createdAt | date:'short' }}</small></p>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
