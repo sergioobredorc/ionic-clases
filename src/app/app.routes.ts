@@ -11,6 +11,10 @@ export const routes: Routes = [
     component: HomeComponent
   },
   {
+    path: 'home',
+    component: HomeComponent
+  },
+  {
     path: 'perfil',
     component: PerfilComponent
   },
@@ -25,5 +29,17 @@ export const routes: Routes = [
   {
     path: 'registros',
     component: ListadoRegistrosComponent
+  },
+  {
+    path: 'registroarticulos',
+    loadComponent: () =>
+      import('./pages/registroarticulos/registroarticulos.page')
+        .then(m => m.RegistroarticulosPage)
+  },
+  {
+    path: 'articulos-registrados',
+    loadComponent: () =>
+      import('./pages/articulos-registrados/articulos-registrados.page')
+        .then(m => m.ArticulosRegistradosPage)
   }
 ];

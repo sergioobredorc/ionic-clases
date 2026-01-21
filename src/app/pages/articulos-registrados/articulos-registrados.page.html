@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Artículos Registrados</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-text *ngIf="articulos.length === 0">
+    <p>No hay artículos registrados.</p>
+  </ion-text>
+
+  <ion-card *ngFor="let art of articulos">
+
+    <ion-card-header>
+      <ion-card-title>{{ art.nombre }}</ion-card-title>
+      <ion-card-subtitle>
+        $ {{ art.precio }}
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p><strong>Categoría:</strong> {{ art.categoria }}</p>
+      <p><strong>Fecha ingreso:</strong> {{ art.fecha }}</p>
+      <p><strong>Disponibilidad:</strong> {{ art.disponible ? 'Activo' : 'Inactivo' }}</p>
+      <p><strong>Descripción:</strong> {{ art.descripcion }}</p>
+    </ion-card-content>
+
+  </ion-card>
+
+  <ion-button
+    expand="block"
+    color="danger"
+    *ngIf="articulos.length > 0"
+    (click)="borrarTodo()">
+    Borrar todos los artículos
+  </ion-button>
+  <ion-button expand = "block" type="button"routerLink="">
+     Volver al inicio
+  </ion-button>
+
+</ion-content>
