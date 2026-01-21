@@ -1,50 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router'; 
 
-import { 
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonContent,
-  IonCard,
-  IonCardHeader,
-  IonCardTitle,
-  IonCardSubtitle,
-  IonCardContent,
-  IonButton,
-  IonText
- } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonCard, IonCardHeader, IonCardSubtitle, IonCardContent, IonButton, IonText, IonCardTitle, IonAlert} from '@ionic/angular/standalone';
 
-import { Registro, StorageService } from '../../services/storage.service';
+import { StorageService, Registro} from '../../services/storage.service';
 
 @Component({
   selector: 'app-listado-registros',
   templateUrl: './listado-registros.component.html',
   styleUrls: ['./listado-registros.component.scss'],
-  imports: [
-    CommonModule,
-    DatePipe,
-    RouterLink,
-
-    IonHeader,
-    IonToolbar,
-    IonTitle,
-    IonContent,
-    IonCard,
-    IonCardHeader,
-    IonCardTitle,
-    IonCardSubtitle,
-    IonCardContent,
-    IonButton,
-    IonText
-  ]
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonCard, IonCardHeader, IonCardSubtitle, IonCardContent, IonButton, IonText, CommonModule, RouterLink, DatePipe, IonCardTitle, IonAlert],
 })
 export class ListadoRegistrosComponent  implements OnInit {
   registros: Registro[] = [];
   cargando = true;
-
-  constructor(private storageSvc: StorageService) { }
+  alertButtons = [
+    {
+      text: "cancelar",
+      role: "cancel",
+    },
+    {
+      text: "Confirmar",
+      handler: () =>{
+        this.borrarTodo();
+      }
+    }
+  ];
+  constructor( private storageService: StorageService) { }
 
   async ngOnInit() {
     await this.cargar();
@@ -52,13 +35,15 @@ export class ListadoRegistrosComponent  implements OnInit {
 
   async cargar(){
     this.cargando = true;
-    this.registros = await this.storageSvc.getRegistros();
+    this.registros = await this.storageService.getRegistros();
     this.cargando = false;
   }
 
+  
+
   async borrarTodo(){
-    this.cargando = true;
-    await this.storageSvc.clearRegistros();
+    
+    await this.storageService.clearRegistros();
     await this.cargar();
   }
 }
