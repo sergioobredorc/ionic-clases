@@ -4,6 +4,8 @@ import { FormBuilder,ReactiveFormsModule,FormGroup, Validators } from '@angular/
 import { IonHeader,IonToolbar,IonTitle,IonContent,IonList,IonItem,IonLabel,IonInput,IonSelect,
   IonSelectOption,IonDatetime,IonRadio,IonRadioGroup,IonToggle,IonTextarea,IonCheckbox,IonButton,IonText } from '@ionic/angular/standalone';
 
+import { Router } from '@angular/router';
+
 import { StorageService } from '../../services/storage.service';
 
 @Component({
@@ -20,7 +22,7 @@ export class RegistroComponent {
   enviado = false;
   guardadoOK = false;
 
-  constructor(private fb: FormBuilder, private storageSvc: StorageService) { 
+  constructor(private fb: FormBuilder, private storageSvc: StorageService, private router: Router) { 
     this.registroForm = this.fb.group({
       nombre: ['',[Validators.required,Validators.minLength(3)]],
       correo: ['',[Validators.required,Validators.email]],
@@ -48,5 +50,9 @@ export class RegistroComponent {
     
     await this.storageSvc.addRegistro(this.registroForm.value);
     this.guardadoOK = true;
+
+    setTimeout(() => {
+      this.router.navigate(['/registros']);
+    }, 1500);
   }
 }

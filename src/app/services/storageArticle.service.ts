@@ -5,6 +5,7 @@ export type Article = {
     name: string;
     price: number;
     category: string;
+    dateOfAdmission: string;
     isActive: boolean;
     description: string;
     sure: boolean;

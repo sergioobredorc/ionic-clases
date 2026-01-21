@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder,ReactiveFormsModule,FormGroup, Validators } from '@angular/forms';
 import { IonHeader,IonToolbar,IonTitle,IonContent,IonList,IonItem,IonLabel,IonInput,IonSelect,
-  IonSelectOption,IonDatetime,IonRadio,IonRadioGroup,IonToggle,IonTextarea,IonCheckbox,IonButton,IonText } from '@ionic/angular/standalone';
+  IonSelectOption,IonDatetime,IonToggle,IonTextarea,IonCheckbox,IonButton,IonText } from '@ionic/angular/standalone';
+import { RouterLink } from '@angular/router';
+
 
 import { StorageArticleService } from 'src/app/services/storageArticle.service';
 
@@ -12,7 +14,7 @@ import { StorageArticleService } from 'src/app/services/storageArticle.service';
   templateUrl: './add-article.component.html',
   styleUrls: ['./add-article.component.scss'],
   imports: [IonHeader,CommonModule,ReactiveFormsModule,IonToolbar,IonTitle,IonContent,IonList,IonItem,IonLabel,IonInput,IonSelect,
-    IonSelectOption,IonDatetime,IonRadio,IonRadioGroup,IonToggle,IonTextarea,IonCheckbox,IonButton,IonText
+    IonSelectOption,IonDatetime,IonToggle,IonTextarea,IonCheckbox,IonButton,IonText,RouterLink
   ]
 })
 export class AddArticleComponent {
@@ -22,13 +24,14 @@ export class AddArticleComponent {
 
   constructor(private fb: FormBuilder, private storageSvc: StorageArticleService) { 
     this.addArticleForm = this.fb.group({
-      name: ['',[Validators.required,Validators.minLength(3)]],
-      price: ['',[Validators.required,Validators.email]],
-      category: [null,[Validators.required]],
-      isActive: [null,[Validators.required]],
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      price: [null, [Validators.required, Validators.min(1)]],
+      category: [null, [Validators.required]],
+      dateOfAdmission: [null, [Validators.required]],
+      isActive: [null],
       description: ['', [Validators.maxLength(200)]],
       sure: [false, [Validators.requiredTrue]]
-    })
+    });
   }
 
   get f(){
@@ -36,6 +39,7 @@ export class AddArticleComponent {
   }
 
   async onSubmit() {
+    console.log('Esto se ejecuto chamo')
     this.sentOk = true;
     this.savedOk = false;
 
@@ -46,5 +50,6 @@ export class AddArticleComponent {
     
     await this.storageSvc.addArticles(this.addArticleForm.value);
     this.savedOk = true;
+    console.log('Ey esto guardo chamo')
   }
 }

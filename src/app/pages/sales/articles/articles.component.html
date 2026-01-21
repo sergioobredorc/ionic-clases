@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registro guardados</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-button expand="block" (click)="load()">
+    Recargar
+  </ion-button>
+  <ion-button expand="block" fill="outline" (click)="deleteAll()">
+    Borrar todo
+  </ion-button>
+  <ion-text *ngIf="loading">
+    <p>Cargando registros</p>
+  </ion-text>
+
+  <ion-text *ngIf="!loading && articles.length === 0">
+    <p>No hay registros guardados</p>
+  </ion-text>
+
+
+  <ion-card *ngFor="let a of articles">
+    <ion-card-header>
+      <ion-card-title>{{ a.name }}</ion-card-title>
+      <ion-card-subtitle>
+        {{ a.category }} - {{ a.dateOfAdmission | date: 'mediumDate' }}
+      </ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <p><strong>Precio: </strong> ${{ a.price }}</p>
+      <p><strong>Disponible: </strong> {{ a.isActive ? 'Si' : 'No' }}</p>
+  
+      <p *ngIf="a.description">
+        <strong>Descripción: </strong> {{ a.description }}
+      </p>
+  
+      <p><strong>Confirmado: </strong> {{ a.sure ? 'Si' : 'No' }}</p>
+    </ion-card-content>
+  </ion-card>
+  
+  <ion-button expand="block" routerLink="/sales/addArticle" class="ion-margin-top">
+    Volver al registro de articulos
+  </ion-button>
+</ion-content>

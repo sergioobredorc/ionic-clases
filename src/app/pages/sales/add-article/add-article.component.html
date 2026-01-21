@@ -7,6 +7,7 @@
 <ion-content class="ion-padding">
   <form [formGroup]="addArticleForm" (ngSubmit)="onSubmit()">
     <ion-list>
+
       <ion-item>
         <ion-label position="stacked">Nombre del Articulo</ion-label>
         <ion-input formControlName="name" placeholder="Ingresa el nombre del articulo"></ion-input>
@@ -21,33 +22,40 @@
         <ion-input type="number" formControlName="price" placeholder="Ingresa el precio del articulo"></ion-input>
       </ion-item>
       <ion-text *ngIf="f['price'].touched && f['price'].invalid">
-        <p *ngIf="f['price'].errors?.['required']">El nombre del articulo es obligatorio.</p>
-        <p *ngIf="f['price'].errors?.['minlength']">Usa mínimo 3 caracteres.</p>
+        <p *ngIf="f['price'].errors?.['required']">El precio es obligatorio.</p>
+        <p *ngIf="f['price'].errors?.['min']">El precio debe ser mayor que 0.</p>
       </ion-text>
 
       <ion-item>
         <ion-label position="stacked">Categoria</ion-label>
-        <ion-select formControlName="categoty" placeholder="Seleccione una categoria">
+        <ion-select formControlName="category" placeholder="Seleccione una categoria">
           <ion-select-option value="Telefono">Telefono</ion-select-option>
           <ion-select-option value="Tablet">Tablet</ion-select-option>
           <ion-select-option value="Laptop">Laptop</ion-select-option>
         </ion-select>
       </ion-item>
-      <ion-text *ngIf="f['categoty'].touched && f['categoty'].invalid">
+      <ion-text *ngIf="f['category'].touched && f['category'].invalid">
         <p>Selecciona una categoria.</p>
       </ion-text>
-      
+
+      <ion-item>
+        <ion-label position="stacked">Fecha de ingreso</ion-label>
+        <ion-datetime formControlName="dateOfAdmission" presentation="date"></ion-datetime>
+      </ion-item>
+      <ion-text *ngIf="f['dateOfAdmission'].touched && f['dateOfAdmission'].invalid">
+        <p>Selecciona una fecha.</p>
+      </ion-text>
+
       <ion-item>
         <ion-label>¿Esta disponible?</ion-label>
         <ion-toggle formControlName="isActive"></ion-toggle>
       </ion-item>
-      <ion-text *ngIf="f['isActive'].touched && f['isActive'].invalid">
-        <p>¿Como vas a ingresar un articulo que no esta disponible? Marcalo y ya!</p>
-      </ion-text>
 
       <ion-item>
         <ion-label position="stacked">Descripcion del articulo</ion-label>
-        <ion-textarea formControlName="description" placeholder="Ingrese aqui la descripcion del articulo por favor"></ion-textarea>
+        <ion-textarea formControlName="description"
+          placeholder="Ingrese aqui la descripcion del articulo por favor">
+        </ion-textarea>
       </ion-item>
       <ion-text *ngIf="f['description'].touched && f['description'].invalid">
         <p *ngIf="f['description'].errors?.['maxlength']">Máximo 200 caracteres.</p>
@@ -58,13 +66,20 @@
         <ion-label class="ion-padding-start">¿Toda la informacion esta correcta?</ion-label>
       </ion-item>
       <ion-text *ngIf="f['sure'].touched && f['sure'].invalid">
-        <p>Tienes que estar seguro bro.</p>
-      </ion-text> 
+        <p>Tienes que confirmar para guardar el articulo.</p>
+      </ion-text>
+
     </ion-list>
-    <ion-button expand="block" class="ion-margin-top" type="submit">
-      Registraar
+
+    <ion-button expand="block" class="ion-margin-top" routerLink="/sales">
+      Ir al Home
+    </ion-button>    
+    <ion-button expand="block" class="ion-margin-top" type="submit"
+      [disabled]="addArticleForm.invalid">
+      Guardar articulo
     </ion-button>
   </form>
+
   <ion-text *ngIf="savedOk">
     <p>Registro guardado localmente.</p>
   </ion-text>

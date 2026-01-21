@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 import { 
   IonHeader,
@@ -44,7 +45,7 @@ export class ListadoRegistrosComponent  implements OnInit {
   registros: Registro[] = [];
   cargando = true;
 
-  constructor(private storageSvc: StorageService) { }
+  constructor(private storageSvc: StorageService, private alertCtrl: AlertController) { }
 
   async ngOnInit() {
     await this.cargar();
@@ -56,9 +57,26 @@ export class ListadoRegistrosComponent  implements OnInit {
     this.cargando = false;
   }
 
-  async borrarTodo(){
-    this.cargando = true;
-    await this.storageSvc.clearRegistros();
-    await this.cargar();
+  async borrarTodo() {
+    const alert = await this.alertCtrl.create({
+      header: 'Confirmar',
+      message: '¿Estás seguro de borrar todos los registros?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel'
+        },
+        {
+          text: 'Borrar',
+          handler: () => {
+            this.cargando = true;
+            this.storageSvc.clearRegistros();
+            this.cargar();
+          }
+        }
+      ]
+    });
+  
+    await alert.present();
   }
 }
