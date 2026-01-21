@@ -5,6 +5,15 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        Total de artículos: {{ registros.length }}
+      </ion-card-title>
+    </ion-card-header>
+  </ion-card>
+  
+
   <ion-card *ngFor="let articulo of registros; let i = index">
     <ion-card-header>
       <ion-card-title>{{ articulo.nombre }}</ion-card-title>

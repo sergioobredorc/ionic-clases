@@ -19,6 +19,13 @@
     <p>No hay registros guardados</p>
   </ion-text>
 
+  <ion-card *ngIf="!cargando && registros.length > 0">
+    <ion-card-header>
+      <ion-card-title>
+        Total de registros: {{ registros.length }}
+      </ion-card-title>
+    </ion-card-header>
+  </ion-card>
 
   <ion-card *ngFor="let r of registros">
     <ion-card-header>
@@ -42,5 +49,8 @@
   </ion-card>
   <ion-button expand="block" routerLink="/registro" class="ion-margin-top">
     Volver al registro de usuarios
+  </ion-button>
+  <ion-button expand="block" color="primary" routerLink="">
+    Ir al Inicio 
   </ion-button>
 </ion-content>

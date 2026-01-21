@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder,ReactiveFormsModule,FormGroup, Validators } from '@angular/forms';
 import { IonHeader,IonToolbar,IonTitle,IonContent,IonList,IonItem,IonLabel,IonInput,IonSelect,
   IonSelectOption,IonDatetime,IonRadio,IonRadioGroup,IonToggle,IonTextarea,IonCheckbox,IonButton,IonText } from '@ionic/angular/standalone';
-
+import { RouterLink } from '@angular/router';
 import { StorageService } from '../../services/storage.service';
 
 @Component({
@@ -11,8 +11,7 @@ import { StorageService } from '../../services/storage.service';
   standalone: true,
   templateUrl: './registro.component.html',
   styleUrls: ['./registro.component.scss'],
-  imports: [IonHeader,CommonModule,ReactiveFormsModule,IonToolbar,IonTitle,IonContent,IonList,IonItem,IonLabel,IonInput,IonSelect,
-    IonSelectOption,IonDatetime,IonRadio,IonRadioGroup,IonToggle,IonTextarea,IonCheckbox,IonButton,IonText
+  imports: [IonHeader,CommonModule,ReactiveFormsModule,IonToolbar,IonTitle,IonContent,IonList,IonItem,IonLabel,IonInput,IonSelect, IonSelectOption,IonDatetime,IonRadio,IonRadioGroup,IonToggle,IonTextarea,IonCheckbox,IonButton,IonText, RouterLink
   ]
 })
 export class RegistroComponent {
