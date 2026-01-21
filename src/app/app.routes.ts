@@ -4,6 +4,8 @@ import { PerfilComponent } from './pages/perfil/perfil.component';
 import { GaleriaComponent } from './pages/galeria/galeria.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { ListadoRegistrosComponent } from './pages/listado-registros/listado-registros.component';
+import { HomeComponent as SalesHomeComponent } from './pages/sales/home/home.component';
+import { AddArticleComponent } from './pages/sales/add-article/add-article.component';
 
 export const routes: Routes = [
   {
@@ -25,5 +27,13 @@ export const routes: Routes = [
   {
     path: 'registros',
     component: ListadoRegistrosComponent
+  },
+  {
+    path: 'sales',
+    component: SalesHomeComponent
+  },
+  {
+    path: 'sales/addArticle',
+    component: AddArticleComponent
   }
 ];
