@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { 
   IonHeader, IonToolbar, IonTitle, IonContent, IonButton, 
   IonIcon, IonCard, IonCardHeader, IonCardTitle, 
-  IonCardSubtitle, IonCardContent, IonText 
+  IonCardSubtitle, IonCardContent, IonText, AlertController
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { trashOutline, refreshOutline } from 'ionicons/icons';
@@ -24,7 +24,10 @@ export class ListadoRegistrosComponent implements OnInit {
   registros: Registro[] = [];
   cargando: boolean = false;
 
-  constructor(private storageSvc: StorageService) {
+  constructor(
+    private storageSvc: StorageService,
+    private alertController: AlertController
+  ) {
     addIcons({ trashOutline, refreshOutline });
   }
 
@@ -39,7 +42,24 @@ export class ListadoRegistrosComponent implements OnInit {
   }
 
   async borrarTodo() {
-    await this.storageSvc.clearRegistros();
-    await this.cargar();
+    const alert = await this.alertController.create({
+      header: 'Confirmar acción',
+      message: '¿Deseas eliminar todos los usuarios registrados?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel'
+        },
+        {
+          text: 'Eliminar',
+          handler: async () => {
+            await this.storageSvc.clearRegistros();
+            await this.cargar();
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 }

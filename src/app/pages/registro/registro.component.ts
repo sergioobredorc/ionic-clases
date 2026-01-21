@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, FormGroup, Validators } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { StorageService } from '../../services/storage.service';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro',
@@ -15,7 +15,11 @@ export class RegistroComponent {
   usuarioForm: FormGroup;
   mensajeExito: boolean = false;
 
-  constructor(private fb: FormBuilder, private storageSvc: StorageService) {
+  constructor(
+    private fb: FormBuilder, 
+    private storageSvc: StorageService,
+    private router: Router
+  ) {
     this.usuarioForm = this.fb.group({
       nombre: ['', [Validators.required, Validators.minLength(3)]],
       correo: ['', [Validators.required, Validators.email]],
@@ -30,7 +34,11 @@ export class RegistroComponent {
       await this.storageSvc.addRegistro(this.usuarioForm.value);
       this.mensajeExito = true;
       this.usuarioForm.reset({ genero: 'masculino' });
-      setTimeout(() => this.mensajeExito = false, 3000);
+      
+      setTimeout(() => {
+        this.mensajeExito = false;
+        this.router.navigate(['/registros']);
+      }, 1500);
     }
   }
 }
