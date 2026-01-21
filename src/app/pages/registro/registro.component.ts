@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder,ReactiveFormsModule,FormGroup, Validators } from '@angular/forms';
 import { IonHeader,IonToolbar,IonTitle,IonContent,IonList,IonItem,IonLabel,IonInput,IonSelect,
   IonSelectOption,IonDatetime,IonRadio,IonRadioGroup,IonToggle,IonTextarea,IonCheckbox,IonButton,IonText } from '@ionic/angular/standalone';
-
+import { Router } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { StorageService } from '../../services/storage.service';
 
 @Component({
@@ -12,7 +13,7 @@ import { StorageService } from '../../services/storage.service';
   templateUrl: './registro.component.html',
   styleUrls: ['./registro.component.scss'],
   imports: [IonHeader,CommonModule,ReactiveFormsModule,IonToolbar,IonTitle,IonContent,IonList,IonItem,IonLabel,IonInput,IonSelect,
-    IonSelectOption,IonDatetime,IonRadio,IonRadioGroup,IonToggle,IonTextarea,IonCheckbox,IonButton,IonText
+    IonSelectOption,IonDatetime,IonRadio,IonRadioGroup,IonToggle,IonTextarea,IonCheckbox,IonButton,IonText,RouterLink
   ]
 })
 export class RegistroComponent {
@@ -20,7 +21,7 @@ export class RegistroComponent {
   enviado = false;
   guardadoOK = false;
 
-  constructor(private fb: FormBuilder, private storageSvc: StorageService) { 
+  constructor(private fb: FormBuilder, private storageSvc: StorageService,private router: Router) { 
     this.registroForm = this.fb.group({
       nombre: ['',[Validators.required,Validators.minLength(3)]],
       correo: ['',[Validators.required,Validators.email]],
@@ -48,5 +49,7 @@ export class RegistroComponent {
     
     await this.storageSvc.addRegistro(this.registroForm.value);
     this.guardadoOK = true;
+
+    this.router.navigate(['/registros']);
   }
 }

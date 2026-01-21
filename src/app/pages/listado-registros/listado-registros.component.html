@@ -8,7 +8,7 @@
   <ion-button expand="block" (click)="cargar()">
     Recargar
   </ion-button>
-  <ion-button expand="block" fill="outline" (click)="borrarTodo()">
+  <ion-button expand="block" fill="outline" (click)="confirmarBorrado()">
     Borrar todo
   </ion-button>
   <ion-text *ngIf="cargando">
@@ -43,4 +43,9 @@
   <ion-button expand="block" routerLink="/registro" class="ion-margin-top">
     Volver al registro de usuarios
   </ion-button>
+
+  <ion-button expand="block" class="ion-margin-top" routerLink="">
+    Ir al Inicio
+  </ion-button>
+
 </ion-content>

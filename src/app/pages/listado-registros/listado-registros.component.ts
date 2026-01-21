@@ -50,6 +50,10 @@ export class ListadoRegistrosComponent  implements OnInit {
     await this.cargar();
   }
 
+  ionViewWillEnter() {
+    this.cargar();
+  }
+
   async cargar(){
     this.cargando = true;
     this.registros = await this.storageSvc.getRegistros();
@@ -61,4 +65,10 @@ export class ListadoRegistrosComponent  implements OnInit {
     await this.storageSvc.clearRegistros();
     await this.cargar();
   }
+  confirmarBorrado() {
+  if (confirm('¿Seguro que deseas borrar todos los registros?')) {
+    this.borrarTodo();
+  }
+}
+
 }
