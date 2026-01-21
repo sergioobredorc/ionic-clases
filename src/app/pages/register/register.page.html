@@ -1,0 +1,103 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Registro de Artículos</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="showProductsPage()"> Ver artículos </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="myForm" (ngSubmit)="guardar()">
+    <!-- Nombre -->
+    <ion-item>
+      <ion-label position="floating">Nombre del artículo</ion-label>
+      <ion-input type="text" formControlName="nombre"></ion-input>
+    </ion-item>
+    <ion-text
+      color="danger"
+      *ngIf="myForm.get('nombre')?.touched && myForm.get('nombre')?.invalid"
+    >
+      El nombre es obligatorio y debe tener al menos 3 caracteres
+    </ion-text>
+
+    <!-- Precio -->
+    <ion-item>
+      <ion-label position="floating">Precio</ion-label>
+      <ion-input type="number" formControlName="precio"></ion-input>
+    </ion-item>
+    <ion-text
+      color="danger"
+      *ngIf="myForm.get('precio')?.touched && myForm.get('precio')?.invalid"
+    >
+      El precio debe ser mayor a 0
+    </ion-text>
+
+    <!-- Categoría -->
+    <ion-item>
+      <ion-label>Categoría</ion-label>
+      <ion-select
+        formControlName="categoria"
+        placeholder="Seleccione una categoría"
+      >
+        <ion-select-option value="electronica">Electrónica</ion-select-option>
+        <ion-select-option value="ropa">Ropa</ion-select-option>
+        <ion-select-option value="hogar">Hogar</ion-select-option>
+
+        <ion-select-option value="alimentos">Alimentos</ion-select-option>
+        <ion-select-option value="bebidas">Bebidas</ion-select-option>
+        <ion-select-option value="tecnologia">Tecnología</ion-select-option>
+        <ion-select-option value="accesorios">Accesorios</ion-select-option>
+        <ion-select-option value="belleza"
+          >Belleza y Cuidado Personal</ion-select-option
+        >
+        <ion-select-option value="deportes">Deportes</ion-select-option>
+        <ion-select-option value="juguetes">Juguetes</ion-select-option>
+        <ion-select-option value="oficina">Oficina</ion-select-option>
+        <ion-select-option value="mascotas">Mascotas</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-text
+      color="danger"
+      *ngIf="myForm.get('categoria')?.touched && myForm.get('categoria')?.invalid"
+    >
+      La categoría es obligatoria
+    </ion-text>
+
+    <!-- Fecha -->
+
+    <ion-item>
+      <ion-label>Fecha de ingreso</ion-label>
+      <ion-datetime presentation="date" formControlName="fecha"></ion-datetime>
+    </ion-item>
+    <ion-text
+      color="danger"
+      *ngIf="myForm.get('fecha')?.touched && myForm.get('fecha')?.invalid"
+    >
+      La fecha es obligatoria
+    </ion-text>
+
+    <!-- Confirmación -->
+    <ion-item lines="none">
+      <ion-checkbox slot="start" formControlName="confirmacion"></ion-checkbox>
+      <ion-label>Confirmo el registro</ion-label>
+    </ion-item>
+    <ion-text
+      color="danger"
+      *ngIf="myForm.get('confirmacion')?.touched && myForm.get('confirmacion')?.invalid"
+    >
+      Debes confirmar el registro
+    </ion-text>
+
+    <!-- Botón -->
+    <ion-button
+      type="submit"
+      expand="block"
+      class="ion-margin-top"
+      [disabled]="myForm.invalid"
+    >
+      Guardar artículo
+    </ion-button>
+  </form>
+</ion-content>

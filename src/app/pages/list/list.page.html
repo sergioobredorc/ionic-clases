@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Listado de Artículos</ion-title>
+
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/register"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- Mensaje si no hay artículos -->
+  <ion-text color="medium" *ngIf="articulos.length === 0">
+    No hay artículos registrados.
+  </ion-text>
+
+  <!-- Cards de artículos -->
+  <ion-card *ngFor="let articulo of articulos">
+    <ion-card-header>
+      <ion-card-title>{{ articulo.nombre }}</ion-card-title>
+      <ion-card-subtitle>{{ articulo.categoria }}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p><strong>Precio:</strong> ${{ articulo.precio }}</p>
+      <p><strong>Fecha:</strong> {{ articulo.fecha | date }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Botón para borrar todo -->
+  <ion-button
+    expand="block"
+    color="danger"
+    class="ion-margin-top"
+    (click)="limpiar()"
+    *ngIf="articulos.length > 0"
+  >
+    Borrar todos los artículos
+  </ion-button>
+</ion-content>
