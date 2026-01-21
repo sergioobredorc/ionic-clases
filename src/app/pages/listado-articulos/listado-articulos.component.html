@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="primary" routerLink="/home">Volver</ion-button>
+    </ion-buttons>
+    <ion-title>
+      Lista de Artículos
+    </ion-title><ion-buttons slot="end">
+      <ion-button color="primary" routerLink="/registro-articulo">Registrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card *ngFor="let articulo of articulos">
+    <ion-card-header>
+      <ion-card-title>{{ articulo.nombre }}</ion-card-title>
+      <ion-card-subtitle>{{ articulo.categoria | titlecase }}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p><strong>Precio:</strong> ${{ articulo.precio | currency: 'COP':'symbol' }}</p>
+      <p><strong>Fecha de Ingreso:</strong> {{ articulo.fechaIngreso | date: 'dd/MM/yyyy' }}</p>
+      <p><strong>Disponibilidad:</strong> {{ articulo.disponibilidad ? 'Activo' : 'Inactivo' }}</p>
+      <p><strong>Descripción:</strong> {{ articulo.descripcion }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-text color="medium" *ngIf="articulos.length === 0">
+    No hay artículos registrados.
+  </ion-text>
+
+  <ion-button expand="block" color="primary" (click)="cargarArticulos()">
+    Recargar registros
+  </ion-button>
+  <ion-button expand="block" color="danger" (click)="borrarTodoArticulos()">
+    Limpiar registros
+  </ion-button>
+</ion-content>

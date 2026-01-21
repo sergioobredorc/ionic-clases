@@ -13,10 +13,22 @@ export type Registro = {
     createdAt: string;
 }
 
+export type RegistroArticulo = {
+    nombre: string;
+    precio: number;
+    categoria: string;
+    fechaIngreso: string;
+    disponibilidad: boolean;
+    descripcion: string;
+    confirmacion: boolean;
+    createdAt: string;
+}
+
 @Injectable({ providedIn: 'root'})
 export class StorageService{
     private _storage?: Storage;
     private readonly KEY = 'registros';
+    private readonly KEY_ARTICULOS = 'registros_articulos';
 
     constructor(private storage: Storage){}
 
@@ -25,6 +37,7 @@ export class StorageService{
         this._storage = await this.storage.create();
     }
 
+    // METODOS DEL DOCENTE (NO EDITADOS)
     async addRegistro(data: Omit<Registro, 'createdAt'>): Promise<void>{
         await this.init();
         const registros = (await this._storage!.get(this.KEY)) as Registro[] | null;
@@ -46,5 +59,29 @@ export class StorageService{
     async clearRegistros(): Promise<void>{
         await this.init();
         await this._storage!.remove(this.KEY);
+    }
+
+    //METODOS DE ESTUDIANTE (EDITADOS POR DUVAN PALMA)
+    async addRegistroArticulo(data: Omit<RegistroArticulo, 'createdAt'>): Promise<void>{
+        await this.init();
+        const registros = (await this._storage!.get(this.KEY_ARTICULOS)) as RegistroArticulo[] | null;
+
+        const nuevo: RegistroArticulo = {
+            ...data,
+            createdAt: new Date().toISOString()
+        };
+
+        const actualizados = registros ? [nuevo,...registros] : [nuevo];
+        await this._storage?.set(this.KEY_ARTICULOS,actualizados)
+    }
+
+    async getRegistrosArticulos(): Promise<RegistroArticulo[]>{
+        await this.init();
+        return ((await this._storage!.get(this.KEY_ARTICULOS)) as RegistroArticulo[] | null) ?? [];
+    }
+
+    async clearRegistrosArticulos(): Promise<void>{
+        await this.init();
+        await this._storage!.remove(this.KEY_ARTICULOS);
     }
 }
