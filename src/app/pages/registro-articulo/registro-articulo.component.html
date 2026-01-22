@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registro de Artículos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <form [formGroup]="articuloForm">
+
+    <ion-item>
+      <ion-label position="floating">Nombre del artículo</ion-label>
+      <ion-input formControlName="nombre"></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="enviado && f['nombre'].errors">
+      <p *ngIf="f['nombre'].errors?.['required']">El nombre es obligatorio</p>
+      <p *ngIf="f['nombre'].errors?.['minlength']">Mínimo 3 caracteres</p>
+    </ion-text>
+
+    <ion-item>
+      <ion-label position="floating">Precio</ion-label>
+      <ion-input type="number" formControlName="precio"></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="enviado && f['precio'].errors">
+      <p>El precio debe ser mayor a 0</p>
+    </ion-text>
+
+    <ion-item>
+      <ion-label>Categoría</ion-label>
+      <ion-select formControlName="categoria">
+        <ion-select-option value="electronica">Electrónica</ion-select-option>
+        <ion-select-option value="ropa">Ropa</ion-select-option>
+        <ion-select-option value="hogar">Hogar</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-text color="danger" *ngIf="enviado && f['categoria'].errors">
+      <p>La categoría es obligatoria</p>
+    </ion-text>
+
+    <ion-item>
+      <ion-label>Fecha de ingreso</ion-label>
+      <ion-datetime presentation="date" formControlName="fechaIngreso"></ion-datetime>
+    </ion-item>
+    <ion-text color="danger" *ngIf="enviado && f['fechaIngreso'].errors">
+      <p>La fecha es obligatoria</p>
+    </ion-text>
+
+    <ion-item>
+      <ion-label>Disponible</ion-label>
+      <ion-toggle formControlName="disponible"></ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Descripción</ion-label>
+      <ion-textarea formControlName="descripcion"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-checkbox slot="start" formControlName="confirmar"></ion-checkbox>
+      <ion-label>Confirmo el registro del artículo</ion-label>
+    </ion-item>
+    <ion-text color="danger" *ngIf="enviado && f['confirmar'].errors">
+      <p>Debe confirmar el registro</p>
+    </ion-text>
+
+    <ion-button expand="block" (click)="guardar()">
+      Guardar artículo
+    </ion-button>
+
+  </form>
+
+</ion-content>
