@@ -1,0 +1,89 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registrar Artículo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
+    <ion-list>
+      <!-- Nombre del artículo -->
+      <ion-item>
+        <ion-label position="floating">Nombre del artículo *</ion-label>
+        <ion-input formControlName="nombre" type="text"></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="f['nombre'].invalid && (f['nombre'].dirty || enviado)">
+        <p *ngIf="f['nombre'].hasError('required')">El nombre es obligatorio</p>
+        <p *ngIf="f['nombre'].hasError('minlength')">Mínimo 3 caracteres</p>
+      </ion-text>
+
+      <!-- Precio -->
+      <ion-item>
+        <ion-label position="floating">Precio *</ion-label>
+        <ion-input formControlName="precio" type="number" step="0.01"></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="f['precio'].invalid && (f['precio'].dirty || enviado)">
+        <p *ngIf="f['precio'].hasError('required')">El precio es obligatorio</p>
+        <p *ngIf="f['precio'].hasError('min')">El precio debe ser mayor a 0</p>
+      </ion-text>
+
+      <!-- Categoría -->
+      <ion-item>
+        <ion-label position="floating">Categoría *</ion-label>
+        <ion-select formControlName="categoria">
+          <ion-select-option value="">Seleccionar categoría</ion-select-option>
+          <ion-select-option *ngFor="let cat of categorias" [value]="cat.id">
+            {{ cat.label }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-text color="danger" *ngIf="f['categoria'].invalid && (f['categoria'].dirty || enviado)">
+        <p *ngIf="f['categoria'].hasError('required')">La categoría es obligatoria</p>
+      </ion-text>
+
+      <!-- Fecha de ingreso -->
+      <ion-item>
+        <ion-label position="floating">Fecha de ingreso *</ion-label>
+        <ion-datetime formControlName="fechaIngreso"></ion-datetime>
+      </ion-item>
+      <ion-text color="danger" *ngIf="f['fechaIngreso'].invalid && (f['fechaIngreso'].dirty || enviado)">
+        <p *ngIf="f['fechaIngreso'].hasError('required')">La fecha es obligatoria</p>
+      </ion-text>
+
+      <!-- Disponibilidad -->
+      <ion-item>
+        <ion-label>Disponible</ion-label>
+        <ion-toggle formControlName="disponibilidad"></ion-toggle>
+      </ion-item>
+
+      <!-- Descripción -->
+      <ion-item>
+        <ion-label position="floating">Descripción</ion-label>
+        <ion-textarea formControlName="descripcion" rows="4"></ion-textarea>
+      </ion-item>
+
+      <!-- Confirmación -->
+      <ion-item>
+        <ion-label>Confirmo el registro del artículo *</ion-label>
+        <ion-checkbox formControlName="confirmacion"></ion-checkbox>
+      </ion-item>
+      <ion-text color="danger" *ngIf="f['confirmacion'].invalid && (f['confirmacion'].dirty || enviado)">
+        <p *ngIf="f['confirmacion'].hasError('required')">Debe confirmar el registro</p>
+      </ion-text>
+    </ion-list>
+
+    <!-- Mensaje de éxito -->
+    <ion-text color="success" *ngIf="guardadoOK">
+      <p><strong>¡Artículo guardado exitosamente!</strong></p>
+    </ion-text>
+
+    <!-- Botones -->
+    <ion-button expand="block" type="submit" class="ion-margin-top">
+      Registrar Artículo
+    </ion-button>
+
+    <ion-button expand="block" fill="outline" routerLink="/articulos" class="ion-margin-top">
+      Ver Listado de Artículos
+    </ion-button>
+  </form>
+</ion-content>

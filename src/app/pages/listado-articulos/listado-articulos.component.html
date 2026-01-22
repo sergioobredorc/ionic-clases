@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Artículos Registrados</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-button expand="block" (click)="cargar()">
+    Recargar
+  </ion-button>
+  <ion-button expand="block" fill="outline" (click)="borrarTodo()">
+    Borrar todo
+  </ion-button>
+
+  <ion-text *ngIf="cargando">
+    <p>Cargando artículos...</p>
+  </ion-text>
+
+  <ion-text *ngIf="!cargando && articulos.length === 0">
+    <p>No hay artículos registrados</p>
+  </ion-text>
+
+  <ion-card *ngFor="let articulo of articulos">
+    <ion-card-header>
+      <ion-card-title>{{ articulo.nombre }}</ion-card-title>
+      <ion-card-subtitle>
+        {{ getCategoriaLabel(articulo.categoria) }} - {{ articulo.fechaIngreso | date: 'medium' }}
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p><strong>Precio: </strong>${{ articulo.precio }}</p>
+      <p><strong>Disponibilidad: </strong>{{ articulo.disponibilidad ? 'Disponible' : 'No disponible' }}</p>
+      
+      <p *ngIf="articulo.descripcion">
+        <strong>Descripción: </strong>{{ articulo.descripcion }}
+      </p>
+
+      <ion-button expand="block" fill="outline" color="danger" (click)="borrarArticulo(articulo.id)" class="ion-margin-top">
+        <ion-icon slot="start" name="trash"></ion-icon>
+        Borrar
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-button expand="block" routerLink="/registro-articulos" class="ion-margin-top">
+    Registrar nuevo artículo
+  </ion-button>
+</ion-content>

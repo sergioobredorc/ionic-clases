@@ -13,7 +13,8 @@ import {
   IonCardSubtitle,
   IonCardContent,
   IonButton,
-  IonText
+  IonText,
+  AlertController
  } from '@ionic/angular/standalone';
 
 import { Registro, StorageService } from '../../services/storage.service';
@@ -44,7 +45,10 @@ export class ListadoRegistrosComponent  implements OnInit {
   registros: Registro[] = [];
   cargando = true;
 
-  constructor(private storageSvc: StorageService) { }
+  constructor(
+    private storageSvc: StorageService,
+    private alertController: AlertController
+  ) { }
 
   async ngOnInit() {
     await this.cargar();
@@ -57,8 +61,25 @@ export class ListadoRegistrosComponent  implements OnInit {
   }
 
   async borrarTodo(){
-    this.cargando = true;
-    await this.storageSvc.clearRegistros();
-    await this.cargar();
+    const alert = await this.alertController.create({
+      header: 'Confirmar',
+      message: '¿Desea borrar todos los registros?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel'
+        },
+        {
+          text: 'Borrar',
+          role: 'destructive',
+          handler: async () => {
+            this.cargando = true;
+            await this.storageSvc.clearRegistros();
+            await this.cargar();
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
 }
