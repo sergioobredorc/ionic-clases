@@ -6,7 +6,7 @@ import {
   IonInput, IonSelect, IonSelectOption, IonDatetime, IonRadio, IonRadioGroup,
   IonToggle, IonTextarea, IonCheckbox, IonButton, IonText
 } from '@ionic/angular/standalone';
-
+import { RouterLink } from '@angular/router';
 import { StorageService } from '../../services/storage.service';
 import { Router } from '@angular/router';
 
@@ -35,7 +35,8 @@ import { Router } from '@angular/router';
     IonTextarea,
     IonCheckbox,
     IonButton,
-    IonText
+    IonText,
+    RouterLink
   ],
 })
 export class RegistroComponent {
@@ -47,7 +48,7 @@ export class RegistroComponent {
   constructor(
     private fb: FormBuilder,
     private storageSvc: StorageService,
-    private router: Router   // 👈 IMPORTANTE
+    private router: Router
   ) {
     this.registroForm = this.fb.group({
       nombre: ['', [Validators.required, Validators.minLength(3)]],
@@ -74,18 +75,18 @@ export class RegistroComponent {
       return;
     }
 
-    // ✅ Guarda el registro
+    
     await this.storageSvc.addRegistro(this.registroForm.value);
 
     this.guardadoOK = true;
 
-    // ✅ Limpia el formulario (opcional pero recomendado)
+
     this.registroForm.reset({
       notificaciones: true,
       terminos: false
     });
 
-    // ✅ REDIRECCIÓN AUTOMÁTICA AL LISTADO
+
     this.router.navigate(['/registros']);
   }
 }

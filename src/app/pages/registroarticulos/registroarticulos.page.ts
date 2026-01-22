@@ -39,7 +39,7 @@ export class RegistroarticulosPage implements OnInit {
     });
   }
 
-  // 👉 getter usado en el HTML (f['nombre'], etc)
+  
   get f() {
     return this.formulario.controls;
   }
