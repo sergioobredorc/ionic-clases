@@ -3,7 +3,14 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { RouterLink } from '@angular/router';
 import { addIcons } from 'ionicons';
-import { addCircleOutline, listOutline, personOutline, imagesOutline, personAddOutline } from 'ionicons/icons';
+import { 
+  addCircleOutline, 
+  listOutline, 
+  personOutline, 
+  imagesOutline, 
+  personAddOutline,
+  sparklesOutline
+} from 'ionicons/icons';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +22,14 @@ import { addCircleOutline, listOutline, personOutline, imagesOutline, personAddO
 export class HomeComponent implements OnInit {
 
   constructor() {
-    addIcons({ addCircleOutline, listOutline, personOutline, imagesOutline, personAddOutline });
+    addIcons({ 
+      addCircleOutline, 
+      listOutline, 
+      personOutline, 
+      imagesOutline, 
+      personAddOutline,
+      sparklesOutline
+    });
   }
 
   ngOnInit() {}

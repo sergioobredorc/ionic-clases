@@ -6,6 +6,8 @@ import { RegistroComponent } from './pages/registro/registro.component';
 import { ListadoRegistrosComponent } from './pages/listado-registros/listado-registros.component';
 import { RegistroArticuloComponent } from './pages/registro-articulo/registro-articulo.component';
 import { ListadoArticulosComponent } from './pages/listado-articulos/listado-articulos.component';
+import { ChatPage } from './pages/chat/chat.page';
+import { Chat2Page } from './pages/chat2/chat2.page';
 
 export const routes: Routes = [
   {
@@ -35,5 +37,13 @@ export const routes: Routes = [
   {
     path: 'listado-articulos',
     component: ListadoArticulosComponent
+  },
+  {
+    path: 'chat',
+    component: ChatPage
+  },
+  {
+    path: 'chat2',
+    component: Chat2Page
   }
 ];

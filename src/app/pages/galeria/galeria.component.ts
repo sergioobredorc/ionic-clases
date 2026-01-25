@@ -1,18 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-import { IonHeader, IonContent, IonTitle, IonToolbar, IonButton } from "@ionic/angular/standalone";
-import { RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { IonicModule } from '@ionic/angular';
+import { PhotosService, Photo } from '../../services/photos.service';
 
 @Component({
   selector: 'app-galeria',
-  standalone: true,
   templateUrl: './galeria.component.html',
   styleUrls: ['./galeria.component.scss'],
-  imports: [IonHeader, IonContent, IonTitle, IonToolbar,IonButton, RouterLink]
+  standalone: true,
+  imports: [CommonModule, IonicModule]
 })
-export class GaleriaComponent  implements OnInit {
+export class GaleriaComponent implements OnInit {
+  photos: Photo[] = [];
+  loading: boolean = true;
 
-  constructor() { }
+  constructor(private photoService: PhotosService) { }
 
-  ngOnInit() {}
-
+  ngOnInit(): void {
+    this.photoService.getPhotos().subscribe({
+      next: (data) => {
+        this.photos = data;
+        this.loading = false;
+        console.log('Datos recibidos:', data);
+      },
+      error: (err) => {
+        console.error('Fallo de conexión:', err);
+        this.loading = false;
+      }
+    });
+  }
 }
