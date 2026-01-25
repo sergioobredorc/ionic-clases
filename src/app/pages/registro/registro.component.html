@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-title>Alta Producto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="fArt" (ngSubmit)="guardar()">
+    
+    <ion-item>
+      <ion-label position="floating">Producto</ion-label>
+      <ion-input formControlName="nombre"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Precio</ion-label>
+      <ion-input type="number" formControlName="precio"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Categoría</ion-label>
+      <ion-select formControlName="categoria">
+        <ion-select-option value="electronica">Electrónica</ion-select-option>
+        <ion-select-option value="hogar">Hogar</ion-select-option>
+        <ion-select-option value="ropa">Ropa</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Fecha de ingreso</ion-label>
+      <ion-datetime presentation="date" formControlName="fechaIngreso"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Disponibilidad (Activo)</ion-label>
+      <ion-toggle formControlName="disponibilidad"></ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Descripción</ion-label>
+      <ion-textarea formControlName="descripcion"></ion-textarea>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-checkbox slot="start" formControlName="confirmacion"></ion-checkbox>
+      <ion-label>Confirmar registro</ion-label>
+    </ion-item>
+
+    <ion-button expand="block" type="submit" [disabled]="fArt.invalid" class="ion-margin-top">
+      Guardar
+    </ion-button>
+  </form>
+</ion-content>
