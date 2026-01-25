@@ -1,0 +1,26 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Galeria (API REST)</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class = "ion-padding">
+
+  <ion-spinner *ngIf="loading"></ion-spinner>
+
+  <ion-text color="danger"  *ngIf="!loading && errorMsg">
+    <p> {{errorMsg}} </p>
+  </ion-text>
+
+  <ion-grid>
+    <ion-col size="6" size-md="4" size-lg ="3" *ngFor="let p of photos">
+    <ion-card>
+      <img [src]="p.download_url" alt="Imagen de {{p.author}}" loading="lazy">
+      <ion-card-content>
+        <p>{{p.author}}</p>
+      </ion-card-content>
+    </ion-card>> 
+    </ion-col>
+  </ion-grid>
+
+</ion-content>

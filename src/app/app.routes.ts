@@ -7,6 +7,7 @@ import { ListadoRegistrosComponent } from './pages/listado-registros/listado-reg
 import {FormularioRegistroArticulosComponent } from './pages/formulario-registro-articulos/formulario-registro-articulos.component';
 import {ListadoArticulosComponent } from './pages/listado-articulos/listado-articulos.component';
 
+
 export const routes: Routes = [
   {
     path: '',
@@ -36,4 +37,19 @@ export const routes: Routes = [
     path: "listado-articulos",
     component: ListadoArticulosComponent
   },
+  {
+    path: 'gallery',
+    loadComponent: () => import('./pages/gallery/gallery.page').then( m => m.GalleryPage)
+  },
+  {
+    path: 'chat',
+    loadComponent: () => import('./pages/chat/chat.page').then( m => m.ChatPage)
+  },
+  {
+    path: 'chat_qwen',
+    loadComponent: () => import('./pages/chat-qwen/chat-qwen.page').then( m => m.ChatQwenPage)
+  },
+
+  
+
 ];
