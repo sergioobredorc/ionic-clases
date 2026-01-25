@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Chat con IA</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="chat-container">
+    <div
+      *ngFor="let m of messages"
+      class="message"
+      [ngClass]="m.from">
+      {{ m.text }}
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-item lines="none">
+    <ion-input
+      [(ngModel)]="input"
+      placeholder="Escribe tu mensaje..."
+      [disabled]="sending">
+    </ion-input>
+  </ion-item>
+
+  <ion-button
+    expand="full"
+    (click)="send()"
+    [disabled]="sending || !input.trim()">
+    Enviar 💖
+  </ion-button>
+</ion-footer>
