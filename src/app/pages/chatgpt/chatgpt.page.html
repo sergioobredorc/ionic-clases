@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Mistral IA 🤖</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="chat">
+    <div
+    class="msg"
+    *ngFor="let msg of messages"
+    [class.user]="msg.from === 'user'"
+    [class.bot]="msg.from === 'bot'"
+    >
+    {{ msg.text }}
+    </div>
+  </div>
+
+  <ion-spinner *ngIf="sending"></ion-spinner>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-item lines="none">
+      <ion-input
+      [(ngModel)]="usuarioInput"
+      placeholder="Escrbie lo que sea..."
+      (keyup.enter)="sendMessage()"
+      >
+
+      <ion-button (click)="sendMessage()" [disabled]="sending || !usuarioInput.trim()">
+        Enviar
+      </ion-button>
+      </ion-input>
+    </ion-item>
+  </ion-toolbar>
+</ion-footer>

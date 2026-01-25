@@ -35,5 +35,17 @@ export const routes: Routes = [
   {
     path: 'listadoArticulos',
     component: ListadoArticulosComponent
+  },  {
+    path: 'gallery',
+    loadComponent: () => import('./pages/gallery/gallery.page').then( m => m.GalleryPage)
+  },
+  {
+    path: 'chat',
+    loadComponent: () => import('./pages/chat/chat.page').then( m => m.ChatPage)
+  },
+  {
+    path: 'chatgpt',
+    loadComponent: () => import('./pages/chatgpt/chatgpt.page').then( m => m.ChatgptPage)
   }
+
 ];

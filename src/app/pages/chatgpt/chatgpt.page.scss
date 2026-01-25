@@ -1,0 +1,25 @@
+.chat {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-bottom: 8px;
+  background: linear-gradient(to right, rgb(30, 0, 30), rgb(34, 0, 0), rgb(0, 0, 30));
+}
+
+.msg {
+  max-width: 80%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  white-space: pre-wrap;
+  margin: 10px;
+}
+
+.msg.user {
+  align-self: flex-end;
+  background: rgb(52, 52, 52);
+}
+
+.msg.bot {
+  align-self: flex-start;
+  background: rgb(52, 52, 52);
+}
