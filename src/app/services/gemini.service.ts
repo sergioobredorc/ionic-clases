@@ -16,7 +16,7 @@ interface GeminiGenerateResponse{
 export class GeminiService{
     private model = 'gemini-2.5-flash';
 
-    private apiKey = 'AIzaSyDKeLeHyKf06rf6FgsVLYyZxVpTAw9GDn0' // Mi Api key personal de gemini Mich
+    private apiKey = 'AIzaSyDKeLeHyKf06rf6FgsVLYyZxVpTAw9GDn0' // Mich
 
     private endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${this.model}:generateContent`;
 
