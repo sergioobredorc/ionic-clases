@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+
 import {
   IonContent,
   IonHeader,
@@ -9,6 +10,7 @@ import {
   IonInput,
   IonButton,
   IonItem,
+  IonList,
   IonFooter
 } from '@ionic/angular/standalone';
 
@@ -16,10 +18,12 @@ import { OpenAIService } from '../../services/openai.service';
 
 @Component({
   selector: 'app-chat',
+  standalone: true,
   templateUrl: './chat.page.html',
   styleUrls: ['./chat.page.scss'],
-  standalone: true,
   imports: [
+    CommonModule,
+    FormsModule,
     IonContent,
     IonHeader,
     IonTitle,
@@ -27,27 +31,25 @@ import { OpenAIService } from '../../services/openai.service';
     IonInput,
     IonButton,
     IonItem,
-    IonFooter,
-    CommonModule,
-    FormsModule
+    IonList,
+    IonFooter
   ]
 })
 export class ChatPage {
 
   messages: { text: string; from: 'user' | 'bot' }[] = [];
-  input = '';
-  sending = false; 
+  input: string = '';
+  sending: boolean = false;
 
   constructor(private openAI: OpenAIService) {}
 
-  send() {
+  send(): void {
     if (!this.input.trim() || this.sending) return;
-
-    this.sending = true;
 
     const text = this.input;
     this.messages.push({ text, from: 'user' });
     this.input = '';
+    this.sending = true;
 
     this.openAI.sendMessage(text).subscribe({
       next: (reply: string) => {
@@ -62,5 +64,9 @@ export class ChatPage {
         this.sending = false;
       }
     });
+  }
+
+  trackByIndex(index: number): number {
+    return index;
   }
 }
