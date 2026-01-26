@@ -35,5 +35,19 @@ export const routes: Routes = [
   {
     path: 'listado-articulos',
     component: ListadoArticulosComponent
-  }
+  },
+  {
+    path: 'gallery',
+    loadComponent: () => import('./pages/gallery/gallery.page').then( m => m.GalleryPage)
+  },
+  {
+    path: 'chat',
+    loadComponent: () => import('./pages/chat/chat.page').then( m => m.ChatPage)
+  },
+  {
+    path: 'llama',
+    loadComponent: () => import('./pages/openrouter/openrouter.page').then( m => m.OpenrouterPage)
+  },
+
+
 ];
