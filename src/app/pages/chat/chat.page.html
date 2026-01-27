@@ -1,0 +1,43 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Chat IA (Llama 3)</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  
+  <div class="chat-container">
+    <div 
+      class="message-bubble" 
+      *ngFor="let msg of displayMessages; trackBy: trackByIndex"
+      [class.user]="msg.from === 'user'"
+      [class.bot]="msg.from === 'bot'">
+      
+      {{ msg.text }}
+    </div>
+  </div>
+
+  <div class="ion-text-center ion-padding" *ngIf="sending">
+    <ion-spinner name="dots" color="primary"></ion-spinner>
+    <ion-text color="medium"><p><small>Escribiendo...</small></p></ion-text>
+  </div>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-item lines="none">
+      <ion-input 
+        [(ngModel)]="input" 
+        placeholder="Escribe un mensaje..." 
+        (keyup.enter)="send()"></ion-input>
+      
+      <ion-button slot="end" (click)="send()" [disabled]="sending || !input.trim()">
+        <ion-icon name="send"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-toolbar>
+</ion-footer> 

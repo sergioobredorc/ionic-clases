@@ -5,7 +5,7 @@ import { ListadoRegistrosComponent } from './pages/listado-registros/listado-reg
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'registro',
+    redirectTo: 'chat',
     pathMatch: 'full',
   },
   {
@@ -20,4 +20,9 @@ export const routes: Routes = [
     path: 'home',
     loadComponent: () => import('./home/home.page').then(m => m.HomePage),
   },
+  {
+    path: 'chat',
+    loadComponent: () => import('./pages/chat/chat.page').then( m => m.ChatPage)
+  },
+
 ];
