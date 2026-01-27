@@ -24,7 +24,7 @@ import {
   IonButton
 } from '@ionic/angular/standalone'
 
-import { StorageArtService } from '../services/storageArt.service';
+import { StorageArtService } from 'src/app/services/storageArt.service';
 
 
 @Component({

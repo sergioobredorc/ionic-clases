@@ -4,8 +4,26 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class=""ion-padding>
-  <div class="chat">
+<ion-content class="ion-padding">
+
+  <div *ngIf="!apiReady" class="no-key">
+    <h2>Configuración necesaria</h2>
+    <p>Profe, para poder usar este chat se necesita agregar su API Key de OpenRouter.</p>
+    <ol>
+      <br>
+      <li>Crear una cuenta en <b>https://openrouter.ai</b></li>
+      <br>
+      <li>Ir a la sección <b>API Keys</b></li>
+      <br>
+      <li>Generar una nueva clave</li>
+      <br>
+      <li>Abrir el archivo <b>openrouter.service.ts</b></li>
+      <br>
+      <li>Reemplazar <code>TU_API_KEY_AQUI</code> con tu clave</li>
+    </ol>
+  </div>
+
+  <div *ngIf="apiReady" class="chat">
     <div
       class="msg"
       *ngFor="let m of messages; trackBy: trackByIndex"
@@ -16,19 +34,22 @@
     </div>
   </div>
 
-  <ion-spinner *ngIf="sending"></ion-spinner>
+  <ion-spinner *ngIf="sending && apiReady"></ion-spinner>
+
 </ion-content>
 
-<ion-footer>
+<ion-footer *ngIf="apiReady">
   <ion-toolbar>
-    <ion-item lines = "none">
+    <ion-item lines="none">
       <ion-input
-        [(ngModel)] = "input"
+        [(ngModel)]="input"
         placeholder="Escribe tu mensaje..."
         (keyup.enter)="send()">
       </ion-input>
 
-      <ion-button (click)="send()" [disabled]="sending || !input.trim()">
+      <ion-button
+        (click)="send()"
+        [disabled]="sending || !input.trim()">
         Enviar
       </ion-button>
     </ion-item>

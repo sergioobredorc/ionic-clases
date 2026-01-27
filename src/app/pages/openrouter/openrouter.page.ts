@@ -35,7 +35,9 @@ export class OpenrouterPage {
     { role: 'assistant', content: 'Hola, ¿en qué te puedo ayudar?' }
   ];
 
-  constructor(private openrouter: OpenRouterService) {}
+  apiReady = false;
+
+  constructor(private openrouter: OpenRouterService) { this.apiReady = this.openrouter.hasValidKey();}
 
   send() {
     const text = this.input.trim();

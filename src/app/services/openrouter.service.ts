@@ -15,15 +15,20 @@ export class OpenRouterService {
 
   private endpoint = 'https://openrouter.ai/api/v1/chat/completions';
 
-  private apiKey = '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';
+  //SE REMPLAZA LA API KEY AQUI (SOLO AQUI) POR LA SUYA PROFE!
+  private apiKey = 'TU_API_KEY_AQUI';
 
-  constructor(private http: HttpClient) {}
+  hasValidKey(): boolean {
+    return !!this.apiKey && !this.apiKey.includes('TU_API_KEY_AQUI');//AQUI NO
+  }
+
+  constructor(private http: HttpClient) { }
 
   generateReply(messages: { role: string; content: string }[]): Observable<string> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.apiKey}`,
-      'HTTP-Referer': 'http://localhost:8100', 
+      'HTTP-Referer': 'http://localhost:8100',
       'X-Title': 'Ionic Chat'
     });
 
