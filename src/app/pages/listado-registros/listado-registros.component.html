@@ -1,46 +1,42 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Registro guardados</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/registro"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Artículos Guardados</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-button expand="block" (click)="cargar()">
-    Recargar
-  </ion-button>
-  <ion-button expand="block" fill="outline" (click)="borrarTodo()">
-    Borrar todo
-  </ion-button>
-  <ion-text *ngIf="cargando">
-    <p>Cargando registros</p>
+
+  <ion-button expand="block" (click)="cargarRegistros()">Recargar Lista</ion-button>
+  <ion-button expand="block" fill="outline" color="danger" (click)="borrarTodo()">Borrar todo</ion-button>
+
+  <ion-text *ngIf="articles.length === 0" class="ion-text-center ion-padding">
+    <p>No hay artículos registrados aún.</p>
   </ion-text>
 
-  <ion-text *ngIf="!cargando && registros.length === 0">
-    <p>No hay registros guardados</p>
-  </ion-text>
+  <ion-list>
+    <ion-card *ngFor="let item of articles">
+      <ion-card-header>
+        <ion-card-title>{{ item.nombre }}</ion-card-title>
+        <ion-card-subtitle>{{ item.categoria }} - {{ item.fecha | date:'mediumDate' }}</ion-card-subtitle>
+      </ion-card-header>
 
+      <ion-card-content>
+        <h2><strong>Precio: </strong> ${{ item.precio }}</h2>
+        <p *ngIf="item.descripcion"><strong>Descripción: </strong> {{ item.descripcion }}</p>
+        <p>
+          <strong>Estado: </strong> 
+          <ion-text [color]="item.activo ? 'success' : 'danger'">
+            {{ item.activo ? 'Disponible' : 'No disponible' }}
+          </ion-text>
+        </p>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
 
-  <ion-card *ngFor="let r of registros">
-    <ion-card-header>
-      <ion-card-title>{{ r.nombre }}</ion-card-title>
-      <ion-card-subtitle>
-        {{ r.correo }} - {{ r.pais }} - {{ r.createdAt | date: 'medium' }}
-      </ion-card-subtitle>
-    </ion-card-header>
-
-    <ion-card-content>
-      <p><strong>Genero: </strong> {{ r.genero }}</p>
-      <p><strong>Fecha de nacimiento: </strong> {{ r.fechaNacimiento }}</p>
-      <p><strong>Notificaciones: </strong> {{ r.notificaciones ? 'Si' : 'No' }}</p>
-
-      <p *ngIf="r.biografia">
-        <strong>Biografía: </strong> {{ r.biografia }}
-      </p>
-
-      <p><strong>Términos: </strong> {{ r.terminos ? 'Aceptados' : 'No aceptados' }}</p>
-    </ion-card-content>
-  </ion-card>
-  <ion-button expand="block" routerLink="/registro" class="ion-margin-top">
-    Volver al registro de usuarios
+  <ion-button expand="block" routerLink="/registro" class="ion-margin-top" fill="clear">
+    Volver a registrar
   </ion-button>
 </ion-content>

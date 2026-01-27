@@ -1,64 +1,55 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-
-import { 
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonContent,
-  IonCard,
-  IonCardHeader,
-  IonCardTitle,
-  IonCardSubtitle,
-  IonCardContent,
-  IonButton,
-  IonText
- } from '@ionic/angular/standalone';
-
-import { Registro, StorageService } from '../../services/storage.service';
+import { IonicModule, AlertController } from '@ionic/angular'; 
+import { Articulo, StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-listado-registros',
   templateUrl: './listado-registros.component.html',
   styleUrls: ['./listado-registros.component.scss'],
-  imports: [
-    CommonModule,
-    DatePipe,
-    RouterLink,
-
-    IonHeader,
-    IonToolbar,
-    IonTitle,
-    IonContent,
-    IonCard,
-    IonCardHeader,
-    IonCardTitle,
-    IonCardSubtitle,
-    IonCardContent,
-    IonButton,
-    IonText
-  ]
+  standalone: true,
+  imports: [CommonModule, RouterLink, IonicModule]
 })
-export class ListadoRegistrosComponent  implements OnInit {
-  registros: Registro[] = [];
-  cargando = true;
-
-  constructor(private storageSvc: StorageService) { }
+export class ListadoRegistrosComponent implements OnInit {
+  
+  articles: Articulo[] = []; 
+  
+  constructor(
+    private storageSvc: StorageService,
+    private alertController: AlertController
+  ) { }
 
   async ngOnInit() {
-    await this.cargar();
+    await this.cargarRegistros();
   }
 
-  async cargar(){
-    this.cargando = true;
-    this.registros = await this.storageSvc.getRegistros();
-    this.cargando = false;
+  async ionViewWillEnter() {
+    await this.cargarRegistros();
   }
 
-  async borrarTodo(){
-    this.cargando = true;
-    await this.storageSvc.clearRegistros();
-    await this.cargar();
+  async cargarRegistros(){
+    this.articles = await this.storageSvc.getArticles();
+  }
+
+
+  async borrarTodo() {
+    const alert = await this.alertController.create({
+      header: '¿Estás seguro?',
+      message: 'Esta acción borrará todos los artículos permanentemente.',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel'
+        }, {
+          text: 'Sí, borrar todo',
+          handler: async () => {
+            await this.storageSvc.clearArticles();
+            this.articles = [];
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
 }
