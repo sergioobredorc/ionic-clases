@@ -62,5 +62,37 @@ export class ChatPage {
         this.sending = false;
       }
     });
+<<<<<<< HEAD
+=======
+
+    this.groq
+      .generateReply(this.conversation)
+      .pipe(finalize(() => (this.sending = false)))
+      .subscribe({
+        next: (reply) => {
+          let safeReply = reply?.trim() || '...';
+
+          // 🔥 Elimina bloques <think> si el modelo los envía
+          safeReply = safeReply.replace(/<think>[\s\S]*?<\/think>/gi, '').trim();
+
+          this.messages.push({ from: 'bot', text: safeReply });
+
+          this.conversation.push({
+            role: 'assistant',
+            content: safeReply
+          });
+        },
+
+        error: (err) => {
+          console.error(err);
+          const msg = 'Error al comunicarse con Groq. Profesor no me deja publicar un api key real en github entonces le quite el ultimo numero que es el 9 hay que ponerlo y funciona a la perfeccion .';
+          this.messages.push({ from: 'bot', text: msg });
+        }
+      });
+  }
+
+  trackByIndex(i: number) {
+    return i;
+>>>>>>> a5bae1e (Actividad 3: Chat IA)
   }
 }
