@@ -1,50 +1,45 @@
-import { Injectable } from "@angular/core";
-import { Storage } from "@ionic/storage-angular";
+import { Injectable } from '@angular/core';
+import { Storage } from '@ionic/storage-angular';
 
-export type Registro = {
-    nombre: string;
-    correo: string;
-    pais: string;
-    fechaNacimiento: string;
-    genero: string;
-    notificaciones: boolean;
-    biografia: string;
-    terminos: boolean;
-    createdAt: string;
+
+export interface Articulo {
+  nombre: string;
+  precio: number;
+  categoria: string;
+  fecha: string;
+  activo: boolean;
+  descripcion: string;
 }
 
-@Injectable({ providedIn: 'root'})
-export class StorageService{
-    private _storage?: Storage;
-    private readonly KEY = 'registros';
+@Injectable({
+  providedIn: 'root'
+})
+export class StorageService {
+  private _storage: Storage | null = null;
 
-    constructor(private storage: Storage){}
+  constructor(private storage: Storage) {
+    this.init();
+  }
 
-    async init(): Promise<void>{
-        if (this._storage) return;
-        this._storage = await this.storage.create();
-    }
+  async init() {
+    const storage = await this.storage.create();
+    this._storage = storage;
+  }
 
-    async addRegistro(data: Omit<Registro, 'createdAt'>): Promise<void>{
-        await this.init();
-        const registros = (await this._storage!.get(this.KEY)) as Registro[] | null;
 
-        const nuevo: Registro = {
-            ...data,
-            createdAt: new Date().toISOString()
-        };
+  async addArticle(articulo: Articulo) {
+    const articulos = (await this._storage?.get('articulos')) || [];
+    articulos.push(articulo);
+    return this._storage?.set('articulos', articulos);
+  }
 
-        const actualizados = registros ? [nuevo,...registros] : [nuevo];
-        await this._storage?.set(this.KEY,actualizados)
-    }
+ 
+  async getArticles(): Promise<Articulo[]> {
+    return (await this._storage?.get('articulos')) || [];
+  }
 
-    async getRegistros(): Promise<Registro[]>{
-        await this.init();
-        return ((await this._storage!.get(this.KEY)) as Registro[] | null) ?? [];
-    }
 
-    async clearRegistros(): Promise<void>{
-        await this.init();
-        await this._storage!.remove(this.KEY);
-    }
+  async clearArticles() {
+    return this._storage?.remove('articulos');
+  }
 }

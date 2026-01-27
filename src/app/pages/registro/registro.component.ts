@@ -1,52 +1,83 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder,ReactiveFormsModule,FormGroup, Validators } from '@angular/forms';
-import { IonHeader,IonToolbar,IonTitle,IonContent,IonList,IonItem,IonLabel,IonInput,IonSelect,
-  IonSelectOption,IonDatetime,IonRadio,IonRadioGroup,IonToggle,IonTextarea,IonCheckbox,IonButton,IonText } from '@ionic/angular/standalone';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router'; 
+import { ToastController } from '@ionic/angular';
 
-import { StorageService } from '../../services/storage.service';
+import { 
+  IonHeader, IonToolbar, IonTitle, IonContent, 
+  IonItem, IonLabel, IonInput, IonText, 
+  IonSelect, IonSelectOption, 
+  IonDatetime, IonDatetimeButton, IonModal, 
+  IonToggle, IonTextarea, IonCheckbox, IonButton 
+} from '@ionic/angular/standalone';
+
+import { StorageService, Articulo } from '../../services/storage.service';
 
 @Component({
   selector: 'app-registro',
-  standalone: true,
   templateUrl: './registro.component.html',
   styleUrls: ['./registro.component.scss'],
-  imports: [IonHeader,CommonModule,ReactiveFormsModule,IonToolbar,IonTitle,IonContent,IonList,IonItem,IonLabel,IonInput,IonSelect,
-    IonSelectOption,IonDatetime,IonRadio,IonRadioGroup,IonToggle,IonTextarea,IonCheckbox,IonButton,IonText
+  standalone: true,
+  imports: [
+    CommonModule, 
+    ReactiveFormsModule,
+    RouterLink, 
+    IonHeader, IonToolbar, IonTitle, IonContent, 
+    IonItem, IonLabel, IonInput, IonText, 
+    IonSelect, IonSelectOption, 
+    IonDatetime, IonDatetimeButton, IonModal, 
+    IonToggle, IonTextarea, IonCheckbox, IonButton
   ]
 })
-export class RegistroComponent {
-  registroForm: FormGroup;
-  enviado = false;
-  guardadoOK = false;
+export class RegistroComponent implements OnInit {
+  
+  articleForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private storageSvc: StorageService) { 
-    this.registroForm = this.fb.group({
-      nombre: ['',[Validators.required,Validators.minLength(3)]],
-      correo: ['',[Validators.required,Validators.email]],
-      pais: [null,[Validators.required]],
-      fechaNacimiento: [null,[Validators.required]],
-      genero: [null,[Validators.required]],
-      notificaciones: [true],
-      biografia: ['', [Validators.maxLength(200)]],
-      terminos: [false, [Validators.requiredTrue]]
-    })
+  constructor(
+    private fb: FormBuilder,
+    private storageService: StorageService,
+    private toastController: ToastController,
+    private router: Router
+  ) {
+    this.articleForm = this.fb.group({
+      nombre: ['', [Validators.required, Validators.minLength(3)]],
+      precio: ['', [Validators.required, Validators.min(1)]],
+      categoria: ['', Validators.required],
+      fecha: [new Date().toISOString(), Validators.required],
+      activo: [true],
+      descripcion: [''],
+      confirmacion: [false, Validators.requiredTrue]
+    });
   }
 
-  get f(){
-    return this.registroForm.controls;
-  }
+  ngOnInit() {}
 
   async onSubmit() {
-    this.enviado = true;
-    this.guardadoOK = false;
+    if (this.articleForm.valid) {
+      const nuevoArticulo: Articulo = this.articleForm.value;
+      await this.storageService.addArticle(nuevoArticulo);
+      this.presentToast('Artículo registrado exitosamente');
+      
+      this.articleForm.reset({ 
+        activo: true, 
+        confirmacion: false,
+        fecha: new Date().toISOString()
+      });
 
-    if(this.registroForm.invalid){
-      this.registroForm.markAllAsTouched();
-      return;
+      this.router.navigate(['/registros']);
+    } else {
+      this.presentToast('Por favor verifica los campos obligatorios');
     }
-    
-    await this.storageSvc.addRegistro(this.registroForm.value);
-    this.guardadoOK = true;
+  }
+
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000,
+      position: 'bottom',
+      color: 'dark'
+    });
+    toast.present();
   }
 }
