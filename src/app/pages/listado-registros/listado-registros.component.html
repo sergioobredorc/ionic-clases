@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Artículos guardados</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-button expand="block" (click)="cargar()">
+    Recargar
+  </ion-button>
+
+  <ion-button expand="block" color="danger" fill="outline" (click)="borrarTodo()">
+    Borrar todo
+  </ion-button>
+
+  <ion-text *ngIf="cargando">
+    <p>Cargando registros...</p>
+  </ion-text>
+
+  <ion-text *ngIf="!cargando && registros.length === 0">
+    <p>No hay registros guardados</p>
+  </ion-text>
+
+  <ion-card *ngFor="let r of registros">
+    <ion-card-header>
+      <ion-card-title>{{ r.nombre }}</ion-card-title>
+      <ion-card-subtitle>
+        {{ r.categoria }} — {{ r.createdAt | date: 'medium' }}
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p *ngIf="r.precio"><strong>Precio:</strong> ${{ r.precio }}</p>
+      <p *ngIf="r.fechaIngreso"><strong>Fecha ingreso:</strong> {{ r.fechaIngreso | date }}</p>
+      <p *ngIf="r.disponible !== undefined"><strong>Disponible:</strong> {{ r.disponible ? 'Sí' : 'No' }}</p>
+      <p *ngIf="r.descripcion"><strong>Descripción:</strong> {{ r.descripcion }}</p>
+
+      <ion-button
+        expand="block"
+        color="danger"
+        fill="outline"
+        (click)="borrarRegistro(r)">
+        Borrar registro
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-button expand="block" routerLink="/registro" class="ion-margin-top">
+    Volver a registrar artículos
+  </ion-button>
+
+</ion-content>
+
+

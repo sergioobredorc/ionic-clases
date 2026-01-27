@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registro de Artículos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <ion-list>
+
+      <ion-item>
+        <ion-label position="stacked">Nombre del artículo</ion-label>
+        <ion-input formControlName="nombre"></ion-input>
+      </ion-item>
+      <ion-text *ngIf="f['nombre'].touched && f['nombre'].invalid">
+        <p *ngIf="f['nombre'].errors?.['required']">Campo obligatorio</p>
+        <p *ngIf="f['nombre'].errors?.['minlength']">Mínimo 3 caracteres</p>
+      </ion-text>
+
+      <ion-item>
+        <ion-label position="stacked">Precio</ion-label>
+        <ion-input type="number" formControlName="precio"></ion-input>
+      </ion-item>
+      <ion-text *ngIf="f['precio'].touched && f['precio'].invalid">
+        <p>Debe ser mayor a 0</p>
+      </ion-text>
+
+      <ion-item>
+        <ion-label position="stacked">Categoría</ion-label>
+        <ion-select formControlName="categoria" placeholder="Seleccione">
+          <ion-select-option value="Tecnología">Tecnología</ion-select-option>
+          <ion-select-option value="Hogar">Hogar</ion-select-option>
+          <ion-select-option value="Ropa">Ropa</ion-select-option>
+          <ion-select-option value="Alimentos">Alimentos</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-text *ngIf="f['categoria'].touched && f['categoria'].invalid">
+        <p>Campo obligatorio</p>
+      </ion-text>
+
+      <ion-item>
+        <ion-label position="stacked">Fecha de ingreso</ion-label>
+        <ion-datetime formControlName="fechaIngreso" presentation="date"></ion-datetime>
+      </ion-item>
+      <ion-text *ngIf="f['fechaIngreso'].touched && f['fechaIngreso'].invalid">
+        <p>Campo obligatorio</p>
+      </ion-text>
+
+      <ion-item>
+        <ion-label>Disponible</ion-label>
+        <ion-toggle formControlName="disponible"></ion-toggle>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Descripción</ion-label>
+        <ion-textarea formControlName="descripcion"></ion-textarea>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-checkbox formControlName="confirmar"></ion-checkbox>
+        <ion-label class="ion-padding-start">Confirmo registro del artículo</ion-label>
+      </ion-item>
+      <ion-text *ngIf="f['confirmar'].touched && f['confirmar'].invalid">
+        <p>Debes confirmar</p>
+      </ion-text>
+
+    </ion-list>
+
+    <ion-button expand="block" type="submit">Guardar artículo</ion-button>
+    <ion-button expand="block" fill="outline" routerLink="/listado-registros">
+      Ver artículos guardados
+    </ion-button>
+  </form>
+
+  <ion-text *ngIf="guardadoOK">
+    <p>Artículo guardado correctamente.</p>
+  </ion-text>
+</ion-content>
