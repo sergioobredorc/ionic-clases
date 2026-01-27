@@ -1,30 +1,28 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+import { Observable, map, catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OpenAIService {
 
-  // 🔐 PEGA AQUÍ TU API KEY DE OPENROUTER
-  private apiKey = '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';
-
+  private apiKey = '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';
   private apiUrl = 'https://openrouter.ai/api/v1/chat/completions';
 
   constructor(private http: HttpClient) {}
 
   sendMessage(message: string): Observable<string> {
+
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.apiKey}`,
-      // headers recomendados por OpenRouter
+      Authorization: `Bearer ${this.apiKey}`,
       'HTTP-Referer': 'http://localhost:8100',
-      'X-Title': 'Chat IA Académico'
+      'X-Title': 'Chat Ionic'
     });
 
     const body = {
-      model: 'meta-llama/llama-3.3-70b-instruct:free',
+      model: 'openai/gpt-4o-mini',
       messages: [
         { role: 'user', content: message }
       ],
@@ -32,7 +30,16 @@ export class OpenAIService {
     };
 
     return this.http.post<any>(this.apiUrl, body, { headers }).pipe(
-      map(res => res.choices[0].message.content)
+      map(res => {
+        if (!res || !res.choices || !res.choices.length) {
+          return 'La IA no devolvió respuesta.';
+        }
+        return res.choices[0].message?.content || 'Respuesta vacía.';
+      }),
+      catchError(err => {
+        console.error('Error OpenRouter:', err);
+        return throwError(() => err);
+      })
     );
   }
 }

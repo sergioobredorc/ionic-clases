@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+
 import {
   IonContent,
   IonHeader,
@@ -9,17 +10,22 @@ import {
   IonInput,
   IonButton,
   IonItem,
-  IonFooter
+  IonFooter,
+  IonRow,
+  IonCol
 } from '@ionic/angular/standalone';
 
 import { OpenAIService } from '../../services/openai.service';
 
 @Component({
   selector: 'app-chat',
+  standalone: true,
   templateUrl: './chat.page.html',
   styleUrls: ['./chat.page.scss'],
-  standalone: true,
   imports: [
+    CommonModule,
+    FormsModule,
+
     IonContent,
     IonHeader,
     IonTitle,
@@ -28,15 +34,15 @@ import { OpenAIService } from '../../services/openai.service';
     IonButton,
     IonItem,
     IonFooter,
-    CommonModule,
-    FormsModule
+    IonRow,
+    IonCol
   ]
 })
 export class ChatPage {
 
   messages: { text: string; from: 'user' | 'bot' }[] = [];
   input = '';
-  sending = false; 
+  sending = false;
 
   constructor(private openAI: OpenAIService) {}
 
@@ -56,7 +62,7 @@ export class ChatPage {
       },
       error: () => {
         this.messages.push({
-          text: 'Error al comunicarse con la IA',
+          text: 'Hubo un error al procesar el mensaje',
           from: 'bot'
         });
         this.sending = false;
