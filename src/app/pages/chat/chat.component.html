@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Chat IA</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list class="messages-container">
+    <div *ngFor="let mensaje of mensajes"
+         [class.usuario]="mensaje.de === 'Usuario'"
+         [class.ia]="mensaje.de === 'IA'"
+         class="mensaje">
+
+      <strong>{{ mensaje.de }}:</strong>
+      <p [innerHTML]="mensaje.texto"></p>
+
+    </div>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-item>
+      <ion-input 
+        placeholder="Escribe tu pregunta..." 
+        [(ngModel)]="textoUsuario"
+        (keyup.enter)="enviarMensaje()"
+        [disabled]="cargando">
+      </ion-input>
+
+      <ion-button slot="end"
+                  (click)="enviarMensaje()"
+                  [disabled]="cargando">
+        {{ cargando ? 'Enviando...' : 'Enviar' }}
+      </ion-button>
+
+    </ion-item>
+  </ion-toolbar>
+</ion-footer>
