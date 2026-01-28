@@ -10,4 +10,4 @@ Para resolver la Actividad 4, utilicé el concepto de consultas anidadas (nested
 
         Razón: Estos campos permiten construir una interfaz visualmente sin sobrecargar el ancho de banda con datos que no se muestran en la UI (como el género, el origen o la lista de otros episodios del personaje), aplicando así el principio de 'Data Masking' y evitando el 'Over-fetching'."
 
-Att; Michel Gonzalez
+Att; Michel Gonzalez ;/
