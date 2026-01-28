@@ -2,12 +2,14 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    path: 'home',
-    loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
+    path: '',
+    redirectTo: 'episodes',
+    pathMatch: 'full',
   },
   {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full',
+    path: 'episodes',
+    loadComponent: () =>
+      import('./pages/episodes-graphql/episodes-graphql.page')
+        .then(m => m.EpisodesGraphqlPage),
   },
 ];
