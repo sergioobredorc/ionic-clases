@@ -8,6 +8,8 @@ import { RegistroArticuloComponent } from './pages/registro-articulo/registro-ar
 import { ListadoArticulosComponent } from './pages/listado-articulos/listado-articulos.component';
 import { ChatPage } from './pages/chat/chat.page';
 import { Chat2Page } from './pages/chat2/chat2.page';
+// Importación para la Actividad 4 
+import { RmGraphqlPage } from './pages/rm-graphql/rm-graphql.page'; 
 
 export const routes: Routes = [
   {
@@ -45,5 +47,9 @@ export const routes: Routes = [
   {
     path: 'chat2',
     component: Chat2Page
+  },
+  {
+    path: 'rm-graphql',
+    component: RmGraphqlPage
   }
 ];
