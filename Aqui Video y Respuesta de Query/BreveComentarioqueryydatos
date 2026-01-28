@@ -1,0 +1,13 @@
+Para resolver la Actividad 4, utilicé el concepto de consultas anidadas (nested queries) de GraphQL, lo que permitió obtener información de dos entidades relacionadas (Episodios y Personajes) en una sola transacción HTTP.
+
+1. Cómo resolví la consulta: Implementé una query con parámetros dinámicos ($id: ID!). A diferencia de una API REST, donde tendría que haber hecho una petición para el episodio y luego múltiples peticiones adicionales para cada personaje, en GraphQL definí un esquema de respuesta donde el nodo raíz es el episode. Dentro de este, solicité el campo characters, que actúa como un puente hacia la colección de personajes vinculados a ese capítulo específico.
+
+2. Qué datos decidí solicitar y por qué: Para optimizar el rendimiento y cumplir con los requisitos, decidí solicitar únicamente los siguientes campos:
+
+    Del Episodio: name, episode (código) y air_date, para mostrar el encabezado del modal.
+
+    De los Personajes: name, status, species e image.
+
+        Razón: Estos campos permiten construir una interfaz visualmente sin sobrecargar el ancho de banda con datos que no se muestran en la UI (como el género, el origen o la lista de otros episodios del personaje), aplicando así el principio de 'Data Masking' y evitando el 'Over-fetching'."
+
+Att; Michel Gonzalez
