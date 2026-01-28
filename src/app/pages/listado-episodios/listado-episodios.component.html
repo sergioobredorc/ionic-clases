@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Listado de Episodios</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-spinner *ngIf="loadingList"></ion-spinner>
+  <ion-list>
+    <ion-item size="6" size-md="4" size-lg="3" *ngFor="let e of episodes">
+      <ion-label (click)="openDetail(e.id)">
+        <h2>{{e.name}}</h2>
+        <p>
+          <ion-badge color="success"> {{ e.episode }}</ion-badge> {{ e.air_date | date: 'dd/MM/yyyy' }}
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-modal [isOpen]="isModalOpen" (didDismiss)="closeModal()">
+
+</ion-modal>

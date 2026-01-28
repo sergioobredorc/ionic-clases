@@ -6,6 +6,7 @@ import { RegistroComponent } from './pages/registro/registro.component';
 import { ListadoRegistrosComponent } from './pages/listado-registros/listado-registros.component';
 import { RegistroArticuloComponent } from './pages/registro-articulo/registro-articulo.component';
 import { ListadoArticulosComponent } from './pages/listado-articulos/listado-articulos.component';
+import { ListadoEpisodiosComponent } from './pages/listado-episodios/listado-episodios.component';
 
 export const routes: Routes = [
   {
@@ -38,16 +39,23 @@ export const routes: Routes = [
   },
   {
     path: 'gallery',
-    loadComponent: () => import('./pages/gallery/gallery.page').then( m => m.GalleryPage)
+    loadComponent: () => import('./pages/gallery/gallery.page').then(m => m.GalleryPage)
   },
   {
     path: 'chat',
-    loadComponent: () => import('./pages/chat/chat.page').then( m => m.ChatPage)
+    loadComponent: () => import('./pages/chat/chat.page').then(m => m.ChatPage)
   },
   {
     path: 'llama',
-    loadComponent: () => import('./pages/openrouter/openrouter.page').then( m => m.OpenrouterPage)
+    loadComponent: () => import('./pages/openrouter/openrouter.page').then(m => m.OpenrouterPage)
   },
-
+  {
+    path: 'rm-graphql',
+    loadComponent: () => import('./pages/rm-graphql/rm-graphql.page').then(m => m.RmGraphqlPage)
+  },
+  {
+    path: 'listado-episodios',
+    loadComponent: () => import('./pages/listado-episodios/listado-episodios.component').then(m => m.ListadoEpisodiosComponent)
+  },
 
 ];
