@@ -36,4 +36,9 @@ export const routes: Routes = [
     path: 'listados',
     component: ListadoArticulosComponent,
   },
+  {
+    path: 'open',
+    loadComponent: () =>
+      import('./pages/chats/chats.page').then((m) => m.ChatsPage),
+  },
 ];
