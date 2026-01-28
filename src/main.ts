@@ -10,14 +10,15 @@ import { IonicModule } from '@ionic/angular';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { addIcons } from 'ionicons';
 
-import { informationCircleOutline, cashOutline, chatbubbleEllipsesOutline } from 'ionicons/icons';
+import { informationCircleOutline, cashOutline, chatbubbleEllipsesOutline, peopleOutline, filmOutline } from 'ionicons/icons';
 
 import { provideHttpClient } from '@angular/common/http';
 
 addIcons({
   'information-circle-outline': informationCircleOutline,
   'cash-outline': cashOutline,
-  'chatbubble-ellipses-outline':chatbubbleEllipsesOutline
+  'chatbubble-ellipses-outline':chatbubbleEllipsesOutline,
+  'people-outline' :peopleOutline,
 });
 
 

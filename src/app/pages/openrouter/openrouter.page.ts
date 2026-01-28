@@ -4,6 +4,7 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { finalize } from 'rxjs/operators';
 import { OpenRouterService } from '../../services/openrouter.service';
+import { RouterLink } from '@angular/router';
 
 
 type ChatMsg = { from: 'user' | 'bot'; text: string };
@@ -20,7 +21,7 @@ interface OpenRouterMessage {
   templateUrl: './openrouter.page.html',
   styleUrls: ['./openrouter.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonicModule, CommonModule, FormsModule, RouterLink]
 })
 export class OpenrouterPage {
 

@@ -20,16 +20,18 @@
       <li>Abrir el archivo <b>openrouter.service.ts</b></li>
       <br>
       <li>Reemplazar <code>TU_API_KEY_AQUI</code> con tu clave</li>
+      <br>
     </ol>
   </div>
 
+<div style="text-align: center;">
+  <ion-button size="small" routerLink="">Volver al Inicio</ion-button>
+</div>
+
+
   <div *ngIf="apiReady" class="chat">
-    <div
-      class="msg"
-      *ngFor="let m of messages; trackBy: trackByIndex"
-      [class.user]="m.from === 'user'"
-      [class.bot]="m.from === 'bot'"
-    >
+    <div class="msg" *ngFor="let m of messages; trackBy: trackByIndex" [class.user]="m.from === 'user'"
+      [class.bot]="m.from === 'bot'">
       {{ m.text }}
     </div>
   </div>
@@ -41,15 +43,10 @@
 <ion-footer *ngIf="apiReady">
   <ion-toolbar>
     <ion-item lines="none">
-      <ion-input
-        [(ngModel)]="input"
-        placeholder="Escribe tu mensaje..."
-        (keyup.enter)="send()">
+      <ion-input [(ngModel)]="input" placeholder="Escribe tu mensaje..." (keyup.enter)="send()">
       </ion-input>
 
-      <ion-button
-        (click)="send()"
-        [disabled]="sending || !input.trim()">
+      <ion-button (click)="send()" [disabled]="sending || !input.trim()">
         Enviar
       </ion-button>
     </ion-item>

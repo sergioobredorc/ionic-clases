@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { IonicModule, IonModal } from '@ionic/angular';
 import { finalize } from 'rxjs/operators';
 import { RickMortyGqlService, GqlResponse } from '../../services/rickmorty-gql.service';
-
+import { RouterLink } from '@angular/router';
 /* =======================
    TIPOS
 ======================= */
@@ -74,7 +74,7 @@ const GET_EPISODE_WITH_CHARACTERS = `
   standalone: true,
   templateUrl: './listado-episodios.component.html',
   styleUrls: ['./listado-episodios.component.scss'],
-  imports: [CommonModule, IonicModule]
+  imports: [CommonModule, IonicModule, RouterLink]
 })
 
 export class ListadoEpisodiosComponent implements OnInit {
@@ -128,7 +128,7 @@ export class ListadoEpisodiosComponent implements OnInit {
     this.loadingResidents = false;
   }
 
-  trackById(_: number, c: EpisodesCard) {
-    return c.id;
+  trackById(_: number, e: EpisodesCard) {
+    return e.id;
   }
 }

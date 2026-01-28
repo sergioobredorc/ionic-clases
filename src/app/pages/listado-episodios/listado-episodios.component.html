@@ -1,6 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Listado de Episodios</ion-title>
+    <ion-badge slot="end" routerLink="">Inicio</ion-badge>
   </ion-toolbar>
 </ion-header>
 
@@ -19,5 +20,67 @@
 </ion-content>
 
 <ion-modal [isOpen]="isModalOpen" (didDismiss)="closeModal()">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Detalle del Episodio</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="closeModal()">Cerrar</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
 
+    <ion-content class="ion-padding">
+
+      <div *ngIf="loadingDetail" class="ion-text-center">
+        <ion-spinner></ion-spinner>
+        <p>Cargando detalles...</p>
+      </div>
+
+  
+      <div *ngIf="selected && !loadingDetail">
+     
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>{{selected.name}}</ion-card-title>
+            <ion-card-subtitle>
+              <ion-badge color="primary">{{selected.episode}}</ion-badge>
+              • Emitido: {{selected.air_date | date: 'dd/MM/yyyy'}}
+            </ion-card-subtitle>
+          </ion-card-header>
+          
+          <ion-card-content>
+            <h3>Personajes en este episodio ({{selected.characters.length}})</h3>
+            
+        
+            <ion-grid>
+              <ion-row>
+                <ion-col 
+                  size="6" 
+                  size-md="4" 
+                  size-lg="3" 
+                  *ngFor="let character of selected.characters"
+                >
+                  <ion-card>
+                    <img [src]="character.image" [alt]="character.name">
+                    <ion-card-header>
+                      <ion-card-title>{{character.name}}</ion-card-title>
+                      <ion-card-subtitle>
+                        <ion-badge 
+                          [color]="character.status === 'Alive' ? 'success' : 'danger'"
+                        >
+                          {{character.status}}
+                        </ion-badge>
+                        • {{character.species}}
+                      </ion-card-subtitle>
+                    </ion-card-header>
+                  </ion-card>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </ion-content>
+  </ng-template>
 </ion-modal>
