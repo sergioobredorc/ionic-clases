@@ -45,5 +45,13 @@ export const routes: Routes = [
   {
     path: 'sales/articles',
     component: ArticlesComponent
+  },  {
+    path: 'chat',
+    loadComponent: () => import('./pages/chat/chat.page').then( m => m.ChatPage)
+  },
+  {
+    path: 'chat-gpt',
+    loadComponent: () => import('./pages/chat-gpt/chat-gpt.page').then( m => m.ChatGptPage)
   }
+
 ];

@@ -1,0 +1,41 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Chat con ChatGPT</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content ion-padding>
+  <div class="chat">
+    <div
+      class="msg"
+      *ngFor="let m of messages; trackBy: trackByIndex"
+      [class.user]="m.from === 'user'"
+      [class.bot]="m.from === 'bot'"
+    >
+      {{ m.text }}
+    </div>
+  </div>
+
+  <div class="typing" *ngIf="sending">
+    <ion-spinner name="dots"></ion-spinner>
+    <span>Escribiendo...</span>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-item lines="none">
+      <ion-input
+        [(ngModel)]="input"
+        placeholder="Escribe tu mensaje..."
+        (keyup.enter)="send()"
+        [disabled]="sending"
+      >
+      </ion-input>
+
+      <ion-button (click)="send()" [disabled]="sending || !input.trim()">
+        Enviar
+      </ion-button>
+    </ion-item>
+  </ion-toolbar>
+</ion-footer>

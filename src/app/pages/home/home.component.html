@@ -1,18 +1,24 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Inicio</ion-title>
-    
+    <ion-title>Consumo API REST</ion-title>
   </ion-toolbar>
 </ion-header>
+
 <ion-content class="ion-padding">
-  <p>Este es el componente home</p>
+  <ion-spinner *ngIf="loading"></ion-spinner>
+
+  <ion-list *ngIf="!loading">
+    <ion-item *ngFor="let p of posts">
+      <ion-label>
+        <h2>{{ p.title }}</h2>
+        <p>{{ p.body }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
-<ion-button routerLink="/registro">
-    Añadir registro
+<ion-button routerLink="/perfil">
+    Ir al Perfil
 </ion-button>
-<ion-button routerLink="/registros">
-    Ver registros
-</ion-button>
-<ion-button routerLink="">
-    Ir al Home
+<ion-button routerLink="/galeria">
+    Ir al a Galería
 </ion-button>
