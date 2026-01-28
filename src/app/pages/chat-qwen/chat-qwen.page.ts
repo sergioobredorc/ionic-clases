@@ -63,7 +63,7 @@ export class ChatQwenPage {
         },
         error: (err) => {
           console.error(err);
-          const msg = 'Ocurrió un error llamando a Qwen';
+          const msg ='Profe para que le funcione debe ir a qwen.service.ts y en la apikey va a colocar al final un 9 para que funcione porque despues el openrouter me lo desabilita porque no deja colocar apikey en repositorios publicos';
           this.messages.push({ from: 'bot', text: msg });
         }
       });

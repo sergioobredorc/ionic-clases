@@ -24,7 +24,7 @@ interface QwenGenerateResponse {
 export class QwenService {
 
   private model = 'qwen/qwen-2.5-7b-instruct';
-  private apiKey = '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';
+  private apiKey = 'sk-or-v1-488d05b908e97216ecc4ecd3a9596b3c72ca22d04f144e542f39b01cfe29e12'; 
   private endpoint = 'https://openrouter.ai/api/v1/chat/completions';
 
   constructor(private http: HttpClient) {}
