@@ -1,0 +1,15 @@
+Explicación de la Actividad 5
+
+Para el manejo de los permisos, utilicé la API getUserMedia directamente desde un servicio que creé para que el código no quedara amontonado en el componente. Lo hice así para que la app reaccione apenas el usuario acepte o rechace, mostrando de una vez si la cámara y el micro están activos con los badges de colores.
+
+Elegí la Opción A (Análisis de Sentimiento) porque me pareció interesante ver cómo una IA puede interpretar lo que uno escribe después de interactuar con la cámara. Básicamente, lo que hago es enviar la "Descripción de la captura" en un objeto JSON hacia la API de Hugging Face. El servicio me devuelve una respuesta con la etiqueta del sentimiento y qué tan segura está la IA de ese resultado (el score de confianza), y todo eso lo pinto en una tarjeta con estilo de terminal para que se vea bien bonito y sea fácil de entender para el usuario.
+
+Gestión de permisos: (uso de getUserMedia y servicios).
+
+Elección de API: (Opción A y por qué).
+
+Datos entrada/salida: (JSON de texto / etiqueta y score).
+
+Y ya, la vdd.
+
+Att: Michel Gonzalez.

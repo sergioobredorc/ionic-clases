@@ -9,7 +9,10 @@ import {
   personOutline, 
   imagesOutline, 
   personAddOutline,
-  sparklesOutline
+  sparklesOutline,
+  flashOutline,
+  flaskOutline,
+  mapOutline
 } from 'ionicons/icons';
 
 @Component({
@@ -28,10 +31,12 @@ export class HomeComponent implements OnInit {
       personOutline, 
       imagesOutline, 
       personAddOutline,
-      sparklesOutline
+      sparklesOutline,
+      flashOutline,
+      flaskOutline,
+      mapOutline
     });
   }
 
   ngOnInit() {}
-
 }

@@ -82,3 +82,28 @@ ion-button {
     border: 1px solid rgba(255, 77, 77, 0.3);
   }
 }
+.btn-mapa {
+  --background: #00f2ff;
+  --color: #000;
+  --border-radius: 12px;
+  font-weight: bold;
+  margin-top: 15px;
+  box-shadow: 0 4px 15px rgba(0, 242, 255, 0.3);
+
+  ion-icon {
+    font-size: 1.4em;
+  }
+}
+
+.divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 20px 0;
+}
+.btn-multimedia {
+  --background: #ff00ff;
+  --color: #fff;
+  --border-radius: 12px;
+  font-weight: bold;
+  box-shadow: 0 4px 15px rgba(255, 0, 255, 0.3);
+}

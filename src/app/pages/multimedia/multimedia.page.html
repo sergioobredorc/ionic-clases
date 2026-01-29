@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Multimedia & IA</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-content>
+      <ion-button expand="block" (click)="obtenerPermisos()" [disabled]="permisosConcedidos">
+        Solicitar Permisos
+      </ion-button>
+      
+      <ion-text color="danger" *ngIf="errorMsg">
+        <p class="ion-text-center"><b>{{ errorMsg }}</b></p>
+      </ion-text>
+
+      <ion-item lines="none">
+        <ion-label>Estado de recursos:</ion-label>
+        <ion-badge slot="end" [color]="camaraOk ? 'success' : 'danger'">Cámara</ion-badge>
+        <ion-badge slot="end" [color]="microOk ? 'success' : 'danger'">Micro</ion-badge>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <div class="video-container" *ngIf="camaraOk">
+    <video #videoElement autoplay playsinline muted style="width: 100%; height: auto; background: black; border-radius: 8px;"></video>
+    <ion-button expand="block" (click)="tomarFoto()" color="secondary">
+      Tomar Foto
+    </ion-button>
+  </div>
+  
+  <canvas #canvasElement style="display: none;"></canvas>
+  
+  <ion-card *ngIf="fotoCapturada">
+    <img [src]="fotoCapturada" class="captured-img">
+    <ion-card-subtitle class="ion-text-center">Captura realizada</ion-card-subtitle>
+  </ion-card>
+
+  <ion-card *ngIf="microOk">
+    <ion-card-header>
+      <ion-card-title>Grabación de Audio</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-button expand="block" color="warning" (click)="grabarAudio()" [disabled]="grabando">
+        <ion-spinner name="crescent" *ngIf="grabando"></ion-spinner>
+        {{ grabando ? 'Grabando (5s)...' : 'Grabar Audio (5 segundos)' }}
+      </ion-button>
+      
+      <div *ngIf="audioUrl" class="ion-margin-top">
+        <audio [src]="audioUrl" controls style="width: 100%;"></audio>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Análisis de IA (Sentimiento)</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-textarea 
+        label="Descripción de la captura" 
+        labelPlacement="floating" 
+        fill="outline" 
+        placeholder="Escribe cómo te sientes..." 
+        [(ngModel)]="textoAnalizar">
+      </ion-textarea>
+      
+      <ion-button expand="block" (click)="analizar()" [disabled]="analizando || !textoAnalizar" class="ion-margin-top">
+        <ion-spinner name="dots" *ngIf="analizando"></ion-spinner>
+        {{ analizando ? 'Procesando...' : 'Analizar Texto' }}
+      </ion-button>
+
+      <div *ngIf="resultadoIA" class="ion-margin-top ion-padding" style="border: 1px solid #ccc; border-radius: 8px;">
+        <p><b>Etiqueta principal:</b> {{ resultadoIA.label }}</p>
+        <p><b>Nivel de confianza:</b> {{ resultadoIA.score }}%</p>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
