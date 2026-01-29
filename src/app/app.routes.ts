@@ -41,4 +41,20 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/chats/chats.page').then((m) => m.ChatsPage),
   },
+  {
+    path: 'rick&morty',
+    loadComponent: () =>
+      import('./pages/rm-graphql/rm-graphql.page').then((m) => m.RmGraphqlPage),
+  },
+  {
+    path: 'actividad5',
+    loadComponent: () =>
+      import('./pages/actividad5/actividad5.page').then(
+        (m) => m.Actividad5Page,
+      ),
+  },  {
+    path: 'map',
+    loadComponent: () => import('./pages/map/map.page').then( m => m.MapPage)
+  },
+
 ];
