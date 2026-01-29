@@ -40,4 +40,9 @@ export const routes: Routes = [
     path: 'listado-articulos',
     component: ListadoArticulosComponent
   },
+  {
+    path: 'chat',
+    loadComponent: () => import('./pages/chat/chat.page').then( m => m.ChatPage)
+  },
+
 ];
