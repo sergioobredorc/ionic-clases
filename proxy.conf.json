@@ -1,0 +1,11 @@
+{
+  "/sentim-api": {
+    "target": "https://sentim-api.herokuapp.com",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/sentim-api": ""
+    }
+  }
+}

@@ -1,26 +1,33 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
-    <ion-title>
-      Menú de Actividades
-    </ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    
+    <ion-title>Menú Principal</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="ion-padding">
-  
-  <div class="ion-text-center ion-margin-bottom">
-    <h2>¡Hola Nairo!</h2>
+<ion-content [fullscreen]="true" class="ion-padding ion-text-center">
+
+  <div class="welcome-container">
+    <h1>¡Hola Usuario!</h1>
     <p>Selecciona una actividad para probar:</p>
   </div>
 
-  <ion-button expand="block" routerLink="/chat" class="ion-margin-bottom" size="large">
-    <ion-icon name="chatbubbles" slot="start"></ion-icon>
-    Actividad 3: Chat IA
+  <ion-button expand="block" class="ion-margin-bottom btn-actividad" size="large" routerLink="/chat">
+    <ion-icon slot="start" name="chatbubbles"></ion-icon>
+    Chat Inteligente
   </ion-button>
 
-  <ion-button expand="block" routerLink="/rick-morty" color="success" size="large">
-    <ion-icon name="planet" slot="start"></ion-icon>
-    Actividad 4: Rick & Morty
+  <ion-button expand="block" color="success" class="ion-margin-bottom btn-actividad" size="large" routerLink="/rick-morty">
+    <ion-icon slot="start" name="planet"></ion-icon>
+    Explorador API
+  </ion-button>
+
+  <ion-button expand="block" color="tertiary" class="btn-actividad" size="large" routerLink="/camara">
+    <ion-icon slot="start" name="videocam"></ion-icon>
+    Multimedia & IA
   </ion-button>
 
 </ion-content>

@@ -1,0 +1,93 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Actividad 5: Multimedia & IA</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding ion-text-center">
+
+  <div *ngIf="!isStreaming" class="start-container">
+    <ion-icon name="videocam" style="font-size: 60px; color: #ccc;"></ion-icon>
+    <h3>Cámara y Micrófono</h3>
+    <p *ngIf="permissionStatus === 'denied'" style="color: red;">⚠️ Permiso denegado</p>
+    <ion-button (click)="startCamera()" size="large">Activar Dispositivos</ion-button>
+  </div>
+
+  <div [hidden]="!isStreaming" class="video-container">
+    <video #videoPlayer autoplay playsinline></video>
+    <ion-button expand="block" color="warning" (click)="capture()">
+      <ion-icon name="camera" slot="start"></ion-icon>
+      Tomar Foto
+    </ion-button>
+  </div>
+
+  <ion-card *ngIf="photo">
+    <ion-card-content>
+      <img [src]="photo" class="captured-photo" />
+      <ion-badge color="success">Foto Capturada</ion-badge>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="isStreaming">
+    <ion-card-header>
+      <ion-card-title>Prueba de Micrófono</ion-card-title>
+    </ion-card-header>
+    
+    <ion-card-content>
+      <ion-button *ngIf="!isRecording && !audioUrl" (click)="recordAudio()" color="danger">
+        <ion-icon name="mic" slot="start"></ion-icon>
+        Grabar 5 segundos
+      </ion-button>
+
+      <div *ngIf="isRecording">
+        <p style="color: red; font-weight: bold;">🔴 Grabando...</p>
+        <ion-progress-bar type="indeterminate" color="danger"></ion-progress-bar>
+      </div>
+
+      <div *ngIf="audioUrl && !isRecording">
+        <p>✅ Audio listo:</p>
+        <audio controls [src]="audioUrl" style="width: 100%"></audio>
+        <ion-button fill="clear" (click)="recordAudio()" size="small">
+          Grabar de nuevo
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card color="light" class="ion-margin-top">
+    <ion-card-header>
+      <ion-card-title>IA: Análisis de Sentimiento</ion-card-title>
+      <ion-card-subtitle>Powered by Hugging Face</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item lines="full" class="ion-margin-bottom">
+        <ion-label position="floating">Escribe algo aquí...</ion-label>
+        <ion-input [(ngModel)]="textToAnalyze" placeholder="Ej: Me siento genial"></ion-input>
+      </ion-item>
+
+      <ion-button expand="block" (click)="analyzeText()" [disabled]="analyzing || !textToAnalyze">
+        <ion-icon name="analytics" slot="start"></ion-icon>
+        {{ analyzing ? 'Pensando...' : 'Analizar Texto' }}
+      </ion-button>
+
+      <div *ngIf="sentimentResult" class="ion-margin-top result-box">
+        <h3>Resultado:</h3>
+        
+        <ion-badge [color]="
+          sentimentResult.label === 'positive' ? 'success' : 
+          sentimentResult.label === 'negative' ? 'danger' : 'medium'"
+          style="font-size: 1.2rem; padding: 10px;">
+          
+          {{ sentimentResult.label | uppercase }}
+        </ion-badge>
+        
+        <p>Nivel de confianza: <strong>{{ sentimentResult.score }}</strong></p>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

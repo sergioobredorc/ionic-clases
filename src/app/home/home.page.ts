@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { 
   IonHeader, IonToolbar, IonTitle, IonContent, 
-  IonButton, IonIcon 
+  IonButton, IonIcon, 
+  IonButtons, IonMenuButton 
 } from '@ionic/angular/standalone';
-import { RouterLink } from '@angular/router'; 
+import { RouterLink } from '@angular/router';
 import { addIcons } from 'ionicons';
-import { chatbubbles, planet } from 'ionicons/icons'; 
+import { chatbubbles, planet, videocam } from 'ionicons/icons'; 
 
 @Component({
   selector: 'app-home',
@@ -14,14 +15,14 @@ import { chatbubbles, planet } from 'ionicons/icons';
   styleUrls: ['home.page.scss'],
   standalone: true,
   imports: [
-    CommonModule, 
-    RouterLink,  
+    CommonModule, RouterLink,
     IonHeader, IonToolbar, IonTitle, IonContent, 
-    IonButton, IonIcon 
+    IonButton, IonIcon,
+    IonButtons, IonMenuButton
   ],
 })
 export class HomePage {
   constructor() {
-    addIcons({ chatbubbles, planet });
+    addIcons({ chatbubbles, planet, videocam });
   }
 }

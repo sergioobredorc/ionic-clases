@@ -27,7 +27,11 @@ export const routes: Routes = [
   {
     path: 'rick-morty',
     loadComponent: () => import('./pages/rick-morty/rick-morty.page').then( m => m.RickMortyPage)
+  },  {
+    path: 'camara',
+    loadComponent: () => import('./pages/camara/camara.page').then( m => m.CamaraPage)
   },
+
 
 
 ];
