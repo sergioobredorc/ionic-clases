@@ -1,0 +1,58 @@
+.chat {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.msg {
+    padding: 12px 16px;
+    border-radius: 18px;
+    max-width: 80%;
+    word-wrap: break-word;
+    line-height: 1.4;
+    animation: fadeIn 0.3s ease-in;
+
+    &.user {
+        background: var(--ion-color-primary);
+        color: white;
+        align-self: flex-end;
+        border-bottom-right-radius: 4px;
+    }
+
+    &.bot {
+        background: var(--ion-color-light);
+        color: var(--ion-color-dark);
+        align-self: flex-start;
+        border-bottom-left-radius: 4px;
+        border: 1px solid var(--ion-color-light-shade);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+ion-spinner {
+    display: block;
+    margin: 20px auto;
+}
+
+ion-input {
+    --padding-start: 12px;
+    --background: var(--ion-color-light);
+    border-radius: 20px;
+}
+
+ion-button {
+    --border-radius: 20px;
+    margin-left: 8px;
+}
