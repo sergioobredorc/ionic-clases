@@ -6,5 +6,8 @@ Para facilitar la revisión, profesor Sergio, tenga en cuenta que **todos los c�
 `src/app/pages/`
 
 Dentro de esa carpeta encontrará los componentes correspondientes a cada actividad 1, 2, 3, 4, y incluyendo la **Actividad 5** final.
+y todos los servicios en la ruta:
+
+`src/app/services/`
 
 Ademas de carpetas con Videos + Fotos y Exp visibles tan solo entrando a mi Rama, Muchas gracias.
