@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ episode?.name }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-spinner *ngIf="loading"></ion-spinner>
+
+  <div *ngIf="!loading">
+    <p><strong>Episodio:</strong> {{ episode.episode }}</p>
+    <p><strong>Fecha:</strong> {{ episode.air_date }}</p>
+
+    <ion-list>
+      <ion-item *ngFor="let c of episode.characters">
+        <ion-avatar slot="start">
+          <img [src]="c.image">
+        </ion-avatar>
+        <ion-label>
+          <h3>{{ c.name }}</h3>
+          <p>{{ c.status }} - {{ c.species }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+</ion-content>

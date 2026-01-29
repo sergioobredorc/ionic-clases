@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Asistente AI</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="chat-container">
+    <div *ngFor="let m of messages" [ngClass]="['msg', m.from]">
+      {{ m.text }}
+    </div>
+  </div>
+  <ion-spinner *ngIf="sending" name="dots"></ion-spinner>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-item lines="none">
+      <ion-input [(ngModel)]="input" placeholder="Pregunta algo..." (keyup.enter)="send()"></ion-input>
+      <ion-button slot="end" (click)="send()" [disabled]="sending">
+        <ion-icon name="send"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-toolbar>
+</ion-footer>

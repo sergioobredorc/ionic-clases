@@ -1,0 +1,41 @@
+ion-content {
+  --background: #f4f5f8;
+}
+
+
+ion-card {
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.12);
+  }
+}
+
+ion-card-header {
+  padding-bottom: 0.5rem;
+}
+
+ion-card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ion-color-primary);
+}
+
+ion-card-subtitle {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+
+ion-col {
+  padding: 0.5rem;
+}
+
+
+ion-spinner {
+  display: block;
+  margin: 3rem auto;
+}

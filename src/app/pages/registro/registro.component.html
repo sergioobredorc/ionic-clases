@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registro de Usuario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="usuarioForm" (ngSubmit)="guardarUsuario()">
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked">Nombre Completo*</ion-label>
+        <ion-input formControlName="nombre" placeholder="Nombre y Apellido"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Correo Electrónico*</ion-label>
+        <ion-input formControlName="correo" type="email" placeholder="ejemplo@correo.com"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">País de Residencia*</ion-label>
+        <ion-select formControlName="pais" placeholder="Seleccione su país">
+          <ion-select-option value="Colombia">Colombia</ion-select-option>
+          <ion-select-option value="México">México</ion-select-option>
+          <ion-select-option value="España">España</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-radio-group formControlName="genero">
+        <ion-list-header>
+          <ion-label>Género</ion-label>
+        </ion-list-header>
+        <ion-item>
+          <ion-label>Masculino</ion-label>
+          <ion-radio slot="start" value="masculino"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>Femenino</ion-label>
+          <ion-radio slot="start" value="femenino"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+
+      <ion-item>
+        <ion-label position="stacked">Biografía</ion-label>
+        <ion-textarea formControlName="biografia" placeholder="Cuéntanos un poco de ti"></ion-textarea>
+      </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" type="submit" [disabled]="usuarioForm.invalid" class="ion-margin-top">
+      Guardar Registro
+    </ion-button>
+  </form>
+
+  <ion-text color="success" *ngIf="mensajeExito" class="ion-text-center">
+    <p>¡Usuario registrado correctamente!</p>
+  </ion-text>
+</ion-content>

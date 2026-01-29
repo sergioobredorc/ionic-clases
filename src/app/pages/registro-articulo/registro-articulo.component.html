@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registro de Artículo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="articuloForm" (ngSubmit)="onSubmit()">
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked">Nombre del Artículo</ion-label>
+        <ion-input formControlName="nombre" type="text" placeholder="Mínimo 3 caracteres"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label position="stacked">Precio</ion-label>
+        <ion-input formControlName="precio" type="number" placeholder="0.00"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Categoría</ion-label>
+        <ion-select formControlName="categoria" placeholder="Seleccione una">
+          <ion-select-option value="electronica">Electrónica</ion-select-option>
+          <ion-select-option value="ropa">Ropa</ion-select-option>
+          <ion-select-option value="hogar">Hogar</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Fecha de ingreso</ion-label>
+        <ion-datetime-button datetime="date-picker"></ion-datetime-button>
+        <ion-modal [keepContentsMounted]="true">
+          <ng-template>
+            <ion-datetime id="date-picker" presentation="date" formControlName="fechaIngreso"></ion-datetime>
+          </ng-template>
+        </ion-modal>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Disponible en stock</ion-label>
+        <ion-toggle formControlName="disponibilidad"></ion-toggle>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Descripción</ion-label>
+        <ion-textarea formControlName="descripcion" placeholder="Detalles del producto..."></ion-textarea>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-checkbox formControlName="confirmacion"></ion-checkbox>
+        <ion-label class="ion-padding-start">Confirmo que los datos son correctos</ion-label>
+      </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" type="submit" [disabled]="articuloForm.invalid" class="ion-margin-top">
+      Guardar Artículo
+    </ion-button>
+  </form>
+
+  <div *ngIf="guardadoOK" class="ion-padding ion-text-center">
+    <ion-text color="success">
+      <p><strong>¡Artículo guardado correctamente!</strong></p>
+    </ion-text>
+  </div>
+</ion-content>

@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>API Galeria Michel</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="loading" class="loader-container">
+    <ion-spinner name="grid" color="primary"></ion-spinner>
+    <p>ACCEDIENDO AL SERVIDOR...</p>
+  </div>
+
+  <ion-grid *ngIf="!loading">
+    <ion-row>
+      <ion-col size="6" size-md="4" *ngFor="let p of photos">
+        <div class="photo-frame">
+          <div class="corner-tag">ID: {{ p.id }}</div>
+          <img [src]="p.download_url" [alt]="p.author" loading="lazy" />
+          <div class="author-overlay">
+            <span>{{ p.author | uppercase }}</span>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

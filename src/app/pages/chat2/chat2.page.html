@@ -1,0 +1,24 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="tertiary">
+    <ion-title>Chat con Groq</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="chat">
+    @for (m of messages; track $index) {
+      <div [class]="'msg ' + m.from">{{ m.text }}</div>
+    }
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-item lines="none">
+      <ion-input [(ngModel)]="input" placeholder="Escribe un mensaje..." (keyup.enter)="send()"></ion-input>
+      <ion-button slot="end" fill="clear" (click)="send()" [disabled]="sending">
+        <ion-icon name="send" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-toolbar>
+</ion-footer>
