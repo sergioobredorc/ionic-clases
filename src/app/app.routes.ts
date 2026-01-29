@@ -37,4 +37,12 @@ export const routes: Routes = [
     path: 'rm-graphql',
     loadComponent: () => import('./rm-graphql/rm-graphql.page').then( m => m.RmGraphqlPage)
   },
+  {
+    path: 'map-explorer',
+    loadComponent: () => import('./pages/map-explorer/map-explorer.page').then( m => m.MapExplorerPage)
+  },
+  {
+    path: 'media',
+    loadComponent: () => import('./pages/media/media.page').then( m => m.MediaPage)
+  },
 ];

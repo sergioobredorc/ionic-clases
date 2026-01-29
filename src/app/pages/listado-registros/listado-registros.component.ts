@@ -49,6 +49,9 @@ export class ListadoRegistrosComponent  implements OnInit {
   async ngOnInit() {
     await this.cargar();
   }
+  ionViewWillEnter() {
+    this.cargar();
+  }
 
 
   async cargar(){
