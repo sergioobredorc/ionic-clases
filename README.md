@@ -1,6 +1,6 @@
 # Entregas de Actividades - Michel Gonzalez
 
-## 📂 Organización del Proyecto
+## Organización del Proyecto
 Para facilitar la revisión, profesor Sergio, tenga en cuenta que **todos los códigos y la lógica de las actividades realizadas** se encuentran centralizados en la siguiente ruta:
 
 `src/app/pages/`
