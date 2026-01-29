@@ -5,7 +5,7 @@ import { ListadoRegistrosComponent } from './pages/listado-registros/listado-reg
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'chat',
+    redirectTo: 'home',
     pathMatch: 'full',
   },
   {
@@ -24,5 +24,10 @@ export const routes: Routes = [
     path: 'chat',
     loadComponent: () => import('./pages/chat/chat.page').then( m => m.ChatPage)
   },
+  {
+    path: 'rick-morty',
+    loadComponent: () => import('./pages/rick-morty/rick-morty.page').then( m => m.RickMortyPage)
+  },
+
 
 ];

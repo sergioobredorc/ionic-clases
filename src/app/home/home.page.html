@@ -1,20 +1,26 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
-      Blank
+      Menú de Actividades
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+<ion-content [fullscreen]="true" class="ion-padding">
+  
+  <div class="ion-text-center ion-margin-bottom">
+    <h2>¡Hola Nairo!</h2>
+    <p>Selecciona una actividad para probar:</p>
   </div>
+
+  <ion-button expand="block" routerLink="/chat" class="ion-margin-bottom" size="large">
+    <ion-icon name="chatbubbles" slot="start"></ion-icon>
+    Actividad 3: Chat IA
+  </ion-button>
+
+  <ion-button expand="block" routerLink="/rick-morty" color="success" size="large">
+    <ion-icon name="planet" slot="start"></ion-icon>
+    Actividad 4: Rick & Morty
+  </ion-button>
+
 </ion-content>
