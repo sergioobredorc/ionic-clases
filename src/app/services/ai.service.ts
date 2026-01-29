@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class AiService {
 
-  private apiKey = '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'; 
+  private apiKey = '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'; 
 
   async preguntarIA(mensaje: string): Promise<string> {
     try {
