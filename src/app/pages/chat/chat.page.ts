@@ -7,7 +7,6 @@ import { CopilotService } from '../../services/copilot.service';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 
-
 type ChatMsg = { from: 'user' | 'bot'; text: string };
 
 type CopilotRole = 'system' | 'user' | 'assistant';

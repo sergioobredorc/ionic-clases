@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient,HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, map } from "rxjs";
 
 type CopilotMessage = { role: 'user' | 'assistant' | 'system'; content: string };
@@ -15,7 +15,7 @@ interface CopilotResponse {
 
 export class CopilotService {
     private model = 'openai/gpt-3.5-turbo';
-    private apiKey = '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';
+    private apiKey = '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';
     private endpoint = `https://openrouter.ai/api/v1/chat/completions`;
 
     constructor(private http: HttpClient) {}
