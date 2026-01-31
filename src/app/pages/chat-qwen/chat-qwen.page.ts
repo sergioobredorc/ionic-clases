@@ -12,7 +12,6 @@ interface QwenMessage {
   role: QwenRole;
   content: string;
 }
-
 @Component({
   selector: 'app-chat-qwen',
   templateUrl: './chat-qwen.page.html',
