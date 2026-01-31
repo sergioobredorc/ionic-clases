@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { IonicModule, IonModal } from '@ionic/angular';
 import { finalize } from 'rxjs/operators';
 import { RickMortyGqlService, GqlResponse } from '../../services/rickmorty-gql.service';
-import { RouterLink } from '@angular/router';
 
 type EpisodesCard = {
   id: string;
@@ -72,7 +71,7 @@ const GET_EPISODE_WITH_CHARACTERS = `
   standalone: true,
   templateUrl: './episodios.page.html',
   styleUrls: ['./episodios.page.scss'],
-  imports: [CommonModule, IonicModule, RouterLink]
+  imports: [CommonModule, IonicModule, ]
 })
 
 export class EpisodiosPage implements OnInit {

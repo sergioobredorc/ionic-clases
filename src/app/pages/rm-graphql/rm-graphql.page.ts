@@ -4,7 +4,6 @@ import { IonicModule, IonModal } from '@ionic/angular';
 import { finalize } from 'rxjs/operators';
 import { RickMortyGqlService, GqlResponse } from 'src/app/services/rickmorty-gql.service';
 import { RouterLink } from '@angular/router';
-
 /* =======================
    TIPOS
 ======================= */

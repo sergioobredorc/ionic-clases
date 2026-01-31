@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Permisos Cámara & Micrófono</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-button expand="block" color="tertiary" (click)="solicitarPermisos()">
+    Solicitar permisos
+  </ion-button>
+
+  <ion-item lines="full" color="light" class="status-item">
+    <ion-label>
+      <strong>Cámara:</strong> {{ estadoCamara }}
+    </ion-label>
+  </ion-item>
+
+  <ion-item lines="full" color="light" class="status-item">
+    <ion-label>
+      <strong>Micrófono:</strong> {{ estadoMicrofono }}
+    </ion-label>
+  </ion-item>
+
+  <div class="camara-container" *ngIf="estadoCamara === 'concedido' || videoStream">
+
+    <video autoplay playsinline muted class="video-preview"></video>
+
+    <ion-button expand="block" color="danger" (click)="videoStream ? detenerCamara() : iniciarCamara()">
+      {{ videoStream ? 'Detener Cámara' : 'Iniciar Cámara' }}
+    </ion-button>
+
+    <ion-button expand="block" color="success" (click)="tomarFoto()" [disabled]="!videoStream">
+      Capturar Foto
+    </ion-button>
+
+    <img *ngIf="fotoCapturada" [src]="fotoCapturada" class="foto-capturada" />
+
+  </div>
+
+  <div *ngIf="estadoMicrofono === 'concedido'" class="audio-container">
+
+    <ion-button expand="block" color="medium" (click)="grabarAudio()" [disabled]="grabando">
+      {{ grabando ? 'Grabando... ' + segundosRestantes + 's' : 'Grabar Audio (5s)' }}
+    </ion-button>
+
+    <audio *ngIf="audioUrl" [src]="audioUrl" controls class="audio-player"></audio>
+
+  </div>
+
+<ion-card>
+  <ion-card-content>
+
+    <ion-item lines="none">
+      <ion-label position="stacked">Descripción de la captura</ion-label>
+      <ion-input
+        [(ngModel)]="descripcionTexto"
+        placeholder="Ej: Estoy probando la cámara y el micrófono">
+      </ion-input>
+    </ion-item>
+
+    <ion-button
+      expand="block"
+      color="primary"
+      (click)="analizarTexto()"
+      [disabled]="analizando">
+      {{ analizando ? 'Analizando...' : 'Analizar texto' }}
+    </ion-button>
+
+    <div *ngIf="resultadoSentimiento" class="resultado">
+      {{ resultadoSentimiento }}
+    </div>
+
+  </ion-card-content>
+</ion-card>
+
+
+
+  <canvas style="display:none;"></canvas>
+
+</ion-content>
