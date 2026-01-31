@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-text slot = "start" color ="primary" routerLink="">Inicio</ion-text>
+    <ion-title>Listado de usuarios</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-button expand="block" (click)="cargar()">
+    Recarga
+  </ion-button>
+
+  <ion-button id="present-alert" expand="block" color="danger">
+    Borrar Todo
+  </ion-button>
+
+  <ion-alert trigger="present-alert" header="Seguro deseas borrar los registros de los" [buttons]="alertButtons"
+    (didDismiss)="setResult($event)"></ion-alert>
+
+  <ion-text *ngIf="cargando">
+    <p>Cargando usuarios.</p>
+  </ion-text>
+
+  <ion-text *ngIf="!cargando && registros.length === 0">
+    <p>No hay usuarios guardados</p>
+  </ion-text>
+
+  <ion-card *ngFor="let r of registros">
+
+    <ion-card-header>
+      <ion-card-title color="success"><strong>{{ r.nombre }}</strong></ion-card-title>
+      <ion-card-subtitle>
+        {{ r.correo }} - {{ r.pais }} - {{ r.createdAt | date: 'medium' }}
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p><strong>Genero: </strong> {{r.genero}}</p>
+      <p><strong>País: </strong> {{r.pais}}</p>
+      <p><strong>Fecha de nacimiento: </strong> {{r.fechaNacimiento}}</p>
+      <p><strong>Notificaciones: </strong> {{r.notificaciones ? 'Si': 'No '}}</p>
+      <p *ngIf="r.biografia">
+        <strong>Biografia:</strong> {{ r.biografia }}
+      </p>
+      <p><strong>Términos:</strong> {{r.terminos ? 'Aceptados' : 'No aceptados'}}</p>
+    </ion-card-content>
+
+  </ion-card>
+  <ion-button expand="block" class="ion-margin-top" routerLink="/registro-usuario" >REGISTRAR USUARIO NUEVO</ion-button>
+
+
+</ion-content>
+

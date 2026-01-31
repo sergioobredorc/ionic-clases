@@ -29,7 +29,7 @@ export class ChatPage {
   sending = false;
 
   messages: ChatMsg[] = [
-    { from: 'bot', text: 'Hola, soy tu asistente IA. ¿En qué te ayudo?' }
+    { from: 'bot', text: 'Hola, soy tu asistente IA. ¿En qué te ayudo? ' }
 
   ];
 
@@ -40,49 +40,57 @@ export class ChatPage {
   constructor(private chat: ChatService) { }
 
   send() {
-    const text = this.input.trim();
-    if (!text || this.sending) return;
+  const text = this.input.trim();
+  if (!text || this.sending) return;
 
-    this.sending = true;
-    this.input = '';
+  this.sending = true;
+  this.input = '';
 
+  this.messages.push({ from: 'user', text });
 
-    this.messages.push({ from: 'user', text });
+  this.conversation.push({
+    role: 'user',
+    content: text
+  });
 
-    this.conversation.push({
-      role: 'user',
-      content: text
+  this.chat
+    .generateReply(this.conversation)
+    .pipe(finalize(() => (this.sending = false)))
+    .subscribe({
+      next: (reply) => {
+        const safeReply = (reply ?? '').trim() || '...';
+
+        // Detectamos si es el mensaje de instrucción para el profe
+        const esMensajeInstruccion = safeReply.includes('Profe: Para que el chat funcione');
+
+        this.messages.push({
+          from: 'bot',
+          text: safeReply
+          // Aquí puedes añadir una propiedad extra para el HTML si quieres estilos diferentes
+          // ejemplo: esInstruccion: esMensajeInstruccion
+        });
+
+        this.conversation.push({
+          role: 'assistant',
+          content: safeReply
+        });
+      },
+      error: (err) => {
+        console.error(err);
+        console.error('STATUS:', err.status);
+        console.error('FULL ERROR:', err);
+        console.error('OPENROUTER MESSAGE:', err.error?.error?.message);
+        const msg = 'ERROR llamando al CHAT API. Revisa la consola.';
+        this.messages.push({ from: 'bot', text: msg });
+
+        this.conversation.push({
+          role: 'assistant',
+          content: msg
+        });
+      }
     });
+}
 
-    this.chat
-      .generateReply(this.conversation)
-      .pipe(finalize(() => (this.sending = false)))
-      .subscribe({
-        next: (reply) => {
-          const safeReply = (reply ?? '').trim() || '...';
-
-          this.messages.push({ from: 'bot', text: safeReply });
-
-          this.conversation.push({
-            role: 'assistant',
-            content: safeReply
-          });
-        },
-        error: (err) => {
-          console.error(err);
-          console.error('STATUS:', err.status);
-          console.error('FULL ERROR:', err);
-          console.error('OPENROUTER MESSAGE:', err.error?.error?.message);
-          const msg = 'ERROR llamando al CHAT API. Revisa la consola.';
-          this.messages.push({ from: 'bot', text: msg });
-
-          this.conversation.push({
-            role: 'assistant',
-            content: msg
-          });
-        }
-      });
-  }
 
   trackByIndex(i: number) {
     return i;

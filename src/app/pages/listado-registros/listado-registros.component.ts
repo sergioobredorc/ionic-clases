@@ -18,7 +18,7 @@ import {
 } from '@ionic/angular/standalone';
 
 
-import { StorageService, Articulo } from '../../services/storage.service';
+import { StorageArticuloService, Articulo } from 'src/app/services/storageArticulo.service';
 
 @Component({
   selector: 'app-listado-registros',
@@ -47,7 +47,7 @@ export class ListadoRegistrosComponent implements OnInit {
   registros: Articulo[] = [];
   cargando = true;
 
-  constructor(private storageSvc: StorageService, private alertCtrl: AlertController) { }
+  constructor(private storageSvc: StorageArticuloService, private alertCtrl: AlertController) { }
 
   async ngOnInit() {
     await this.cargar();
