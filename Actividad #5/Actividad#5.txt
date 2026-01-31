@@ -1,0 +1,12 @@
+Actividad #5
+
+La aplicación solicita permisos de cámara y micrófono usando la API getUserMedia del navegador,
+mostrando el estado de cada recurso al usuario.
+Cuando la cámara está disponible, se muestra una vista previa en tiempo real y se permite capturar
+una imagen usando un canvas.
+Si el micrófono está habilitado, se graba audio durante 5 segundos utilizando MediaRecorder y se
+reproduce en pantalla.
+Para la integración con API se implementó un servicio que simula un análisis de sentimiento del 
+texto ingresado por el usuario.
+El texto se envía al servicio y se recibe una etiqueta y un nivel de confianza.
+Se manejan estados de carga y errores para mejorar la experiencia de usuario.

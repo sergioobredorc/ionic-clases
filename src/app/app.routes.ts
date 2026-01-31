@@ -8,7 +8,8 @@ import { RegistroArticuloComponent } from './pages/registro-articulo/registro-ar
 import { ListadoArticulosComponent } from './pages/listado-articulos/listado-articulos.component';
 import { ChatPage } from './pages/chat/chat.page';
 import { Chat2Page } from './pages/chat2/chat2.page';
-import { RmGraphqlPage } from './pages/rm-graphql/rm-graphql.page';
+import { RmGraphqlPage } from './pages/rm-graphql/rm-graphql.page'; 
+import { MapExplorerPage } from './pages/map/map-explorer.page';
 import { EpisodesPage } from './pages/episodes/episodes.page';
 
 export const routes: Routes = [
@@ -49,11 +50,21 @@ export const routes: Routes = [
     component: Chat2Page
   },
   {
-    path: 'rm-graphql',          
+    path: 'rm-graphql',
     component: RmGraphqlPage
   },
   {
     path: 'episodes',
     component: EpisodesPage
+  },
+  {
+    path: 'mapa',
+    component: MapExplorerPage
+  },
+  {
+    path: 'multimedia',
+    loadComponent: () => import('./pages/multimedia/multimedia.page').then( m => m.MultimediaPage)
   }
 ];
+
+

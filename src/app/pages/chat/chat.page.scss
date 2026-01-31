@@ -1,5 +1,10 @@
+/* ---------- Background ---------- */
 ion-content {
-  --background: radial-gradient(circle at top, #f8efef 0%, #fffdfd 70%);
+  --background: linear-gradient(
+    180deg,
+    #020617 0%,
+    #040b1c 100%
+  );
 }
 
 
@@ -12,12 +17,10 @@ ion-content {
 
 
 .msg {
-  max-width: 78%;
+  max-width: 76%;
   padding: 14px 16px;
-  font-family: 'JetBrains Mono', 'Courier New', monospace;
   font-size: 0.9rem;
-  line-height: 1.45;
-  letter-spacing: 0.4px;
+  line-height: 1.5;
   word-break: break-word;
   position: relative;
   animation: popIn 0.2s ease-out forwards;
@@ -26,76 +29,68 @@ ion-content {
 
 .msg.user {
   align-self: flex-end;
-  background: linear-gradient(135deg, #e2e7e3, #ffffff);
-  color: #e41134;
-  border-radius: 10px 10px 2px 10px;
-  box-shadow:
-    0 4px 12px rgba(241, 241, 241, 0.4),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.4);
+  background: linear-gradient(
+    135deg,
+    #2563eb,
+    #1d4ed8
+  );
+  color: #ffffff;
+  border-radius: 14px 14px 4px 14px;
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.35);
 }
 
 
 .msg.bot {
   align-self: flex-start;
-  background: #ecebeb;
-  color: #180775;
-  border-radius: 10px 10px 10px 2px;
-  border: 1px solid rgba(255, 51, 85, 0.6);
-  box-shadow: 0 6px 18px rgba(255, 0, 60, 0.35);
+  background: #0f172a;
+  color: #e5e7eb;
+  border-radius: 14px 14px 14px 4px;
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
 }
 
 
 ion-footer {
-  background: #fff9f9;
-  border-top: 1px solid rgba(21, 19, 146, 0.6);
-  padding: 6px 0;
+  background: #020617;
+  border-top: 1px solid rgba(148, 163, 184, 0.15);
+  padding: 8px 0;
 }
 
 
 ion-item {
-  --background: #ffffff;
-  --color: #eef5f0;
-  --border-radius: 10px;
-  margin: 6px 12px;
-  border: 1px solid #1512d4;
+  --background: #0f172a;
+  --color: #e5e7eb;
+  --border-radius: 14px;
+  margin: 8px 12px;
+  border: 1px solid rgba(148, 163, 184, 0.15);
 }
 
 
 ion-input {
-  font-family: 'JetBrains Mono', 'Courier New', monospace;
-  --placeholder-color: rgba(0, 255, 65, 0.5);
+  font-size: 0.9rem;
+  --placeholder-color: rgba(148, 163, 184, 0.6);
 }
 
 
 ion-button {
   --background: transparent;
-  --color: #3816b6;
-  --border-color: #00ff41;
-  font-weight: 800;
-  letter-spacing: 0.6px;
+  --color: #3b82f6;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+
+  &:active {
+    transform: scale(0.95);
+  }
 }
 
 
 @keyframes popIn {
   from {
     opacity: 0;
-    transform: translateY(8px) scale(0.96);
+    transform: translateY(6px) scale(0.97);
   }
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
   }
-}
-
-
-@keyframes glitchOnce {
-  0% { transform: translate(0); }
-  25% { transform: translate(-1px, 1px); }
-  50% { transform: translate(1px, -1px); }
-  75% { transform: translate(-1px, -1px); }
-  100% { transform: translate(0); }
-}
-
-.msg.bot {
-  animation: popIn 0.2s ease-out forwards, glitchOnce 0.15s linear;
 }

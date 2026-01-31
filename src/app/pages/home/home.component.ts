@@ -10,10 +10,10 @@ import {
   imagesOutline, 
   personAddOutline,
   sparklesOutline,
-  filmOutline,
-  flashOutline
+  flashOutline,
+  flaskOutline,
+  mapOutline
 } from 'ionicons/icons';
-
 
 @Component({
   selector: 'app-home',
@@ -32,11 +32,11 @@ export class HomeComponent implements OnInit {
       imagesOutline, 
       personAddOutline,
       sparklesOutline,
-      filmOutline,
-      flashOutline
+      flashOutline,
+      flaskOutline,
+      mapOutline
     });
   }
 
   ngOnInit() {}
-
 }

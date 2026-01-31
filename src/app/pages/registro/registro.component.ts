@@ -5,10 +5,12 @@ import { IonicModule } from '@ionic/angular';
 import { StorageService } from '../../services/storage.service';
 import { RouterModule, Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-registro',
   standalone: true,
   templateUrl: './registro.component.html',
+  styleUrls: ['./registro.component.scss'],
   imports: [IonicModule, CommonModule, ReactiveFormsModule, RouterModule]
 })
 export class RegistroComponent {

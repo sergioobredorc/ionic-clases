@@ -14,7 +14,6 @@ export class RickMortyGqlService {
 
   constructor(private http: HttpClient) {}
 
-  // 🔹 Método genérico (NECESARIO para rm-graphql.page.ts)
   query<T>(
     query: string,
     variables?: Record<string, any>
@@ -25,7 +24,7 @@ export class RickMortyGqlService {
     });
   }
 
-  // 🔹 (Opcional) Métodos simples – no afectan tu página actual
+  
   getEpisodes(): Observable<GqlResponse<any>> {
     const query = `
       query {

@@ -4,7 +4,7 @@ import { Observable, map } from "rxjs";
 
 @Injectable({ providedIn: 'root' })
 export class GroqService {
-  private apiKey = 'YOUR_API_KEY_HERE'; 
+  private apiKey = 'YOUR_API_KEY_HERE';        // reemplazar con tu API key real de groq
   private url = 'https://api.groq.com/openai/v1/chat/completions';
 
   constructor(private http: HttpClient) {}

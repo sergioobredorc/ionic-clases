@@ -1,0 +1,9 @@
+Actividad #4
+Para resolver la consulta compleja se implementó mediante GraphQL utilizando una query parametrizada
+ que recibe el identificador del episodio. Esta query permite obtener, en una sola petición,
+ la información detallada del episodio y la relación con los personajes que participan en él.
+
+Se seleccionaron únicamente los campos necesarios para la visualización, tales como el nombre, 
+código y fecha de emisión del episodio, así como los atributos principales de los personajes 
+(nombre, estado, especie e imagen), optimizando así el consumo de datos y evitando la realización 
+de múltiples solicitudes al servidor.
