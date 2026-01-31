@@ -1,0 +1,160 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registro con Cámara, Audio y Análisis</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- PASO 1: PERMISOS -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>1️⃣ Solicitar permisos</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>
+        Para continuar, la aplicación necesita acceso a la cámara y al micrófono.
+      </p>
+
+      <ion-button expand="block" (click)="requestPermissions()">
+        Solicitar permisos
+      </ion-button>
+
+      <p class="ion-margin-top">
+        📷 Cámara:
+        <strong>
+          {{ cameraGranted === true ? 'Concedido' :
+             cameraGranted === false ? 'Denegado' : 'No solicitado' }}
+        </strong>
+      </p>
+
+      <p>
+        🎤 Micrófono:
+        <strong>
+          {{ micGranted === true ? 'Concedido' :
+             micGranted === false ? 'Denegado' : 'No solicitado' }}
+        </strong>
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- PASO 2: CÁMARA -->
+  <ion-card *ngIf="cameraGranted">
+    <ion-card-header>
+      <ion-card-title>2️⃣ Vista previa de la cámara</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>
+        A continuación se muestra la imagen en tiempo real de la cámara.
+      </p>
+
+      <video
+        id="video"
+        autoplay
+        playsinline
+        style="width: 100%; border-radius: 8px;"
+      ></video>
+
+      <ion-button
+        expand="block"
+        color="primary"
+        class="ion-margin-top"
+        (click)="takePhoto()"
+      >
+        Tomar foto
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- FOTO CAPTURADA -->
+  <ion-card *ngIf="photoDataUrl">
+    <ion-card-header>
+      <ion-card-title>📸 Foto capturada</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <img [src]="photoDataUrl" style="width: 100%; border-radius: 8px;" />
+    </ion-card-content>
+  </ion-card>
+
+  <!-- PASO 3: AUDIO -->
+  <ion-card *ngIf="micGranted">
+    <ion-card-header>
+      <ion-card-title>3️⃣ Grabación de audio</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>
+        Al presionar el botón, se grabará audio durante 5 segundos de forma automática.
+      </p>
+
+      <ion-button
+        expand="block"
+        color="secondary"
+        (click)="recordAudio()"
+      >
+        Grabar audio (5 segundos)
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- REPRODUCCIÓN DE AUDIO -->
+  <ion-card *ngIf="audioUrl">
+    <ion-card-header>
+      <ion-card-title>🔊 Audio grabado</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <audio [src]="audioUrl" controls style="width: 100%;"></audio>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- PASO 4: TEXTO -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>4️⃣ Descripción de la captura</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>
+        Escribe una breve descripción de lo que acabas de registrar.
+      </p>
+
+      <ion-textarea
+        placeholder="Ejemplo: Estoy probando la cámara y el micrófono"
+        [(ngModel)]="descriptionText"
+      ></ion-textarea>
+
+      <ion-button
+        expand="block"
+        class="ion-margin-top"
+        (click)="analyzeText()"
+        [disabled]="analyzing"
+      >
+        Analizar texto
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- RESULTADO DEL ANÁLISIS -->
+  <ion-card *ngIf="sentimentResult">
+    <ion-card-header>
+      <ion-card-title>🧠 Resultado del análisis</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>
+        <strong>Sentimiento detectado:</strong>
+        {{ sentimentResult.label }}
+      </p>
+
+      <p>
+        <strong>Nivel de confianza:</strong>
+        {{ sentimentResult.score | percent:'1.0-2' }}
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

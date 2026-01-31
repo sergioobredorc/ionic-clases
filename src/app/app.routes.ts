@@ -45,13 +45,32 @@ export const routes: Routes = [
   {
     path: 'sales/articles',
     component: ArticlesComponent
-  },  {
+  },
+  {
     path: 'chat',
     loadComponent: () => import('./pages/chat/chat.page').then( m => m.ChatPage)
   },
   {
     path: 'chat-gpt',
     loadComponent: () => import('./pages/chat-gpt/chat-gpt.page').then( m => m.ChatGptPage)
+  },
+  {
+    path: 'rick-and-morty/home',
+    loadComponent: () => import('./pages/rmApi/home/home.page').then( m => m.RmGraphqlPage)
+  },
+  {
+    path: 'map-explorer',
+    loadComponent: () => import('./pages/map-explorer/map-explorer.page').then( m => m.MapExplorerPage)
+  },
+  {
+    path: 'episodes',
+    loadComponent: () => import('./pages/rmApi/episodes/episodes.page').then( m => m.RmGraphqlPage)
+  },  {
+    path: 'permisos',
+    loadComponent: () => import('./pages/permisos/permisos.page').then( m => m.PermisosPage)
   }
+
+
+
 
 ];
