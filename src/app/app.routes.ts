@@ -4,6 +4,9 @@ import { PerfilComponent } from './pages/perfil/perfil.component';
 import { GaleriaComponent } from './pages/galeria/galeria.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { ListadoRegistrosComponent } from './pages/listado-registros/listado-registros.component';
+import { ChatIaComponent } from './pages/chat-ia/chat-ia.component';
+import { RickMortyEpComponent } from './pages/rick-morty-ep/rick-morty-ep.component';
+
 
 export const routes: Routes = [
   {
@@ -41,5 +44,20 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/articulos-registrados/articulos-registrados.page')
         .then(m => m.ArticulosRegistradosPage)
-  }
+  },
+  {
+    path: 'chat-ia',
+    component: ChatIaComponent
+  },
+  {
+    path: 'rick-morty-ep',
+    component: RickMortyEpComponent
+  },
+  {
+    path: 'rick-morty-graphql',
+    loadComponent: () =>
+      import('./pages/rick-morty-graphql/rick-morty-graphql.component')
+        .then(m => m.RickMortyGraphqlComponent)
+  },
+
 ];

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IonHeader, IonContent, IonTitle, IonToolbar, IonButton } from "@ionic/angular/standalone";
+import { CommonModule } from '@angular/common';
+import { IonicModule } from '@ionic/angular';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -7,12 +8,19 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  imports: [IonHeader, IonContent, IonTitle, IonToolbar, IonButton, RouterLink],
+  imports: [
+    CommonModule,
+    IonicModule,
+    RouterLink
+  ],
 })
-export class HomeComponent  implements OnInit {
+export class HomeComponent implements OnInit {
 
-  constructor() { }
+  loading = true;
+  posts: any[] = [];
+
+  constructor() {}
 
   ngOnInit() {}
-
 }
+

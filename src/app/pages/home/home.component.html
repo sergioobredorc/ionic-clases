@@ -1,11 +1,19 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Inicio</ion-title>
-    
+    <ion-title>INICIO</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
-  <p>Este es el componente home</p>
+  <ion-spinner *ngIf="loading"></ion-spinner>
+
+  <ion-list *ngIf="!loading">
+    <ion-item *ngFor="let p of posts">
+      <ion-label>
+        <h2>{{ p.title }}</h2>
+        <p>{{ p.body }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
 <ion-button routerLink="/perfil">Ir al Perfil</ion-button>
 <ion-button routerLink="/galeria">Ir a la Galería</ion-button>
@@ -13,3 +21,6 @@
 <ion-button routerLink="/registros">Ver personas registradas</ion-button>
 <ion-button routerLink="/registroarticulos"> Ir al Registro de articulos</ion-button>
 <ion-button routerLink="/articulos-registrados">Ver articulos registrados</ion-button>
+<ion-button routerLink="/chat-ia">Ir al chat ia</ion-button>
+<ion-button routerLink="/rick-morty-ep">Ir a pagina de Rick y Morty</ion-button>
+<ion-button routerLink="/rick-morty-graphql">Ir a GraphQL de Rick y Morty</ion-button>

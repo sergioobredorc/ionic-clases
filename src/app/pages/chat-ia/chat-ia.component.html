@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    
+    <ion-title>CHAT IA</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="chat-content">
+
+  <div class="mensajes">
+    <div
+      *ngFor="let m of mensajes"
+      class="mensaje"
+      [ngClass]="m.autor"
+    >
+      <div class="burbuja">
+        {{ m.texto }}
+      </div>
+    </div>
+
+    <div *ngIf="cargando" class="mensaje ia">
+      <div class="burbuja escribiendo">
+        Escribiendo...
+      </div>
+    </div>
+  </div>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-input
+      placeholder="Escribe tu mensaje..."
+      [(ngModel)]="mensaje"
+      (keyup.enter)="enviar()">
+    </ion-input>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="enviar()" [disabled]="cargando">
+        Enviar
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

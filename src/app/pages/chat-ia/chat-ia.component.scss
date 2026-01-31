@@ -1,0 +1,63 @@
+.chat-content {
+  --background: #121212;
+}
+
+.mensajes {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mensaje {
+  display: flex;
+  max-width: 80%;
+}
+
+.mensaje.user {
+  align-self: flex-end;
+  justify-content: flex-end;
+}
+
+.mensaje.ia {
+  align-self: flex-start;
+  justify-content: flex-start;
+}
+
+.burbuja {
+  padding: 10px 14px;
+  border-radius: 18px;
+  font-size: 14px;
+  line-height: 1.4;
+  word-wrap: break-word;
+}
+
+.mensaje.user .burbuja {
+  background: #1f6b10; 
+  color: #ffffff;
+  border-bottom-right-radius: 4px;
+}
+
+
+.mensaje.ia .burbuja {
+  background: #2a2a2a; 
+  color: #e5e5e5;
+  border-bottom-left-radius: 4px;
+}
+
+.escribiendo {
+  font-style: italic;
+  opacity: 0.7;
+}
+
+ion-input {
+  --background: #1f1f1f;
+  --color: #ffffff;
+  --placeholder-color: #aaaaaa;
+  border-radius: 20px;
+  padding-left: 12px;
+}
+
+ion-button {
+  margin-left: 8px;
+}
