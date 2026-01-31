@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Permisos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-button expand="block" (click)="solicitarPermisos()">Solicitar permisos o Activar camara</ion-button>
+
+  <p>Cámara: {{ cameraGranted ? 'Concedido' : 'Denegado' }}</p>
+  <p>Micrófono: {{ micGranted ? 'Concedido' : 'Denegado' }}</p>
+
+  <div *ngIf="cameraGranted">
+
+  <!-- Vista previa -->
+  <div *ngIf="!photo">
+    <video #videoElement autoplay></video>
+    <ion-button expand="block" (click)="tomarFoto()">
+      Tomar foto
+    </ion-button>
+  </div>
+
+  <!-- Foto capturada -->
+  <div *ngIf="photo">
+    <img [src]="photo" />
+    <ion-button expand="block" color="medium" (click)="reiniciarCamara()">
+      Tomar otra foto
+    </ion-button>
+  </div>
+
+</div>
+
+
+  <div *ngIf="micGranted">
+    <ion-button (click)="grabarAudio()">Grabar audio (5s)</ion-button>
+    <audio *ngIf="audioUrl" [src]="audioUrl" controls></audio>
+  </div>
+
+ <ion-item>
+  <ion-label position="stacked">Descripción de la captura</ion-label>
+  <ion-input
+    [(ngModel)]="descripcion"
+    placeholder="Estoy probando la cámara y el micrófono">
+  </ion-input>
+</ion-item>
+
+<ion-button expand="block" (click)="analizarTexto()">
+  Analizar texto
+</ion-button>
+profe no permite consumir la API de Hugging Face, debido a restricciones CORS en frontend, opté por una mock API pública para simular el análisis, manteniendo el flujo completo de request, response y manejo de estados, tal como lo indicó en el pdf.
+<!-- Estados -->
+<p *ngIf="cargando">Analizando...</p>
+<p *ngIf="errorApi" style="color:red">{{ errorApi }}</p>
+
+<!-- Resultado -->
+<div *ngIf="resultado">
+  <p><strong>Resultado:</strong> {{ resultado.label }}</p>
+  <p><strong>Confianza:</strong> {{ resultado.score | number:'1.2-2' }}</p>
+</div>

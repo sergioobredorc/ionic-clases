@@ -45,5 +45,10 @@ export const routes: Routes = [
     path: 'rickmorty',
     loadComponent: () => import('./pages/episode-modal/episode-modal.component').then( m => m.RickMortyPage)
   },
+  {
+    path: 'permisos',
+    loadComponent: () => import('./pages/permisos/permisos.page').then( m => m.PermisosPage)
+  },
+
 
 ];
