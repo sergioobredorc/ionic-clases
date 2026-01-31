@@ -5,8 +5,6 @@ import { PerfilComponent } from './pages/perfil/perfil.component';
 import { GaleriaComponent } from './pages/galeria/galeria.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { ListadoRegistrosComponent } from './pages/listado-registros/listado-registros.component';
-
-/* ⬇️ ACTIVIDAD 2 */
 import { RegistroArticuloComponent } from './pages/registro-articulo/registro-articulo.component';
 import { ListadoArticulosComponent } from './pages/listado-articulos/listado-articulos.component';
 
@@ -32,7 +30,6 @@ export const routes: Routes = [
     component: ListadoRegistrosComponent
   },
 
-  /* ⬇️ RUTAS ACTIVIDAD 2 */
   {
     path: 'registro-articulo',
     component: RegistroArticuloComponent
@@ -40,5 +37,18 @@ export const routes: Routes = [
   {
     path: 'listado-articulos',
     component: ListadoArticulosComponent
+  },
+  {
+    path: 'chat',
+    loadComponent: () => import('./pages/chat/chat.page').then( m => m.ChatPage)
+  },
+  {
+    path: 'episodios',
+    loadComponent: () => import('./pages/episodios/episodios.page').then( m => m.EpisodiosPage)
+  },
+  {
+    path: 'permisos',
+    loadComponent: () => import('./pages/permisos/permisos.page').then( m => m.PermisosPage)
   }
+
 ];

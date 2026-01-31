@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Actividad 5</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-button expand="block" (click)="solicitarPermisos()">
+    Solicitar permisos de cámara y micrófono
+  </ion-button>
+
+  <ion-text color="success" *ngIf="permisosOk">
+    <p>✅ Permisos concedidos correctamente</p>
+  </ion-text>
+
+  <ion-button
+    expand="block"
+    color="danger"
+    *ngIf="permisosOk"
+    (click)="detener()">
+    Detener cámara y micrófono
+  </ion-button>
+
+</ion-content>

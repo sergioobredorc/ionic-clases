@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Chat con IA</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="chat">
+    <div
+      *ngFor="let m of messages; trackBy: trackByIndex"
+      class="msg"
+      [class.user]="m.from === 'user'"
+      [class.bot]="m.from === 'bot'"
+    >
+      {{ m.text }}
+    </div>
+  </div>
+
+  <ion-item>
+    <ion-input
+      placeholder="Escribe tu mensaje..."
+      [(ngModel)]="input"
+      [disabled]="sending"
+    ></ion-input>
+  </ion-item>
+
+  <ion-button
+    expand="block"
+    (click)="send()"
+    [disabled]="sending"
+  >
+    {{ sending ? 'Pensando...' : 'Enviar' }}
+  </ion-button>
+</ion-content>
