@@ -24,7 +24,7 @@ interface ChatGPTResponse {
 @Injectable({ providedIn: 'root' })
 export class ChatGPTService {
     private model = 'gpt-3.5-turbo';
-    private apiKey = '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'
+    private apiKey = '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' //Generar una API Key en https://openrouter.ai/ 
     private endpoint = `https://openrouter.ai/api/v1/chat/completions`;
 
     constructor(private http: HttpClient) { }

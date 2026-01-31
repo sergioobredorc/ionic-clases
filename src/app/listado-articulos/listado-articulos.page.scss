@@ -1,0 +1,110 @@
+/* Fondo con gradiente animado */
+ion-content {
+    --background: linear-gradient(-45deg, #008192, #416c71, #7ed5e6);
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease infinite;
+    padding: 1.5rem;
+    color: #f1f1f1;
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Header */
+ion-header {
+    --background: transparent;
+    --color: #ffffff;
+    text-align: center;
+    font-weight: 600;
+    border-bottom: none;
+}
+
+ion-title {
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+}
+
+/* Tarjetas */
+ion-card {
+    margin: 1rem auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    background: rgba(255, 255, 255, 0.95);
+    color: #333;
+    max-width: 500px;
+}
+
+ion-card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #008192;
+}
+
+ion-card-subtitle {
+    font-size: 0.85rem;
+    color: #555;
+}
+
+ion-card-content {
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* Botones */
+ion-button {
+    --border-radius: 8px;
+    margin: 0.8rem auto;
+    display: block;
+    width: 85%;
+    max-width: 260px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-transform: none;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+/* Botón eliminar */
+ion-button[color="danger"] {
+    --background: #ff6b6b;
+    /* rojo pastel */
+    --color: #fff;
+}
+
+/* Botón borrar todos */
+ion-button[color="warning"] {
+    --background: #ffd166;
+    /* amarillo pastel */
+    --color: #000;
+}
+
+/* Botón registrar nuevo */
+ion-button[color="secondary"] {
+    --background: #7ed5e6;
+    /* azul pastel */
+    --color: #000;
+}
+
+/* Botón inicio */
+ion-button[color="primary"] {
+    --background: #7cc272;
+    /* verde pastel */
+    --color: #000;
+}
+
+/* Hover animado */
+ion-button:hover {
+    transform: scale(1.05);
+    opacity: 0.85;
+}

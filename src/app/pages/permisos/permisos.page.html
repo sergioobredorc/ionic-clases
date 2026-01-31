@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Permisos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-button expand="block" (click)="solicitarPermisos()">Solicitar permisos</ion-button>
+
+  <p>Cámara: {{ cameraGranted ? 'Concedido' : 'Denegado' }}</p>
+  <p>Micrófono: {{ micGranted ? 'Concedido' : 'Denegado' }}</p>
+
+  <div *ngIf="cameraGranted">
+    <video #videoElement autoplay></video>
+    <ion-button (click)="tomarFoto()">Tomar foto</ion-button>
+    <img *ngIf="photo" [src]="photo" />
+  </div>
+
+  <div *ngIf="micGranted">
+    <ion-button (click)="grabarAudio()">Grabar audio (5s)</ion-button>
+    <audio *ngIf="audioUrl" [src]="audioUrl" controls></audio>
+  </div>
+
+  <ion-item>
+    <ion-label position="stacked">Descripción de la captura</ion-label>
+    <ion-input [(ngModel)]="description"></ion-input>
+  </ion-item>
+
+  <!-- Cambiamos a analizar() -->
+  <ion-button expand="block" (click)="analizar()" [disabled]="loadingApi">
+    {{ loadingApi ? 'Analizando...' : 'Analizar texto' }}
+  </ion-button>
+
+  <!-- Mostrar resultado -->
+  <div *ngIf="apiResult">
+    <ion-item>
+      <ion-label>
+        Resultado: {{ apiResult.label }} ({{ apiResult.score }}%)
+      </ion-label>
+    </ion-item>
+  </div>
+
+  <!-- Mostrar error -->
+  <div *ngIf="errorMsg" class="error">
+    {{ errorMsg }}
+  </div>
+
+  <ion-button expand="block" routerLink="">Regresar a Home</ion-button>
+</ion-content>

@@ -1,0 +1,90 @@
+/* Fondo con gradiente pastel animado */
+ion-content {
+    --background: linear-gradient(-45deg, #008192, #416c71, #7ed5e6);
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease infinite;
+    text-align: center;
+    padding: 2rem;
+    color: #888585;
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+ion-header {
+    --background: transparent;
+    --color: #444;
+    text-align: center;
+    font-weight: 600;
+    border-bottom: none;
+}
+
+ion-title {
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+}
+
+/* Secciones */
+.section {
+    margin: 2rem 0;
+}
+
+.section h2 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Botones minimalistas */
+ion-button {
+    --border-radius: 8px;
+    margin: 0.6rem auto;
+    display: block;
+    width: 80%;
+    max-width: 240px;
+    font-size: 0.9rem;
+    font-weight: 400;
+    text-transform: none;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.605);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* Paleta pastel (máx 3 colores) */
+ion-button:nth-child(odd) {
+    --background: #7cc272;
+    --color: #000000;
+}
+
+/* azul pastel */
+ion-button:nth-child(even) {
+    --background: #7cc272;
+    --color: #000000;
+}
+
+/* naranja suave */
+.section ion-button:last-child {
+    --background: #7cc272;
+    --color: #000000;
+}
+
+/* amarillo pastel */
+
+/* Animación hover */
+ion-button:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}

@@ -45,5 +45,9 @@ export const routes: Routes = [
   {
     path: 'rm-graphql',
     loadComponent: () => import('./rm-graphql/rm-graphql.page').then( m => m.RmGraphqlPage)
-  }
+  },
+  {
+    path: 'permisos',
+    loadComponent: () => import('./pages/permisos/permisos.page').then( m => m.PermisosPage)
+  },
 ];

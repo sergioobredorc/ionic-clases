@@ -1,7 +1,9 @@
+/* Fondo con gradiente animado */
 ion-content {
     --background: linear-gradient(-45deg, #008192, #416c71, #7ed5e6);
     background-size: 400% 400%;
     animation: gradientBG 12s ease infinite;
+    text-align: center;
     padding: 2rem;
     color: #f1f1f1;
 }
@@ -20,7 +22,7 @@ ion-content {
     }
 }
 
-
+/* Header */
 ion-header {
     --background: transparent;
     --color: #ffffff;
@@ -30,81 +32,80 @@ ion-header {
 }
 
 ion-title {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     letter-spacing: 1px;
+}
+
+/* Texto */
+p {
+    margin: 0.8rem 0;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #e0e0e0;
 }
 
 /* Botones */
 ion-button {
+    --background: #7cc272;
+    /* verde pastel */
+    --color: #000000;
     --border-radius: 8px;
     margin: 0.8rem auto;
     display: block;
     width: 85%;
     max-width: 260px;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 500;
     text-transform: none;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
     transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
-
-ion-button:first-of-type {
-    --background: #7cc272;
-    --color: #000000;
-}
-
-ion-button[fill="outline"] {
-    --border-color: #ff6b6b;
-    --color: #ff6b6b;
-    font-weight: 600;
-}
-
-
-ion-button[color="primary"] {
-    --background: #7ed5e6;
-    --color: #000000;
-}
-
-
 ion-button:hover {
     transform: scale(1.05);
     opacity: 0.85;
 }
 
+/* Video, imagen y audio */
+video,
+img,
+audio {
+    margin: 1rem auto;
+    max-width: 90%;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
 
-ion-text p {
+/* Input */
+ion-item {
+    --background: transparent;
+    margin-top: 1.5rem;
+}
+
+ion-label {
     font-size: 0.9rem;
-    margin: 0.5rem 0;
-    font-weight: 500;
     color: #ffffff;
 }
 
-ion-text p:nth-child(1) {
-    color: #ffd166;
-}
-
-
-ion-card {
-    margin: 1rem auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    background: rgba(255, 255, 255, 0.9);
+ion-input {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    background: #ffffff;
     color: #333;
 }
 
-ion-card-title {
-    font-size: 1.1rem;
+/* Resultado */
+ion-item ion-label {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #f1f1f1;
+}
+
+/* Error */
+.error {
+    margin-top: 1rem;
+    color: #ff6b6b;
     font-weight: 600;
-    color: #008192;
-}
-
-ion-card-subtitle {
-    font-size: 0.85rem;
-    color: #555;
-}
-
-ion-card-content p {
-    font-size: 0.9rem;
-    margin: 0.3rem 0;
 }

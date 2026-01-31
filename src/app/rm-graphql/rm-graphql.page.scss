@@ -1,0 +1,101 @@
+ion-content {
+    --background: #f5f7fa;
+    padding: 1rem;
+}
+
+/* Header */
+ion-header {
+    --background: #008192;
+    --color: #fff;
+    text-align: center;
+}
+
+ion-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #36ff2f;
+    letter-spacing: 1px;
+}
+
+
+/* Grid de personajes */
+ion-card {
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+ion-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+ion-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+ion-card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #008192;
+}
+
+ion-card-subtitle {
+    font-size: 0.85rem;
+    color: #dddddd;
+}
+
+/* Modal */
+ion-modal {
+    --background: rgba(255, 255, 255, 0.279);
+    --border-radius: 12px;
+}
+
+ion-card-content p {
+    font-size: 0.9rem;
+    margin: 0.3rem 0;
+}
+
+/* Lista de residentes */
+ion-item {
+    --background: transparent;
+}
+
+ion-avatar img {
+    border-radius: 50%;
+    border: 2px solid #7ed5e6;
+    /* azul pastel */
+}
+
+ion-label h3 {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+ion-label p {
+    font-size: 0.85rem;
+    color: #ffffff;
+}
+
+/* Botones dentro del modal */
+ion-button {
+    --border-radius: 8px;
+    margin: 0.8rem auto;
+    display: block;
+    width: 85%;
+    max-width: 260px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-transform: none;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+ion-button:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}

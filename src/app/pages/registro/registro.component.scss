@@ -1,0 +1,114 @@
+ion-content {
+    --background: linear-gradient(-45deg, #008192, #416c71, #7ed5e6);
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease infinite;
+    padding: 2rem;
+    color: #f1f1f1;
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Header */
+ion-header {
+    --background: transparent;
+    --color: #ffffff;
+    text-align: center;
+    font-weight: 600;
+    border-bottom: none;
+}
+
+ion-title {
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+}
+
+
+ion-item {
+    --background: transparent;
+    margin-top: 1rem;
+}
+
+ion-label {
+    font-size: 0.9rem;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+
+ion-input,
+ion-textarea,
+ion-select,
+ion-datetime {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    background: #000000ed;
+    color: #ffffff;
+}
+
+/* Radio, checkbox y toggle */
+ion-radio,
+ion-checkbox,
+ion-toggle {
+    --color: #008192;
+}
+
+/* Mensajes de error */
+ion-text p {
+    font-size: 0.8rem;
+    color: #ff6b6b;
+    margin: 0.3rem 0;
+}
+
+/* Botones principales */
+ion-button {
+    --border-radius: 8px;
+    margin: 0.8rem auto;
+    display: block;
+    width: 85%;
+    max-width: 260px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-transform: none;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+    transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+
+ion-button[type="submit"] {
+    --background: #7cc272;
+    --color: #000000;
+}
+
+/* Botones de navegación */
+ion-button[color="primary"] {
+    --background: #7ed5e6;
+    --color: #000000;
+}
+
+
+ion-button:hover {
+    transform: scale(1.05);
+    opacity: 0.85;
+}
+
+/* Mensaje de confirmación */
+ion-text p {
+    color: #e0e0e0;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    font-weight: 500;
+}

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { IonicModule, IonModal } from '@ionic/angular';
 import { finalize } from 'rxjs/operators';
 import { RickMortyGqlService, GqlResponse } from '../services/rickmorty-gql.service';
+import { RouterLink } from '@angular/router';
 
 /* =======================
    TIPOS
@@ -111,7 +112,7 @@ const GET_LOCATION_RESIDENTS = `
 @Component({
   selector: 'app-rm-graphql',
   standalone: true,
-  imports: [CommonModule, IonicModule],
+  imports: [CommonModule, IonicModule, RouterLink],
   templateUrl: './rm-graphql.page.html',
   styleUrls: ['./rm-graphql.page.scss'],
 })

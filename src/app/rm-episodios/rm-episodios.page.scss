@@ -1,0 +1,106 @@
+/* Fondo general */
+ion-content {
+    --background: #000000;
+    padding: 1rem;
+}
+
+/* Header */
+ion-header {
+    --background: #008192;
+    --color: #fff;
+    text-align: center;
+}
+
+ion-title {
+    font-size: 1.6rem !important;
+    font-weight: 700;
+    color: #36ff2f !important;
+    /* verde neón */
+    letter-spacing: 1px;
+}
+
+/* Lista de episodios */
+ion-list {
+    margin-top: 1rem;
+}
+
+ion-item {
+    --background: #ffffff;
+    border-radius: 10px;
+    margin: 0.6rem 0;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+ion-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+ion-label h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: cornflowerblue !important;
+}
+
+ion-label p {
+    font-size: 0.85rem;
+    color: #555;
+}
+
+/* Modal */
+ion-modal {
+    --background: rgba(255, 255, 255, 0.95);
+    --border-radius: 12px;
+}
+
+ion-card {
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    margin: 1rem 0;
+}
+
+ion-card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #008192;
+}
+
+ion-card-subtitle {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* Lista de personajes */
+ion-list-header h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #416c71;
+}
+
+ion-item h3 {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+}
+
+ion-item p {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+/* Botón cerrar */
+ion-button {
+    --background: #7cc272;
+    /* verde pastel */
+    --color: #000;
+    --border-radius: 8px;
+    font-weight: 500;
+    text-transform: none;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+ion-button:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}

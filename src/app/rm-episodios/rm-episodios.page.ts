@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { IonicModule, IonModal } from '@ionic/angular';
 import { finalize } from 'rxjs/operators';
 import { RickMortyGqlService } from '../services/rickmorty-gql.service';
+import { RouterLink } from '@angular/router';
 
 /* =======================
    TIPOS
@@ -79,7 +80,7 @@ const GET_EPISODIOS_DETALLADO = `
 @Component({
   selector: 'app-rm-episodios',
   standalone: true,
-  imports: [CommonModule, IonicModule],
+  imports: [CommonModule, IonicModule, RouterLink],
   templateUrl: './rm-episodios.page.html',
   styleUrls: ['./rm-episodios.page.scss'],
 })
