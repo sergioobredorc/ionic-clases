@@ -33,7 +33,15 @@ export const routes: Routes = [
   {
     path: 'chat',
     loadComponent: () => import('./pages/chat/chat.page').then(m => m.ChatPage)
+  },  {
+    path: 'rm-graphql',
+    loadComponent: () => import('./pages/rm-graphql/rm-graphql.page').then( m => m.RmGraphqlPage)
   },
+  {
+    path: 'episodios',
+    loadComponent: () => import('./pages/episodios/episodios.page').then( m => m.EpisodiosPage)
+  },
+
 
 
 ];

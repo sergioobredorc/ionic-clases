@@ -15,8 +15,9 @@ export class ChatService {
 
     private endpoint = 'https://openrouter.ai/api/v1/chat/completions';
 
-    // Aquí pon la key incompleta para que el profe la complete
+    // ESTA ES LA KEY INCOMPLETA, PONGA EL ULTIMO CARACTER
     private apiKey = 'sk-or-v1-1c413229436001171f66e2121fe4bc344e83049eab747a95225c4f86b6f98bf'; // FALTA el último caracter "9"
+                                                                                                //PARA QUE QUEDE ...8bf(9)
 
 
     constructor(private http: HttpClient) { }
@@ -24,7 +25,7 @@ export class ChatService {
     generateReply(messages: { role: string; content: string }[]): Observable<string> {
         if (!this.apiKey || !this.apiKey.endsWith('9')) {
             const mensajeInstruccion = `
-⚠️ Profe: Para que el chat funcione debe completar la API Key.
+ Profe: Para que el chat funcione debe completar la API Key.
 
 1. Abra el archivo: src/app/services/chat.service.ts
 2. Busque la variable apiKey

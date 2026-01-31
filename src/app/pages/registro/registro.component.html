@@ -1,5 +1,6 @@
 <ion-header>
   <ion-toolbar>
+    <ion-text class ="regresar" slot = "start" routerLink="">Inicio</ion-text>
     <ion-title>Registro de Artículo</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -53,7 +54,7 @@
 
       <ion-item>
         <ion-label position="stacked">Descripción de artículo</ion-label>
-        <ion-textarea formControlName="descripcion" placeholder="Este articulo..."></ion-textarea>
+        <ion-textarea formControlName="descripcion" placeholder="Descripción del articulo"></ion-textarea>
       </ion-item>
       <ion-text *ngIf="f['descripcion'].touched && f['descripcion'].invalid">
         <p *ngIf="f['biografia'].errors?.['maxlength']">Máximo 150 caracteres.</p>

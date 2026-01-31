@@ -1,12 +1,39 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Inicio</ion-title>
-    
+  <ion-toolbar color="success" class="ion-padding-horizontal ion-align-items-center" style="box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+    <ion-title class="ion-text-center" style="font-weight: 700; font-size: 1.5rem;">
+      Inicio
+    </ion-title>
   </ion-toolbar>
 </ion-header>
+
+
+
 <ion-content class="ion-padding">
-  <p>Este es el componente home</p>
+  <p>Inicio del proyecto seminario IONIC por Dalahy Castro</p>
+
+  <ion-item routerLink="rm-graphql">
+  <ion-thumbnail slot="start">
+    <img alt="Silhouette of mountains" src="assets/icon/fondo para los personajes.png" />
+  </ion-thumbnail>
+  <ion-label>
+    <h2>Personajes</h2>
+    <p class="descripcion">Explora aquí los personajes de Rick and Morty</p>
+  </ion-label>
+</ion-item>
+
+<ion-item routerLink="episodios">
+  <ion-thumbnail slot="start">
+    <img alt="Silhouette of mountains" src="assets/icon/fondo para los episodios.png" />
+  </ion-thumbnail>
+  <ion-label>
+    <h2>Episodios</h2>
+    <p class="descripcion">Explora aquí todos los episodios de Rick And Morty</p>
+  </ion-label>
+</ion-item>
+
 </ion-content>
+
+
 <ion-button routerLink="/registro-usuario">
     Registro de USUARIOS
 </ion-button>

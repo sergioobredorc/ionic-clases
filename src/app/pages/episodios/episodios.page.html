@@ -1,0 +1,100 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Listado de Episodios</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-spinner *ngIf="loadingList" class="spinner-center"></ion-spinner>
+
+  <ion-grid *ngIf="!loadingList">
+    <ion-row>
+      <ion-col size="12" size-md="6" size-lg="4" *ngFor="let e of episodes">
+        <ion-card button (click)="openDetail(e.id)" class="episode-card">
+          <ion-card-header>
+            <ion-card-title>{{ e.name }}</ion-card-title>
+            <ion-card-subtitle>
+              <ion-badge color="tertiary">{{ e.episode }}</ion-badge>
+              <span class="date-text">{{ e.air_date | date: 'dd MMM yyyy' }}</span>
+            </ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
+
+<ion-modal [isOpen]="isModalOpen" (didDismiss)="closeModal()">
+  <ng-template>
+    <ion-header translucent>
+      <ion-toolbar color="primary">
+        <ion-title>Detalle del Episodio</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="closeModal()">
+            <ion-icon name="close-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content fullscreen class="ion-padding">
+
+      <div *ngIf="loadingDetail" class="ion-text-center spinner-center">
+        <ion-spinner name="crescent"></ion-spinner>
+        <p>Cargando detalles...</p>
+      </div>
+
+      <div *ngIf="selected && !loadingDetail">
+
+        <ion-card class="detail-card">
+          <ion-card-header>
+            <ion-card-title>{{ selected.name }}</ion-card-title>
+            <ion-card-subtitle>
+              <ion-badge color="primary">{{ selected.episode }}</ion-badge>
+              <span class="date-text">Emitido: {{ selected.air_date | date: 'dd MMM yyyy' }}</span>
+            </ion-card-subtitle>
+          </ion-card-header>
+
+          <ion-card-content>
+            <h3>Personajes en este episodio ({{ selected.characters.length }})</h3>
+
+            <ion-grid>
+              <ion-row>
+                <ion-col
+                  size="6"
+                  size-md="4"
+                  size-lg="3"
+                  *ngFor="let character of selected.characters"
+                >
+                  <ion-card class="character-card">
+                    <ion-img [src]="character.image" [alt]="character.name"></ion-img>
+                    <ion-card-header>
+                      <ion-card-title>{{ character.name }}</ion-card-title>
+                      <ion-card-subtitle>
+                        <ion-badge
+                          [color]="
+                            character.status === 'Alive' ? 'success' : 'danger'
+                          "
+                        >
+                          {{ character.status }}
+                        </ion-badge>
+                        • {{ character.species }}
+                      </ion-card-subtitle>
+                    </ion-card-header>
+                  </ion-card>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+
+          </ion-card-content>
+        </ion-card>
+
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal>
