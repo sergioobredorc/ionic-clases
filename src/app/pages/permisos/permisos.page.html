@@ -1,0 +1,87 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon name="arrow-back-outline" slot="start" color="primary" routerLink=""></ion-icon>
+    <ion-title>Solicitud de permisos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-button expand="block" (click)="solicitarPermisos()">
+    Solicitar permisos
+  </ion-button>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Estado de los permisos</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Cámara:</strong> {{ estadoCamara }}</p>
+      <p><strong>Micrófono:</strong> {{ estadoMicrofono }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- VISTA PREVIA DE CÁMARA -->
+  <div *ngIf="estadoCamara === 'concedido'" class="contenedor-camara">
+
+    <video autoplay playsinline></video>
+
+    <ion-button expand="block" color="primary" *ngIf="!videoStream" (click)="iniciarCamara()">
+      Activar cámara
+    </ion-button>
+
+    <ion-button expand="block" color="medium" *ngIf="videoStream" (click)="detenerCamara()">
+      Desactivar cámara
+    </ion-button>
+
+
+    <ion-button expand="block" color="success" (click)="tomarFoto()">
+      Tomar foto
+    </ion-button>
+
+    <canvas hidden></canvas>
+
+    <div *ngIf="fotoCapturada">
+      <h3>Foto capturada:</h3>
+      <img [src]="fotoCapturada" />
+    </div>
+
+  </div>
+
+  <!-- GRABACIÓN DE AUDIO -->
+  <div *ngIf="estadoMicrofono === 'concedido'" class="contenedor-audio">
+
+    <ion-button expand="block" color="tertiary" (click)="grabarAudio()" [disabled]="grabando">
+
+      <ng-container *ngIf="!grabando">
+        Grabar audio (5 segundos)
+      </ng-container>
+
+      <ng-container *ngIf="grabando">
+        Grabando... {{ segundosRestantes }}s
+      </ng-container>
+
+    </ion-button>
+
+    <div *ngIf="audioUrl">
+      <h3>Audio grabado:</h3>
+      <audio [src]="audioUrl" controls></audio>
+    </div>
+
+    <ion-button expand="block" (click)="transcribirAudio()" [disabled]="transcribiendo || !audioUrl">
+      {{ transcribiendo ? 'Transcribiendo...' : 'Transcribir audio con IA' }}
+    </ion-button>
+
+    <ion-card *ngIf="transcripcionTexto">
+      <ion-card-header>
+        <ion-card-title>Texto transcrito</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        {{ transcripcionTexto }}
+      </ion-card-content>
+    </ion-card>
+
+    
+  </div>
+
+</ion-content>
