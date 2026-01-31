@@ -8,7 +8,11 @@ import { AppComponent } from './app/app.component';
 import { importProvidersFrom } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { IonicStorageModule } from '@ionic/storage-angular';
+<<<<<<< HEAD
 
+=======
+import { provideHttpClient } from '@angular/common/http';
+>>>>>>> 70de455 (Actividad 3)
 bootstrapApplication(AppComponent, {
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
@@ -17,6 +21,13 @@ bootstrapApplication(AppComponent, {
     importProvidersFrom(
       IonicModule.forRoot(),
       IonicStorageModule.forRoot()
+<<<<<<< HEAD
     )
+=======
+    ),
+
+    provideHttpClient(),
+
+>>>>>>> 70de455 (Actividad 3)
   ],
 });

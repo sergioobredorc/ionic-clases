@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { Router, RouterLink} from '@angular/router';
 import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-registro-articulo',
   standalone: true,
-  imports: [IonicModule, CommonModule, ReactiveFormsModule],
+  imports: [IonicModule, CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './registro.component.html'
 })
 export class RegistroArticuloComponent {

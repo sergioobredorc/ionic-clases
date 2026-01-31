@@ -129,7 +129,14 @@
     }
   },
   "cli": {
+<<<<<<< HEAD
     "schematicCollections": ["@ionic/angular-toolkit"]
+=======
+    "schematicCollections": [
+      "@ionic/angular-toolkit"
+    ],
+    "analytics": false
+>>>>>>> 70de455 (Actividad 3)
   },
   "schematics": {
     "@ionic/angular-toolkit:component": {

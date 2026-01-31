@@ -1,12 +1,14 @@
 <ion-header>
-  <ion-toolbar color="warning">
+
+  <ion-toolbar >
+    <ion-text slot="start" color="primary" routerLink="">Regresar</ion-text>
+
     <ion-title>Alta Producto</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
   <form [formGroup]="fArt" (ngSubmit)="guardar()">
-    
     <ion-item>
       <ion-label position="floating">Producto</ion-label>
       <ion-input formControlName="nombre"></ion-input>
@@ -49,5 +51,11 @@
     <ion-button expand="block" type="submit" [disabled]="fArt.invalid" class="ion-margin-top">
       Guardar
     </ion-button>
+<<<<<<< HEAD
+=======
+    <ion-button expand="block" routerLink="" class="ion-margin-top">
+      INICIO
+    </ion-button>
+>>>>>>> 70de455 (Actividad 3)
   </form>
 </ion-content>

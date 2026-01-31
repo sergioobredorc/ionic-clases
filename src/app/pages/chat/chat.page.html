@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-text slot="start" color="primary" routerLink="">Regresar</ion-text>
+    <ion-title>Asistente Virtual</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div class="messages">
+    <div *ngFor="let msg of messages; trackBy: trackByIndex"
+         [ngClass]="msg.from === 'user' ? 'msg-user' : 'msg-bot'">
+      {{ msg.text }}
+    </div>
+  </div>
+
+  <div class="center" *ngIf="sending">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <div class="input-row">
+      <ion-input
+        [(ngModel)]="input"
+        placeholder="Escribe algo..."
+        (keyup.enter)="send()">
+      </ion-input>
+
+      <ion-button
+        fill="clear"
+        (click)="send()"
+        [disabled]="sending || !input.trim()">
+        ➤
+      </ion-button>
+    </div>
+  </ion-toolbar>
+</ion-footer>
