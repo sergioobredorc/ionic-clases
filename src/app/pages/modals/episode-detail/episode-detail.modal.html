@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title style="font-size: 25px;"><strong>{{ episode?.name }}</strong></ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-spinner *ngIf="loading"></ion-spinner>
+
+  <div *ngIf="!loading">
+    <p>Código del episodio: <strong>{{ episode.episode }}</strong></p>
+    <p>Fecha de emisión del episodio: <strong>{{ episode.air_date }}</strong></p>
+
+    <h2 style="text-align: center; padding-top: 20px; padding-bottom: 20px;">Lista de personajes que aparecen en el episodio:</h2>
+
+    <div style="padding-left: 70px;">
+        <ion-list style="width: 400px; padding-left: 20px; border-radius: 20px;">
+      <ion-item *ngFor="let personajes of episode.characters">
+        <ion-avatar slot="start" style="width: 80px; height: 80px;">
+          <img [src]="personajes.image">
+        </ion-avatar>
+        <ion-label style="text-align: center;">
+          <h1>{{ personajes.name }}</h1>
+          <p>{{ personajes.status }} - {{ personajes.species }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+    </div>
+  </div>
+
+</ion-content>

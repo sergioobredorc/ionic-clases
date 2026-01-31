@@ -50,3 +50,5 @@ export class ChatgptPage {
     this.usuarioInput = '';
   }
 }
+
+// Profe la IA que usé fue OpenRouter

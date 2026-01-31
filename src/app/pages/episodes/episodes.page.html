@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="titulo">LISTA DE EPISODIOS - RICK AND MORTY</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-spinner *ngIf="loading"></ion-spinner>
+
+  <ion-list *ngIf="!loading">
+    <ion-item
+      button
+      *ngFor="let ep of episodes"
+      (click)="openEpisode(ep.id)"
+    >
+      <ion-label>
+        <h2>{{ ep.name }}</h2>
+        <p>{{ ep.episode }} | {{ ep.air_date }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

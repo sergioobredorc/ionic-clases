@@ -35,7 +35,8 @@ export const routes: Routes = [
   {
     path: 'listadoArticulos',
     component: ListadoArticulosComponent
-  },  {
+  },
+  {
     path: 'gallery',
     loadComponent: () => import('./pages/gallery/gallery.page').then( m => m.GalleryPage)
   },
@@ -46,6 +47,13 @@ export const routes: Routes = [
   {
     path: 'chatgpt',
     loadComponent: () => import('./pages/chatgpt/chatgpt.page').then( m => m.ChatgptPage)
+  },
+  {
+    path: 'episodes',
+    loadComponent: () => import('./pages/episodes/episodes.page').then( m => m.EpisodesPage)
+  },  {
+    path: 'media-analysis',
+    loadComponent: () => import('./pages/media-analysis/media-analysis.page').then( m => m.MediaAnalysisPage)
   }
 
 ];
