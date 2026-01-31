@@ -1,6 +1,12 @@
-// Un breve contexto sobre lo que hice, primero lo intente con una api de chatgpt y deepseek pero me di de cuenta que ambas tenia que pagar y me puse a buscar otras que fueran gratuitas y entre a https://openrouter.ai/qwen/qwen-2.5-7b-instruct openrouter es como una pagina donde estan todas las api de todas las IA y habian algunas gratuitas como llama o qwen que fue la que yo escogí, lo bueno es que te dan la apikeys y tiene abajo como la documentacion de como hacerlo con diferentes lenguajes de programacion me parecio buena, en cuestion de codigo es casi el mismo que el que uso usted, solo se cambiaban cosas minimas como aqui no se usa el model como gemini sino el assistant (es el que se encarga de responder los mensajes del usuario) y tambien el system (que es el que se encarga de dar el mensaje inicial ) 
+// Un breve contexto sobre lo que hice, primero lo intente con una api de chatgpt y deepseek pero me di de cuenta que ambas tenia que pagar y 
+//me puse a buscar otras que fueran gratuitas y entre a https://openrouter.ai/qwen/qwen-2.5-7b-instruct 
+//openrouter es como una pagina donde estan todas las api de todas las IA y habian algunas gratuitas como llama o qwen que fue la que yo escogí, 
+//lo bueno es que te dan la apikeys y tiene abajo como la documentacion de como hacerlo con diferentes lenguajes de programacion me parecio buena,
+//en cuestion de codigo es casi el mismo que el que uso usted, solo se cambiaban cosas minimas como aqui no se usa el model como gemini 
+//sino el assistant (es el que se encarga de responder los mensajes del usuario) y tambien el system (que es el que se encarga de dar el mensaje inicial ) 
 
-
+// Profe salgo muy importante, no puedo colocar la keys api porque me desabilita la keys si compoarto la llave en un repositorio publico asi que la unica solucion es 
+// que encontre fue le quite un numero al final de la apikey debe colocar al final 9 para que funcione
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, map } from "rxjs";
