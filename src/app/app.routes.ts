@@ -8,6 +8,7 @@ import { RegistroArticulosComponent } from './pages/registro-articulos/registro-
 import { ListadoArticulosComponent } from './pages/listado-articulos/listado-articulos.component';
 import { ChatPage } from './pages/chat/chat.component';
 
+
 export const routes: Routes = [
   {
     path: '',
@@ -40,4 +41,9 @@ export const routes: Routes = [
   {path: 'Chat',
     component: ChatPage
   },
+  {
+    path: 'rickmorty',
+    loadComponent: () => import('./pages/episode-modal/episode-modal.component').then( m => m.RickMortyPage)
+  },
+
 ];
