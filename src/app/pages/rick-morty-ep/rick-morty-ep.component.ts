@@ -5,10 +5,6 @@ import { finalize } from 'rxjs/operators';
 import { RickMortyService } from '../../services/rick-morty';
 import { RouterLink } from '@angular/router';
 
-/* =======================
-   TIPOS
-======================= */
-
 type EpisodiosList = {
   id: string;
   name: string;
@@ -41,10 +37,6 @@ type EpisodiosDetallado = {
 type EpisodiosDetalladoQueryData = {
   episode: EpisodiosDetallado | null;
 };
-
-/* =======================
-   QUERIES
-======================= */
 
 const GET_EPISODIOS = `
   query GetEpisodios {

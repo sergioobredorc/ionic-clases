@@ -59,5 +59,11 @@ export const routes: Routes = [
       import('./pages/rick-morty-graphql/rick-morty-graphql.component')
         .then(m => m.RickMortyGraphqlComponent)
   },
+  {
+    path: 'media-permisos',
+    loadComponent: () =>
+      import('./pages/media-permisos/media-permisos.page')
+        .then(m => m.MediaPermisosPage)
+  },
 
 ];
