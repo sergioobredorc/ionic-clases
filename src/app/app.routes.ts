@@ -56,6 +56,14 @@ export const routes: Routes = [
     path: 'rm-episodios',
     loadComponent: () => import('./pages/rm-episodios/rm-episodios.page').then( m => m.RmEpisodiosPage)
   },
+  {
+    path: 'map-explorer',
+    loadComponent: () => import('./pages/map-explorer/map-explorer.page').then( m => m.MapExplorerPage)
+  },
+  {
+    path: 'permisos',
+    loadComponent: () => import('./pages/permisos/permisos.page').then( m => m.PermisosPage)
+  },
 
 
 

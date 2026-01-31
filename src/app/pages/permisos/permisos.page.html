@@ -1,0 +1,153 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Permisos multimedia</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+<!--Camara-->
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Cámara</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <ion-button expand="block" color="primary"
+        (click)="encenderCamara()">
+        Encender cámara
+      </ion-button>
+
+      <ion-button expand="block" color="danger"
+        *ngIf="permisoCamara"
+        (click)="apagarCamara()"
+        >
+        Apagar cámara
+      </ion-button>
+
+      <video
+        #video
+        autoplay
+        muted
+        width="100%"
+        *ngIf="camara.camaraActiva && !fotoBase64">
+      </video>
+
+      <ion-button expand="block"
+        color="success"
+        (click)="tomarFoto()"
+        *ngIf="camara.camaraActiva && !fotoBase64">
+        Tomar foto
+      </ion-button>
+
+      <img
+        *ngIf="fotoBase64"
+        [src]="fotoBase64"
+        style="width: 100%; border-radius: 10px;" />
+
+      <ion-button expand="block"
+        fill="outline"
+        color="medium"
+        (click)="fotoBase64 = null; encenderCamara()"
+        *ngIf="fotoBase64">
+        Tomar otra foto
+      </ion-button>
+
+    </ion-card-content>
+  </ion-card>
+
+  <!--AUDIO -->
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Micrófono</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <ion-button expand="block"
+        (click)="activarMicrofono()"
+        *ngIf="!camara.microfonoActivo">
+        Activar micrófono
+      </ion-button>
+
+      <ion-button expand="block"
+        color="danger"
+        (click)="apagarMicrofono()"
+        *ngIf="camara.microfonoActivo && !camara.grabandoAudio">
+        Apagar micrófono
+      </ion-button>
+
+      <ion-button expand="block"
+        color="warning"
+        (click)="iniciarGrabacion()"
+        *ngIf="camara.microfonoActivo && !camara.grabandoAudio">
+        🎙 Iniciar grabación
+      </ion-button>
+
+      <ion-button expand="block"
+        color="danger"
+        (click)="detenerGrabacion()"
+        *ngIf="camara.grabandoAudio">
+        ⏺ Grabando... {{contador}}s
+      </ion-button>
+
+      <ion-spinner
+        name="dots"
+        *ngIf="camara.grabandoAudio"
+        class="ion-margin-top">
+      </ion-spinner>
+
+      <audio
+        *ngIf="audioUrl"
+        [src]="audioUrl"
+        controls
+        style="width: 100%; margin-top: 10px;">
+      </audio>
+
+    </ion-card-content>
+  </ion-card>
+
+  <!--Sentimiento-->
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Análisis de texto</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <ion-item>
+        <ion-input
+          placeholder="Describe lo que capturaste"
+          [(ngModel)]="texto">
+        </ion-input>
+      </ion-item>
+
+      <ion-button expand="block" (click)="analizarTexto()">
+        Analizar texto
+      </ion-button>
+
+      <ion-spinner *ngIf="cargando"></ion-spinner>
+
+      <div *ngIf="resultado" class="resultado">
+
+  <h3>Sentimiento: {{ resultado.sentiment }}</h3>
+
+  <div class="barra-contenedor">
+    <div class="barra" [style.width.%]="resultado.confidence * 100" [ngClass]="resultado.sentiment.toLowerCase()"></div>
+  </div>
+  
+  <p>Confianza: {{ resultado.confidence * 100 | number:'1.0-0' }}%</p>
+  
+  <p>Emociones: {{ resultado.emotions.join(', ') }}</p>
+  
+  </div>
+    </ion-card-content>
+  </ion-card>
+
+  <p style="color:red" *ngIf="error">{{ error }}</p>
+
+</ion-content>
