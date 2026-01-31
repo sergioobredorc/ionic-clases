@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Personajes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-spinner *ngIf="cargando"></ion-spinner>
+
+  <ion-list *ngIf="!cargando">
+    <ion-item *ngFor="let p of personajes" (click)="abrirDetalle(p.id)">
+      <ion-thumbnail slot="start">
+        <ion-img [src]="p.image"></ion-img>
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ p.name }}</h2>
+        <p>{{ p.status }} - {{ p.species }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <div *ngIf="!cargando && personajes.length === 0" class="ion-padding">
+    {{ error || 'No hay personajes para mostrar.' }}
+  </div>
+</ion-content>

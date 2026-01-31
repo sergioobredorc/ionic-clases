@@ -1,50 +1,54 @@
-import { Injectable } from "@angular/core";
-import { Storage } from "@ionic/storage-angular";
+import { Injectable } from '@angular/core';
+import { Storage } from '@ionic/storage-angular';
 
-export type Registro = {
-    nombre: string;
-    correo: string;
-    pais: string;
-    fechaNacimiento: string;
-    genero: string;
-    notificaciones: boolean;
-    biografia: string;
-    terminos: boolean;
-    createdAt: string;
+export interface Registro {
+  id?: number;
+  nombre?: string;
+  correo?: string;
+  pais?: string;
+  fechaNacimiento?: string | null;
+  genero?: string | null;
+  notificaciones?: boolean;
+  biografia?: string | null;
+  terminos?: boolean;
+  createdAt?: string;
 }
 
-@Injectable({ providedIn: 'root'})
-export class StorageService{
-    private _storage?: Storage;
-    private readonly KEY = 'registros';
+@Injectable({
+  providedIn: 'root'
+})
+export class StorageService {
+  private _storage: Storage | null = null;
+  private readonly KEY = 'registros';
 
-    constructor(private storage: Storage){}
+  constructor(private storage: Storage) {
+    this.init();
+  }
 
-    async init(): Promise<void>{
-        if (this._storage) return;
-        this._storage = await this.storage.create();
+  private async init() {
+    const s = await this.storage.create();
+    this._storage = s;
+    const existing = await this._storage.get(this.KEY);
+    if (!existing) {
+      await this._storage.set(this.KEY, []);
     }
+  }
 
-    async addRegistro(data: Omit<Registro, 'createdAt'>): Promise<void>{
-        await this.init();
-        const registros = (await this._storage!.get(this.KEY)) as Registro[] | null;
+  async addRegistro(registro: Registro) {
+    if (!this._storage) await this.init();
+    const list: Registro[] = (await this._storage!.get(this.KEY)) || [];
+    const item = { ...registro, id: new Date().getTime(), createdAt: new Date().toISOString() } as Registro;
+    list.push(item);
+    await this._storage!.set(this.KEY, list);
+  }
 
-        const nuevo: Registro = {
-            ...data,
-            createdAt: new Date().toISOString()
-        };
+  async getRegistros(): Promise<Registro[]> {
+    if (!this._storage) await this.init();
+    return (await this._storage!.get(this.KEY)) || [];
+  }
 
-        const actualizados = registros ? [nuevo,...registros] : [nuevo];
-        await this._storage?.set(this.KEY,actualizados)
-    }
-
-    async getRegistros(): Promise<Registro[]>{
-        await this.init();
-        return ((await this._storage!.get(this.KEY)) as Registro[] | null) ?? [];
-    }
-
-    async clearRegistros(): Promise<void>{
-        await this.init();
-        await this._storage!.remove(this.KEY);
-    }
+  async clearRegistros() {
+    if (!this._storage) await this.init();
+    await this._storage!.set(this.KEY, []);
+  }
 }

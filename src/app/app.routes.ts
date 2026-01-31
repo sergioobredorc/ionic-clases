@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+
 import { HomeComponent } from './pages/home/home.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { GaleriaComponent } from './pages/galeria/galeria.component';
@@ -7,38 +8,19 @@ import { ListadoRegistrosComponent } from './pages/listado-registros/listado-reg
 import { RegistroArticulosComponent } from './pages/registro-articulos/registro-articulos.component';
 import { ListadoArticulosComponent } from './pages/listado-articulos/listado-articulos.component';
 import { ChatComponent } from './pages/chat/chat.component';
+import { EpisodiosPage } from './pages/episodios/episodios.page';
+import { PersonajesPage } from './pages/personajes/personajes.page';
 
 export const routes: Routes = [
-  {
-    path: '',
-    component: HomeComponent
-  },
-  {
-    path: 'perfil',
-    component: PerfilComponent
-  },
-  {
-    path: 'galeria',
-    component: GaleriaComponent
-  },
-  {
-    path: 'registro',
-    component: RegistroComponent
-  },
-  {
-    path: 'registros',
-    component: ListadoRegistrosComponent
-  },
-  {
-    path: 'registro-articulos',
-    component: RegistroArticulosComponent
-  },
-  {
-    path: 'articulos',
-    component: ListadoArticulosComponent
-  },
-  {
-    path: 'chat',
-    component: ChatComponent
-  }
+  { path: '', component: HomeComponent },
+  { path: 'perfil', component: PerfilComponent },
+  { path: 'galeria', component: GaleriaComponent },
+  { path: 'registro', component: RegistroComponent },
+  { path: 'registros', component: ListadoRegistrosComponent },
+  { path: 'registro-articulos', component: RegistroArticulosComponent },
+  { path: 'articulos', component: ListadoArticulosComponent },
+  { path: 'chat', component: ChatComponent },
+  { path: 'episodios', component: EpisodiosPage },
+  { path: 'personajes', component: PersonajesPage }
 ];
+

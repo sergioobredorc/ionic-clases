@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Episodios</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-spinner *ngIf="cargando"></ion-spinner>
+
+  <ion-list *ngIf="!cargando">
+    <ion-item *ngFor="let ep of episodios" (click)="abrirDetalle(ep.id)">
+      <ion-label>
+        <h2>{{ ep.name }}</h2>
+        <p>{{ ep.episode }} | {{ ep.air_date }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <div *ngIf="!cargando && episodios.length === 0" class="ion-padding">
+    {{ error || 'No hay episodios para mostrar.' }}
+  </div>
+</ion-content>
