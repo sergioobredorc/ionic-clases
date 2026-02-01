@@ -1,0 +1,7 @@
+{
+  "name": "permisos-media-api",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
