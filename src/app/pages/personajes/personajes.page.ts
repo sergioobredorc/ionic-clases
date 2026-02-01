@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicModule, ModalController } from '@ionic/angular';
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { GraphqlService } from '../../services/graphql.service';
 import { DetallePersonajeComponent } from '../../components/detalle-personaje/detalle-personaje.component';
@@ -18,7 +19,8 @@ export class PersonajesPage {
 
   constructor(
     private gql: GraphqlService,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private router: Router
   ) {}
 
   async ngOnInit() {
@@ -41,5 +43,9 @@ export class PersonajesPage {
       initialBreakpoint: 0.7,
     });
     await modal.present();
+  }
+
+  abrirChat() {
+    this.router.navigate(['/chat']);
   }
 }

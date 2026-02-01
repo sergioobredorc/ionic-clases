@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Permisos Cámara y Micrófono</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-button expand="block" (click)="solicitarPermisos()">
+    Solicitar permisos
+  </ion-button>
+
+  <p>Cámara: {{ camaraPermitida ? 'Concedido' : 'No concedido' }}</p>
+  <p>Micrófono: {{ microfonoPermitido ? 'Concedido' : 'No concedido' }}</p>
+
+
+  <video #video width="100%" autoplay></video>
+
+  <ion-button expand="block" (click)="tomarFoto()" [disabled]="!camaraPermitida">
+    Tomar foto
+  </ion-button>
+
+  <canvas #canvas hidden></canvas>
+
+  <img *ngIf="fotoTomada" [src]="fotoTomada" width="100%" />
+
+
+  <ion-button expand="block" (click)="grabarAudio()" [disabled]="!microfonoPermitido">
+    Grabar audio (5 segundos)
+  </ion-button>
+
+  <audio *ngIf="audioURL" [src]="audioURL" controls></audio>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="stacked">Descripción de la captura</ion-label>
+        <ion-textarea [(ngModel)]="descripcion"></ion-textarea>
+      </ion-item>
+
+      <ion-button expand="block" (click)="analizarTexto()">
+        Analizar texto
+      </ion-button>
+
+      <div *ngIf="resultadoSentimiento" class="sentiment-result" [class]="'sentiment-' + resultadoSentimiento[0].label">
+        <div class="sentiment-icon">
+          <ion-icon [name]="resultadoSentimiento[0].label === 'positive' ? 'happy' : resultadoSentimiento[0].label === 'negative' ? 'sad' : 'help-circle'"></ion-icon>
+        </div>
+        <p class="sentiment-label">{{ resultadoSentimiento[0].label | uppercase }}</p>
+        <div class="confidence-container">
+          <p class="confidence-text">Confianza</p>
+          <p class="confidence-value">{{ resultadoSentimiento[0].score | percent:'1.0-2' }}</p>
+          <div class="progress-bar">
+            <div class="progress-fill" [style.width.%]="resultadoSentimiento[0].score * 100"></div>
+          </div>
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

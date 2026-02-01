@@ -33,7 +33,6 @@ export class ChatComponent {
   async enviarMensaje() {
     if (!this.textoUsuario.trim()) return;
 
-    // Agregar mensaje del usuario
     this.mensajes.push({ de: 'Usuario', texto: this.textoUsuario });
     
     const pregunta = this.textoUsuario;
@@ -41,7 +40,7 @@ export class ChatComponent {
     this.cargando = true;
 
     try {
-      // Llamar al servicio IA
+  
       const respuesta = await this.ai.preguntarIA(pregunta);
       
       // Agregar respuesta de la IA

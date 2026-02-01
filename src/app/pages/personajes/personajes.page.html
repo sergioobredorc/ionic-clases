@@ -23,3 +23,9 @@
     {{ error || 'No hay personajes para mostrar.' }}
   </div>
 </ion-content>
+
+<ion-fab slot="fixed" vertical="bottom" horizontal="end">
+  <ion-fab-button (click)="abrirChat()">
+    <ion-icon name="chatbubbles"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
