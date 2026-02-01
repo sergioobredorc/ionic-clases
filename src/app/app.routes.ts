@@ -43,7 +43,8 @@ export const routes: Routes = [
   {
     path: 'chat',
     loadComponent: () => import('./pages/chat/chat.page').then( m => m.ChatPage)
-  },  {
+  },
+  {
     path: 'rm-graphql',
     loadComponent: () => import('./pages/rm-graphql/rm-graphql.page').then( m => m.RmGraphqlPage)
   },
@@ -51,6 +52,13 @@ export const routes: Routes = [
     path: 'rm-graphql-episodes',
     loadComponent: () => import('./pages/rm-graphql-episodes/rm-graphql-episodes.page').then( m => m.RmGraphqlEpisodesPage)
   },
-
+  {
+    path: 'map-explorer',
+    loadComponent: () => import('./pages/map-explorer/map-explorer.page').then( m => m.MapExplorerPage)
+  },
+  {
+    path: 'permisos-camymic',
+    loadComponent: () => import('./pages/permisos-camymic/permisos-camymic.page').then( m => m.PermisosCamymicPage)
+  },
 
 ];

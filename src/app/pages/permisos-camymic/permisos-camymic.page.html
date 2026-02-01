@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="primary" routerLink="/home">Volver</ion-button>
+    </ion-buttons>
+    <ion-title>
+      Permisos Cam & Mic / API
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-button expand="full" (click)="requestPermissions()">
+    Activar Cámara y Micrófono
+  </ion-button>
+
+  <ion-button *ngIf="cameraGranted || microphoneGranted" expand="full" color="danger" (click)="removePermissions()">
+    Eliminar Permisos
+  </ion-button>
+
+  <p>
+    Cámara:
+    <span [ngClass]="cameraGranted ? 'status granted' : 'status denied'">
+      {{ cameraGranted ? 'Concedido' : 'Denegado' }}
+    </span>
+  </p>
+  <p>
+    Micrófono:
+    <span [ngClass]="microphoneGranted ? 'status granted' : 'status denied'">
+      {{ microphoneGranted ? 'Concedido' : 'Denegado' }}
+    </span>
+  </p>
+
+  <div class="camera-box">
+    <video #videoElement autoplay muted playsinline></video>
+    <div class="overlay" *ngIf="!cameraGranted">
+      <p>Acepta los permisos para obtener video</p>
+    </div>
+  </div>
+
+  <ion-button *ngIf="cameraGranted" expand="full" (click)="takePhoto()">
+    Tomar Foto
+  </ion-button>
+
+  <div>
+    <h3>Foto Capturada:</h3>
+    <img *ngIf="photoData" [src]="photoData" alt="Foto Capturada" />
+    <ion-button *ngIf="photoData" expand="full" color="danger" (click)="removePhoto()">
+      Eliminar Foto
+    </ion-button>
+  </div>
+
+  <ion-item *ngIf="photoData">
+    <ion-textarea [(ngModel)]="descriptionText" placeholder="Añade una descripción..."></ion-textarea>
+  </ion-item>
+
+  <ion-button *ngIf="photoData" expand="full" (click)="analizarSentimiento()">
+    Analizar Sentimiento
+  </ion-button>
+
+  <div *ngIf="sentimentResult && sentimentResult.length > 0">
+    <h3>Resultado Sentimiento:</h3>
+    <div *ngFor="let s of sentimentResult" [ngClass]="getSentimentClass(s.label)">
+        {{ s.label }} (score: {{ s.score }})
+    </div>
+  </div>
+    <p *ngIf="sentimentError" class="error">{{ sentimentError }}</p>
+
+
+  <ion-button *ngIf="microphoneGranted" expand="full" (click)="recordAudio()">
+    Grabar Audio (5 segundos)
+  </ion-button>
+
+  <div *ngIf="isRecording" class="progress-container">
+    <div class="progress-bar" [style.width.%]="recordProgress"></div>
+    <p class="progress-text">Grabando... {{ elapsedTime }}/5s</p>
+  </div>
+
+  <div *ngIf="audioUrl">
+    <h3>Audio Grabado:</h3>
+    <audio [src]="audioUrl" controls></audio>
+    <ion-button expand="full" color="danger" (click)="removeAudio()">
+      Eliminar Audio
+    </ion-button>
+  </div>
+
+</ion-content>
