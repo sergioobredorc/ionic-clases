@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar color="secondary"> <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Explorar Episodios</ion-title> </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div *ngIf="estaCargandoLista" class="ion-text-center ion-padding">
+    <ion-spinner name="dots" color="secondary"></ion-spinner>
+    <p>Consultando API de Rick and Morty...</p>
+  </div>
+
+  <ion-list *ngIf="!estaCargandoLista" inset="true">
+    <ion-item button *ngFor="let epi of listaDeEpisodios" (click)="verDetalles(epi.id)" detail="true">
+      <ion-label>
+        <h2>{{ epi.name }}</h2>
+        <p>Lanzamiento: {{ epi.air_date }}</p>
+      </ion-label>
+      <ion-badge slot="end" color="secondary">{{ epi.episode }}</ion-badge>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
+
+<ion-modal [isOpen]="mostrarModal" (didDismiss)="cerrarVentana()">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar color="dark"> <ion-title>Información del Capítulo</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="cerrarVentana()">Cerrar</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="ion-padding">
+
+      <div *ngIf="estaCargandoInfo" class="ion-text-center">
+        <ion-spinner name="lines" color="primary"></ion-spinner>
+        <p>Obteniendo reparto...</p>
+      </div>
+
+      <div *ngIf="episodioElegido && !estaCargandoInfo">
+        
+        <div class="header-detalle ion-margin-bottom">
+          <h1 class="ion-no-margin">{{ episodioElegido.name }}</h1>
+          <ion-note color="medium">Código: {{ episodioElegido.episode }} • {{ episodioElegido.air_date }}</ion-note>
+        </div>
+
+        <ion-list-header>
+          <ion-label>Personajes que aparecen ({{ episodioElegido.characters.length }})</ion-label>
+        </ion-list-header>
+
+        <ion-list>
+          <ion-item *ngFor="let personaje of episodioElegido.characters">
+            <ion-avatar slot="start">
+              <img [src]="personaje.image" [alt]="personaje.name" />
+            </ion-avatar>
+            <ion-label>
+              <h3>{{ personaje.name }}</h3>
+              <p>{{ personaje.species }} — <strong>{{ personaje.status }}</strong></p>
+            </ion-label>
+            <ion-icon 
+              slot="end" 
+              name="radio-button-on" 
+              [color]="personaje.status === 'Alive' ? 'success' : 'danger'">
+            </ion-icon>
+          </ion-item>
+        </ion-list>
+
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal>

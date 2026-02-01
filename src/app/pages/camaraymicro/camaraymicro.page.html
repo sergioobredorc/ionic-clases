@@ -1,0 +1,96 @@
+<ion-header>
+  <ion-toolbar color="warning"> <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Centro de Medios y Permisos</ion-title> </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-card>
+    <ion-card-content>
+      <ion-button expand="block" color="dark" (click)="gestionarPermisos()">
+        Verificar Permisos de Hardware
+      </ion-button>
+      
+      <div class="ion-margin-top">
+        <ion-chip [color]="accesoVideo === 'concedido' ? 'success' : 'danger'">
+          <ion-icon name="videocam"></ion-icon>
+          <ion-label>Cámara: {{ accesoVideo }}</ion-label>
+        </ion-chip>
+        
+        <ion-chip [color]="accesoAudio === 'concedido' ? 'success' : 'danger'">
+          <ion-icon name="mic"></ion-icon>
+          <ion-label>Audio: {{ accesoAudio }}</ion-label>
+        </ion-chip>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <div class="video-section ion-text-center" *ngIf="accesoVideo === 'concedido' || flujoVideo">
+    <video autoplay playsinline muted class="preview-ventana" style="width: 100%; border-radius: 15px;"></video>
+    
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-button expand="block" [color]="flujoVideo ? 'medium' : 'primary'" (click)="flujoVideo ? detenerCamara() : encenderPrevisualizacion()">
+            {{ flujoVideo ? 'Apagar Video' : 'Previsualizar' }}
+          </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button expand="block" color="secondary" (click)="capturarFotografia()" [disabled]="!flujoVideo">
+            Tomar Foto
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-card *ngIf="imagenCapturada">
+      <img [src]="imagenCapturada" />
+      <ion-card-header>
+        <ion-card-subtitle>Captura reciente</ion-card-subtitle>
+      </ion-card-header>
+    </ion-card>
+  </div>
+
+  <div *ngIf="accesoAudio === 'concedido'" class="ion-margin-top">
+    <ion-button expand="block" color="tertiary" (click)="iniciarCapturaAudio()" [disabled]="estaGrabando">
+      <ion-icon slot="start" [name]="estaGrabando ? 'radio-button-on' : 'mic-outline'"></ion-icon>
+      {{ estaGrabando ? 'Grabando... (' + cuentaRegresiva + 's)' : 'Grabar Nota de Voz (5s)' }}
+    </ion-button>
+
+    <div *ngIf="urlReproduccionAudio" class="ion-padding-top ion-text-center">
+      <p>Reproducir audio capturado:</p>
+      <audio [src]="urlReproduccionAudio" controls></audio>
+    </div>
+  </div>
+
+  <ion-card color="light">
+    <ion-card-header>
+      <ion-card-title>Análisis de Sentimiento IA</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-textarea 
+          [(ngModel)]="textoParaAnalizar" 
+          placeholder="Escribe algo sobre tu experiencia hoy..." 
+          rows="3">
+        </ion-textarea>
+      </ion-item>
+
+      <ion-button expand="block" color="success" (click)="procesarAnalisis()" [disabled]="cargandoAnalisis">
+        <ion-spinner *ngIf="cargandoAnalisis" name="crescent"></ion-spinner>
+        {{ cargandoAnalisis ? 'Procesando...' : 'Analizar Frase' }}
+      </ion-button>
+
+      <div *ngIf="msjResultado" class="ion-padding ion-text-center ion-margin-top" 
+           style="background: white; border-radius: 10px; border: 1px solid #ccc;">
+        <h2 [style.color]="tipoSentimiento === 'POSITIVO' ? 'green' : 'red'">
+          {{ msjResultado }}
+        </h2>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <canvas style="display:none;"></canvas>
+</ion-content>

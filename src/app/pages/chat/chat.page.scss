@@ -1,0 +1,33 @@
+.messages {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.msg-user, .msg-bot {
+  padding: 8px 12px;
+  border-radius: 10px;
+  max-width: 75%;
+  font-size: 14px;
+}
+
+.msg-user {
+  align-self: flex-end;
+  background-color: #cce5ff;
+}
+
+.msg-bot {
+  align-self: flex-start;
+  background-color: #f1f1f1;
+}
+
+.input-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.center {
+  text-align: center;
+  margin-top: 10px;
+}
