@@ -17,7 +17,7 @@ export class CopilotService {
     private model = 'openai/gpt-3.5-turbo';
 
     // Ingresar al final de la apiKey para que pueda funcionar lo siguiente: c9d8db
-    private apiKey = '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';
+    private apiKey = 'sk-or-v1-a922086fb2a9a2fe02c134c188bf2fcf5bddf1308251d7f6b9766a1820';
     private endpoint = `https://openrouter.ai/api/v1/chat/completions`;
 
     constructor(private http: HttpClient) {}

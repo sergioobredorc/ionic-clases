@@ -1,0 +1,5 @@
+Esta aplicación en Ionic solicita permisos de cámara y micrófono usando la API del navegador. Al conceder permisos, se muestra la vista previa de la cámara y se permite capturar una foto. También se puede grabar audio por 5 segundos y reproducirlo en la misma pantalla.
+Para complementar la experiencia, se integra una API de análisis de sentimiento: el usuario escribe una breve descripción y la aplicación envía el texto al servicio, mostrando la etiqueta principal y el nivel de confianza.
+La solución está organizada en servicios: uno para la gestión de medios y otro para el consumo de la API. Se manejan estados de carga, éxito y error, garantizando retroalimentación clara al usuario.
+La interfaz incluye video en vivo, imagen capturada, controles de audio y resultados de la API, ofreciendo una experiencia completa y práctica.
+Se eligió la API de sentimiento por su facilidad de integración y relevancia para demostrar el flujo de captura, envío y visualización de datos.
